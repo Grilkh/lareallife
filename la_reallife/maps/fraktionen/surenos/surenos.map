@@ -1,0 +1,30 @@
+<map edf:definitions="editor_main">
+    <object id="object (SFNvilla001_CM) (1)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2173.6000976563" posY="1011" posZ="78.89990234375" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (19)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2173.6000976563" posY="1011" posZ="80.300003051758" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (20)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2173.6000976563" posY="1011" posZ="81.699996948242" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (22)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2207.8000488281" posY="1011" posZ="78.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (23)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2207.8000488281" posY="1011" posZ="80.300003051758" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (24)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2207.8000488281" posY="1011" posZ="81.699996948242" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (25)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2183.3000488281" posY="1011" posZ="83.099998474121" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (26)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2220.8000488281" posY="1011" posZ="80.300003051758" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (27)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2221.1000976563" posY="1011" posZ="81.699996948242" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (28)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2214.6999511719" posY="1011" posZ="83.099998474121" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (29)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2199.6000976563" posY="1011" posZ="83.099998474121" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (30)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2222" posY="1011" posZ="84.5" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (31)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2181.1000976563" posY="1011" posZ="84.5" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (32)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2200.1999511719" posY="1011" posZ="84.5" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (33)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2214.1000976563" posY="1011" posZ="85.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (34)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2196.5" posY="1011" posZ="85.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (SFNvilla001_CM) (35)" doublesided="false" model="9339" interior="0" dimension="0" posX="-2174.6999511719" posY="1011" posZ="85.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (CJ_CHRIS_CRATE) (1)" doublesided="false" model="2669" interior="0" dimension="0" posX="-2176" posY="957.79998779297" posZ="80.300003051758" rotX="0" rotY="0" rotZ="270.25"></object>
+    <object id="object (helipad01) (1)" doublesided="false" model="3934" interior="0" dimension="0" posX="-2205.3999023438" posY="967.79998779297" posZ="83.900001525879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (helipad01) (2)" doublesided="false" model="3934" interior="0" dimension="0" posX="-2205.1000976563" posY="981.79998779297" posZ="83.900001525879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (cos_sbanksteps04) (1)" doublesided="false" model="13011" interior="0" dimension="0" posX="-2210.8000488281" posY="973" posZ="80.900001525879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (tag_vagos) (1)" doublesided="false" model="1530" interior="0" dimension="0" posX="-2173.1999511719" posY="999.59997558594" posZ="81.900001525879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (tag_vagos) (2)" doublesided="false" model="1530" interior="0" dimension="0" posX="-2173.1999511719" posY="963" posZ="80.900001525879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (tag_vagos) (3)" doublesided="false" model="1530" interior="0" dimension="0" posX="-2209.8999023438" posY="967.59997558594" posZ="81.199996948242" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (tag_vagos) (4)" doublesided="false" model="1530" interior="0" dimension="0" posX="-2205.1999511719" posY="962.29998779297" posZ="80.5" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (tag_vagos) (5)" doublesided="false" model="1530" interior="0" dimension="0" posX="-2205.3999023438" posY="1011.299987793" posZ="80.600006103516" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (Packing_carates2) (1)" doublesided="false" model="923" interior="0" dimension="0" posX="-2174.1999511719" posY="960" posZ="79.900001525879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (nf_list_3) (1)" doublesided="false" model="3088" interior="0" dimension="0" posX="-2191.3999023438" posY="956.29998779297" posZ="79.599998474121" rotX="0" rotY="0" rotZ="0"></object>
+</map>

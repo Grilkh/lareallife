@@ -1,0 +1,32 @@
+﻿function yakuzasettings ()
+
+	local mafia = "Yakuza"
+	
+	YakuzaFamkasse = tonumber(MySQL_GetString("fraktionen", "DepotGeld", "Name LIKE '" ..mafia.."'"))
+	
+	YakuzaSchlagringe = tonumber(MySQL_GetString("fraktionswaffen", "Schlagringe", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaBaseballschlaeger = tonumber(MySQL_GetString("fraktionswaffen", "Baseballschlaeger", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaMesser = tonumber(MySQL_GetString("fraktionswaffen", "Messer", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaSchaufeln = tonumber(MySQL_GetString("fraktionswaffen", "Schaufeln", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaPistolen = tonumber(MySQL_GetString("fraktionswaffen", "Pistolen", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaSDPistolen = tonumber(MySQL_GetString("fraktionswaffen", "SDPistolen", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaPistolenMagazine = tonumber(MySQL_GetString("fraktionswaffen", "PistolenMagazine", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaDesertEagles = tonumber(MySQL_GetString("fraktionswaffen", "DesertEagles", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaDesertEagleMunition = tonumber(MySQL_GetString("fraktionswaffen", "DesertEagleMunition", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaSchrotflinten = tonumber(MySQL_GetString("fraktionswaffen", "Schrotflinten", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaSchrotflintenMunition = tonumber(MySQL_GetString("fraktionswaffen", "SchrotflintenMunition", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaMP = tonumber(MySQL_GetString("fraktionswaffen", "MP", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaMPMunition = tonumber(MySQL_GetString("fraktionswaffen", "MPMunition", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaAK = tonumber(MySQL_GetString("fraktionswaffen", "AK", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaAKMunition = tonumber(MySQL_GetString("fraktionswaffen", "AKMunition", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaM = tonumber(MySQL_GetString("fraktionswaffen", "M", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaMMunition = tonumber(MySQL_GetString("fraktionswaffen", "MMunition", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaGewehre = tonumber(MySQL_GetString("fraktionswaffen", "Gewehre", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaGewehrPatronen = tonumber(MySQL_GetString("fraktionswaffen", "GewehrPatronen", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaSGewehr = tonumber(MySQL_GetString("fraktionswaffen", "SGewehr", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaSGewehrMunition = tonumber(MySQL_GetString("fraktionswaffen", "SGewehrMunition", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaRaketenwerfer = tonumber(MySQL_GetString("fraktionswaffen", "Raketenwerfer", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaRaketen = tonumber(MySQL_GetString("fraktionswaffen", "Raketen", "Fraktion LIKE '" ..mafia.."'"))
+	YakuzaSpezwaffen = tonumber(MySQL_GetString("fraktionswaffen", "Spezwaffen", "Fraktion LIKE '" ..mafia.."'"))
+end
+addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), yakuzasettings )

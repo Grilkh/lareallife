@@ -1,0 +1,25 @@
+<map>
+<!--Bahnhof-->
+  <radararea posX="-1978.764" posY="108.252" sizeX="17" sizeY="55" color="#00FF007F" dimension="0" />
+<!--WangCars-->
+  <radararea posX="-1996.317" posY="240" sizeX="99" sizeY="70" color="#00FF007F" dimension="0" />
+<!--Ammunation-->
+  <radararea posX="-2636.576" posY="208.569" sizeX="20" sizeY="5" color="#00FF007F" dimension="0" />
+<!--Airport-->
+  <radararea posX="-1421.946" posY="-316.651" sizeX="12" sizeY="20" color="#00FF007F" dimension="0" />
+<!--SFPD-->
+  <radararea posX="-1625.354" posY="710" sizeX="30" sizeY="8" color="#00FF007F" dimension="0" />
+<!--Jobcenter-->
+  <radararea posX="-2172.462" posY="236.984" sizeX="15" sizeY="30" color="#00FF007F" dimension="0" />
+<!--Trucker-->
+  <radararea posX="-1862.824" posY="110.476" sizeX="31" sizeY="14" color="#00FF007F" dimension="0" />
+  
+<!--Krankenhaus-->
+  <radararea posX="-2740.1" posY="579" sizeX="128" sizeY="52.8" color="#00FF007F" dimension="0" />
+  
+<!--Fahrschule-->
+  <radararea posX="-2037.362" posY="-101.917" sizeX="20" sizeY="5" color="#00FF007F" dimension="0" />
+ 
+<!--Weihnachtsmarkt-->
+   <!--<radararea posX="-1992.098" posY="862.599" sizeX="24" sizeY="44" color="#00FF007F" dimension="0" />-->
+</map>

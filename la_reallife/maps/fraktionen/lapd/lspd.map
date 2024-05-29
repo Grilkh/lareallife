@@ -1,0 +1,6 @@
+<map edf:definitions="editor_main">
+    <object id="object (helipad01) (1)" doublesided="false" model="3934" interior="0" dimension="0" posX="1566.1999511719" posY="-1653.5" posZ="27.39999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (helipad01) (2)" doublesided="false" model="3934" interior="0" dimension="0" posX="1565.0999755859" posY="-1698.4000244141" posZ="27.39999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (lift_dr) (1)" doublesided="false" model="3051" interior="6" dimension="0" posX="216.89999389648" posY="66.300003051758" posZ="1005.4000244141" rotX="0" rotY="0" rotZ="226"></object>
+    <object id="object (lift_dr) (2)" doublesided="false" model="3051" interior="6" dimension="0" posX="216.89999389648" posY="67.400001525879" posZ="1005.4000244141" rotX="0" rotY="0" rotZ="45.999755859375"></object>
+</map>

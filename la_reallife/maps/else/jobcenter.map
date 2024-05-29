@@ -1,0 +1,23 @@
+<map edf:definitions="editor_main">
+    <object id="object (lib_veg3) (1)" doublesided="false" model="3920" interior="0" dimension="0" posX="-1974.3000488281" posY="238.80000305176" posZ="36.299999237061" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kb_planter_bush) (1)" doublesided="false" model="638" interior="0" dimension="0" posX="-2157.1000976563" posY="238.19999694824" posZ="35" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kb_planter_bush) (2)" doublesided="false" model="638" interior="0" dimension="0" posX="-2157.1000976563" posY="265.70001220703" posZ="35" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kb_planter_bush) (3)" doublesided="false" model="638" interior="0" dimension="0" posX="-2171.3999023438" posY="254.39999389648" posZ="35" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (kb_planter_bush) (4)" doublesided="false" model="638" interior="0" dimension="0" posX="-2171.3999023438" posY="249.60000610352" posZ="35" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (kb_planter_bush2) (1)" doublesided="false" model="640" interior="0" dimension="0" posX="-2157.1000976563" posY="242.30000305176" posZ="35" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kb_planter_bush2) (2)" doublesided="false" model="640" interior="0" dimension="0" posX="-2157.1000976563" posY="261.60000610352" posZ="35" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (1)" doublesided="false" model="970" interior="0" dimension="0" posX="-2156.6000976563" posY="246.69999694824" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (2)" doublesided="false" model="970" interior="0" dimension="0" posX="-2156.6000976563" posY="242.5" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (3)" doublesided="false" model="970" interior="0" dimension="0" posX="-2156.6000976563" posY="238.30000305176" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (4)" doublesided="false" model="970" interior="0" dimension="0" posX="-2156.5" posY="257.79998779297" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (5)" doublesided="false" model="970" interior="0" dimension="0" posX="-2156.5" posY="262" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (6)" doublesided="false" model="970" interior="0" dimension="0" posX="-2156.5" posY="266.20001220703" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (kb_planter_bush) (5)" doublesided="false" model="638" interior="0" dimension="0" posX="-2157.1999511719" posY="257.5" posZ="35" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kb_planter_bush) (6)" doublesided="false" model="638" interior="0" dimension="0" posX="-2157.1000976563" posY="246.39999389648" posZ="35" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (vgschinalion1) (1)" doublesided="false" model="3471" interior="0" dimension="0" posX="-2157.1000976563" posY="248.39999389648" posZ="35.599998474121" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (vgschinalion1) (2)" doublesided="false" model="3471" interior="0" dimension="0" posX="-2157" posY="255.69999694824" posZ="35.599998474121" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (vgsN_scrollsgn01) (1)" doublesided="false" model="7313" interior="0" dimension="0" posX="-2162.1000976563" posY="252.10000610352" posZ="37.990001678467" rotX="0" rotY="0" rotZ="88.25"></object>
+    <object id="object (vegasflag02) (1)" doublesided="false" model="7091" interior="0" dimension="0" posX="-2156.6999511719" posY="234.19999694824" posZ="48.400001525879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (vegasflag02) (2)" doublesided="false" model="7091" interior="0" dimension="0" posX="-2156.6999511719" posY="269.10000610352" posZ="48.599998474121" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (stuntramp7_las2) (1)" doublesided="false" model="5153" interior="0" dimension="0" posX="-1422" posY="-287.70001220703" posZ="13.010000228882" rotX="0" rotY="23.5" rotZ="315"></object>
+</map>

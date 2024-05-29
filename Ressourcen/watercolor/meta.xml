@@ -1,0 +1,4 @@
+<meta>
+  <info author="Metalhero" name="watercolor" version="1.0" type="script"/>
+  <script src="watercolor-client.lua" type="client" />
+</meta>

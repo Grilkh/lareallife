@@ -1,0 +1,32 @@
+﻿function surenosData_load ()
+
+	local mafia = "Surenos"
+	
+	SurenosFamkasse = tonumber(MySQL_GetString("fraktionen", "DepotGeld", "Name LIKE '" ..mafia.."'"))
+	
+	SurenosSchlagringe = tonumber(MySQL_GetString("fraktionswaffen", "Schlagringe", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosBaseballschlaeger = tonumber(MySQL_GetString("fraktionswaffen", "Baseballschlaeger", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosMesser = tonumber(MySQL_GetString("fraktionswaffen", "Messer", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosSchaufeln = tonumber(MySQL_GetString("fraktionswaffen", "Schaufeln", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosPistolen = tonumber(MySQL_GetString("fraktionswaffen", "Pistolen", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosSDPistolen = tonumber(MySQL_GetString("fraktionswaffen", "SDPistolen", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosPistolenMagazine = tonumber(MySQL_GetString("fraktionswaffen", "PistolenMagazine", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosDesertEagles = tonumber(MySQL_GetString("fraktionswaffen", "DesertEagles", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosDesertEagleMunition = tonumber(MySQL_GetString("fraktionswaffen", "DesertEagleMunition", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosSchrotflinten = tonumber(MySQL_GetString("fraktionswaffen", "Schrotflinten", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosSchrotflintenMunition = tonumber(MySQL_GetString("fraktionswaffen", "SchrotflintenMunition", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosMP = tonumber(MySQL_GetString("fraktionswaffen", "MP", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosMPMunition = tonumber(MySQL_GetString("fraktionswaffen", "MPMunition", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosAK = tonumber(MySQL_GetString("fraktionswaffen", "AK", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosAKMunition = tonumber(MySQL_GetString("fraktionswaffen", "AKMunition", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosM = tonumber(MySQL_GetString("fraktionswaffen", "M", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosMMunition = tonumber(MySQL_GetString("fraktionswaffen", "MMunition", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosGewehre = tonumber(MySQL_GetString("fraktionswaffen", "Gewehre", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosGewehrPatronen = tonumber(MySQL_GetString("fraktionswaffen", "GewehrPatronen", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosSGewehr = tonumber(MySQL_GetString("fraktionswaffen", "SGewehr", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosSGewehrMunition = tonumber(MySQL_GetString("fraktionswaffen", "SGewehrMunition", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosRaketenwerfer = tonumber(MySQL_GetString("fraktionswaffen", "Raketenwerfer", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosRaketen = tonumber(MySQL_GetString("fraktionswaffen", "Raketen", "Fraktion LIKE '" ..mafia.."'"))
+	SurenosSpezwaffen = tonumber(MySQL_GetString("fraktionswaffen", "Spezwaffen", "Fraktion LIKE '" ..mafia.."'"))
+end
+addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), surenosData_load )

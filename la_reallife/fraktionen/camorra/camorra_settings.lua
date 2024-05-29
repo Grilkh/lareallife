@@ -1,0 +1,32 @@
+﻿function camorrasettings ()
+
+	local mafia = "Camorra"
+	
+	CamorraFamkasse = tonumber(MySQL_GetString("fraktionen", "DepotGeld", "Name LIKE '" ..mafia.."'"))
+	
+	CamorraSchlagringe = tonumber(MySQL_GetString("fraktionswaffen", "Schlagringe", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraBaseballschlaeger = tonumber(MySQL_GetString("fraktionswaffen", "Baseballschlaeger", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraMesser = tonumber(MySQL_GetString("fraktionswaffen", "Messer", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraSchaufeln = tonumber(MySQL_GetString("fraktionswaffen", "Schaufeln", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraPistolen = tonumber(MySQL_GetString("fraktionswaffen", "Pistolen", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraSDPistolen = tonumber(MySQL_GetString("fraktionswaffen", "SDPistolen", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraPistolenMagazine = tonumber(MySQL_GetString("fraktionswaffen", "PistolenMagazine", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraDesertEagles = tonumber(MySQL_GetString("fraktionswaffen", "DesertEagles", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraDesertEagleMunition = tonumber(MySQL_GetString("fraktionswaffen", "DesertEagleMunition", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraSchrotflinten = tonumber(MySQL_GetString("fraktionswaffen", "Schrotflinten", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraSchrotflintenMunition = tonumber(MySQL_GetString("fraktionswaffen", "SchrotflintenMunition", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraMP = tonumber(MySQL_GetString("fraktionswaffen", "MP", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraMPMunition = tonumber(MySQL_GetString("fraktionswaffen", "MPMunition", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraAK = tonumber(MySQL_GetString("fraktionswaffen", "AK", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraAKMunition = tonumber(MySQL_GetString("fraktionswaffen", "AKMunition", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraM = tonumber(MySQL_GetString("fraktionswaffen", "M", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraMMunition = tonumber(MySQL_GetString("fraktionswaffen", "MMunition", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraGewehre = tonumber(MySQL_GetString("fraktionswaffen", "Gewehre", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraGewehrPatronen = tonumber(MySQL_GetString("fraktionswaffen", "GewehrPatronen", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraSGewehr = tonumber(MySQL_GetString("fraktionswaffen", "SGewehr", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraSGewehrMunition = tonumber(MySQL_GetString("fraktionswaffen", "SGewehrMunition", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraRaketenwerfer = tonumber(MySQL_GetString("fraktionswaffen", "Raketenwerfer", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraRaketen = tonumber(MySQL_GetString("fraktionswaffen", "Raketen", "Fraktion LIKE '" ..mafia.."'"))
+	CamorraSpezwaffen = tonumber(MySQL_GetString("fraktionswaffen", "Spezwaffen", "Fraktion LIKE '" ..mafia.."'"))
+end
+addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), camorrasettings )

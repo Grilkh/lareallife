@@ -1,0 +1,221 @@
+﻿function cancelRathausMenue ( button )
+
+	guiSetVisible(gWindow["rathausbg"], false)
+	showCursor(false)
+	triggerServerEvent ( "cancel_gui_server", getLocalPlayer() )
+end
+
+function beantragen ( button, state )
+
+	if button == "left" then
+		player = getLocalPlayer()
+		triggerServerEvent ( "LizenzKaufen", getLocalPlayer(), player, license )
+	end
+end
+
+function ShowRathausMenue_func()
+
+	_createCityhallGui()
+end
+addEvent ( "ShowRathausMenue", true)
+addEventHandler ( "ShowRathausMenue", getLocalPlayer(),  ShowRathausMenue_func)
+
+function _createCityhallGui()
+
+	if gWindow["rathausbg"] then
+		guiSetVisible ( gWindow["rathausbg"], true )
+	else
+		gWindow["rathausbg"] = guiCreateWindow(screenwidth/2-750/2,screenheight/2-280/2,750,280,"Fahrschule",false)
+		guiSetAlpha(gWindow["rathausbg"],1)
+		gGrid["Licenses"] = guiCreateGridList(0.0201,0.2709,0.4509,0.6773,true,gWindow["rathausbg"])
+		guiGridListSetSelectionMode(gGrid["Licenses"],2)
+		gColumn["cityhallLicense"] = guiGridListAddColumn(gGrid["Licenses"],"Schein",0.38)
+		gColumn["cityhallPreis"] = guiGridListAddColumn(gGrid["Licenses"],"Preis",0.3)
+		gColumn["cityhallVorhanden"] = guiGridListAddColumn(gGrid["Licenses"],"",0.07)
+		guiSetAlpha(gGrid["Licenses"],1)
+		gLabel["cityhalInfotext1"] = guiCreateLabel(0.0179,0.0797,0.9688,0.1753,"Herzlich wilkommen bei der Fahrschule!\nHier kannst du neue Scheine erwerben.",true,gWindow["rathausbg"])
+		guiSetAlpha(gLabel["cityhalInfotext1"],1)
+		guiLabelSetColor(gLabel["cityhalInfotext1"],255,255,255)
+		guiLabelSetVerticalAlign(gLabel["cityhalInfotext1"],"top")
+		guiLabelSetHorizontalAlign(gLabel["cityhalInfotext1"],"left",false)
+		guiSetFont(gLabel["cityhalInfotext1"],"default-bold-small")
+		gLabel["cityhalInfotext2"] = guiCreateLabel(0.6228,0.3347,0.1964,0.0677,"Führerschein",true,gWindow["rathausbg"])
+		guiSetAlpha(gLabel["cityhalInfotext2"],1)
+		guiLabelSetColor(gLabel["cityhalInfotext2"],200,200,000)
+		guiLabelSetVerticalAlign(gLabel["cityhalInfotext2"],"top")
+		guiLabelSetHorizontalAlign(gLabel["cityhalInfotext2"],"left",false)
+		guiSetFont(gLabel["cityhalInfotext2"],"default-bold-small")
+		gLabel["cityhalInfotext3"] = guiCreateLabel(0.4888,0.4024,0.4866,0.2231,"Mit einem Führerschein kannst du\nalle Autos fahren, jedoch ist eine\ntheoretische und praktische Prüfung\nPflicht.",true,gWindow["rathausbg"])
+		guiSetAlpha(gLabel["cityhalInfotext3"],1)
+		guiLabelSetColor(gLabel["cityhalInfotext3"],125,125,200)
+		guiLabelSetVerticalAlign(gLabel["cityhalInfotext3"],"top")
+		guiLabelSetHorizontalAlign(gLabel["cityhalInfotext3"],"left",false)
+		guiSetFont(gLabel["cityhalInfotext3"],"default-bold-small")
+		gButton["beantragen"] = guiCreateButton(0.5022,0.7729,0.2143,0.1633,"Beantragen",true,gWindow["rathausbg"])
+		guiSetAlpha(gButton["beantragen"],1)
+		gButton["schliessen"] = guiCreateButton(0.75,0.7729,0.2143,0.1633,"Schliessen",true,gWindow["rathausbg"])
+		guiSetAlpha(gButton["schliessen"],1)
+		
+		addEventHandler("onClientGUIClick", gButton["schliessen"], cancelRathausMenue, true)
+		addEventHandler("onClientGUIClick", gButton["beantragen"], beantragen, true)
+		
+		refreshCityhallTexts()
+	end
+	refreshLicenses()
+end
+
+function rathausClick ()
+	if gWindow["rathausbg"] then
+		local rowindex, columnindex = guiGridListGetSelectedItem ( gGrid["Licenses"] )
+		local selectedText = guiGridListGetItemText ( gGrid["Licenses"], rowindex, gColumn["cityhallLicense"] )
+		if selectedText == "Führerschein" then
+			license = "car"
+			refreshCityhallTexts()
+		elseif selectedText == "Flugschein B" then
+			license = "planeb"
+			refreshCityhallTexts()
+		elseif selectedText == "Flugschein A" then
+			license = "planea"
+			refreshCityhallTexts()
+		elseif selectedText == "Helikopterschein" then
+			license = "heli"
+			refreshCityhallTexts()
+		elseif selectedText == "Motorbootschein" then
+			license = "motorboot"
+			refreshCityhallTexts()
+		elseif selectedText == "Segelschein" then
+			license = "raft"
+			refreshCityhallTexts()
+		elseif selectedText == "LKW-Führerschein" then
+			license = "lkw"
+			refreshCityhallTexts()
+		elseif selectedText == "Personalausweis" then
+			license = "perso"
+			refreshCityhallTexts()
+		elseif selectedText == "Angelschein" then
+			license = "fishing"
+			refreshCityhallTexts()
+		elseif selectedText == "Motorradschein" then
+			license = "bike"
+			refreshCityhallTexts()
+		end
+	end
+end
+addEventHandler ( "onClientGUIClick", getRootElement(), rathausClick )
+
+function refreshLicenses()
+
+	guiGridListClear ( gGrid["Licenses"] )
+	
+	local row = guiGridListAddRow ( gGrid["Licenses"] )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallLicense"], "Führerschein", false, false )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallPreis"], "750 $", true, false )
+	if tonumber ( getElementData ( lp, "carlicense" ) ) == 1 then fix = "[x]" else fix = "[_]" end
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallVorhanden"], fix, true, false )
+	
+	local row = guiGridListAddRow ( gGrid["Licenses"] )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallLicense"], "Motorradschein", false, false )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallPreis"], "450 $", true, false )
+	if tonumber ( getElementData ( lp, "bikelicense" ) ) == 1 then fix = "[x]" else fix = "[_]" end
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallVorhanden"], fix, true, false )
+	
+	local row = guiGridListAddRow ( gGrid["Licenses"] )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallLicense"], "LKW-Führerschein", false, false )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallPreis"], "450 $", true, false )
+	if tonumber ( getElementData ( lp, "lkwlicense" ) ) == 1 then fix = "[x]" else fix = "[_]" end
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallVorhanden"], fix, true, false )
+	
+	local row = guiGridListAddRow ( gGrid["Licenses"] )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallLicense"], "Flugschein A", false, false )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallPreis"], "15.000 $", true, false )
+	if tonumber ( getElementData ( lp, "planelicensea" ) ) == 1 then fix = "[x]" else fix = "[_]" end
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallVorhanden"], fix, true, false )
+	
+	local row = guiGridListAddRow ( gGrid["Licenses"] )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallLicense"], "Flugschein B", false, false )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallPreis"], "34.950 $", true, false )
+	if tonumber ( getElementData ( lp, "planelicenseb" ) ) == 1 then fix = "[x]" else fix = "[_]" end
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallVorhanden"], fix, true, false )
+	
+	local row = guiGridListAddRow ( gGrid["Licenses"] )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallLicense"], "Helikopterschein", false, false )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallPreis"], "20.000 $", true, false )
+	if tonumber ( getElementData ( lp, "helilicense" ) ) == 1 then fix = "[x]" else fix = "[_]" end
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallVorhanden"], fix, true, false )
+	
+	local row = guiGridListAddRow ( gGrid["Licenses"] )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallLicense"], "Motorbootschein", false, false )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallPreis"], "400 $", true, false )
+	if tonumber ( getElementData ( lp, "motorbootlicense" ) ) == 1 then fix = "[x]" else fix = "[_]" end
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallVorhanden"], fix, true, false )
+	
+	local row = guiGridListAddRow ( gGrid["Licenses"] )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallLicense"], "Segelschein", false, false )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallPreis"], "350 $", true, false )
+	if tonumber ( getElementData ( lp, "segellicense" ) ) == 1 then fix = "[x]" else fix = "[_]" end
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallVorhanden"], fix, true, false )
+	
+	local row = guiGridListAddRow ( gGrid["Licenses"] )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallLicense"], "Angelschein", false, false )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallPreis"], "79 $", true, false )
+	if tonumber ( getElementData ( lp, "fishinglicense" ) ) == 1 then fix = "[x]" else fix = "[_]" end
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallVorhanden"], fix, true, false )
+	
+	local row = guiGridListAddRow ( gGrid["Licenses"] )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallLicense"], "Personalausweis", false, false )
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallPreis"], "40 $", true, false )
+	if tonumber ( getElementData ( lp, "perso" ) ) == 1 then fix = "[x]" else fix = "[_]" end
+	guiGridListSetItemText( gGrid["Licenses"], row, gColumn["cityhallVorhanden"], fix, true, false )
+
+	license = "car"
+	refreshCityhallTexts()
+end
+
+function refreshCityhallTexts()
+
+	--[[
+		license = "wschein"
+		
+		license = "bike"
+		license = "fishing"
+		license = "perso"
+		license = "lkw"
+		license = "raft"
+		license = "motorboot"
+		license = "planeb"
+		license = "car"
+		license = "heli"
+		license = "planea"
+		]]
+	if license == "car" then
+		guiSetText ( gLabel["cityhalInfotext2"], "Führerschein" )
+		guiSetText ( gLabel["cityhalInfotext3"], "Mit einem Führerschein kannst du\nalle Autos fahren, jedoch ist eine\ntheoretische und praktische Prüfung\nPflicht." )
+	elseif license == "planeb" then
+		guiSetText ( gLabel["cityhalInfotext2"], "Flugschein B" )
+		guiSetText ( gLabel["cityhalInfotext3"], "Mit einem Flugschein B kannst du\nalle Flugzeuge fliegen, egal wie goss.\nWichtig: Flugschein Klasse A wird benötigt!" )
+	elseif license == "planea" then
+		guiSetText ( gLabel["cityhalInfotext2"], "Flugschein A" )
+		guiSetText ( gLabel["cityhalInfotext3"], "Mit einem Flugschein A kannst du\nalle kleineren Flugzeuge fliegen." )
+	elseif license == "heli" then
+		guiSetText ( gLabel["cityhalInfotext2"], "Helikopterschein" )
+		guiSetText ( gLabel["cityhalInfotext3"], "Mit einem Helikopterschein\nkannst du alle arten von\nHelikoptern fliegen." )
+	elseif license == "motorboot" then
+		guiSetText ( gLabel["cityhalInfotext2"], "Motorbootschein" )
+		guiSetText ( gLabel["cityhalInfotext3"], "Mit einem Motorbootschein kannst du\nalle arten von Booten mit\nMotor fahren." )
+	elseif license == "raft" then
+		guiSetText ( gLabel["cityhalInfotext2"], "Segelschein" )
+		guiSetText ( gLabel["cityhalInfotext3"], "Mit einem Segelschein kannst du\nauch Schiffe mit Segel fahren.\nWichtig: Motorbootschein wird benötigt!" )
+	elseif license == "lkw" then
+		guiSetText ( gLabel["cityhalInfotext2"], "LKW-Führerschein" )
+		guiSetText ( gLabel["cityhalInfotext3"], "Mit einem LKW-Führerschein\nkannst du alle grösseren und\nkleineren Trucks fahren.\nWichtig: Führerschein wird benötigt!" )
+	elseif license == "perso" then
+		guiSetText ( gLabel["cityhalInfotext2"], "Personalausweis" )
+		guiSetText ( gLabel["cityhalInfotext3"], "Ohne einen Personalausweis kannst du\nbestimmte Orte nicht betreten." )
+	elseif license == "fishing" then
+		guiSetText ( gLabel["cityhalInfotext2"], "Angelschein" )
+		guiSetText ( gLabel["cityhalInfotext3"], "Ohne Angelschein darfst du nicht fischen,\naussderm brauchst du ihn, wenn du\nals Fischer arbeiten willst." )
+	elseif license == "bike" then
+		guiSetText ( gLabel["cityhalInfotext2"], "Motorradschein" )
+		guiSetText ( gLabel["cityhalInfotext3"], "Damit du mit einem Motorrad fahren darfst\nbenötigst du diesen Schein." )
+	end
+end

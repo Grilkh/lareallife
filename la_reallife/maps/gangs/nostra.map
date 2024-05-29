@@ -1,0 +1,18 @@
+<map edf:definitions="editor_main">
+    <object id="object (elecfence_BAR) (1)" doublesided="false" model="987" interior="0" dimension="0" posX="1257.6999511719" posY="-1793" posZ="12.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (elecfence_BAR) (2)" doublesided="false" model="987" interior="0" dimension="0" posX="1269.6999511719" posY="-1793" posZ="12.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (elecfence_BAR) (3)" doublesided="false" model="987" interior="0" dimension="0" posX="1281.9000244141" posY="-1793.1999511719" posZ="12.39999961853" rotX="0" rotY="0" rotZ="272"></object>
+    <object id="object (elecfence_BAR) (4)" doublesided="false" model="987" interior="0" dimension="0" posX="1282.3000488281" posY="-1805.1999511719" posZ="12.39999961853" rotX="0" rotY="0" rotZ="271.99951171875"></object>
+    <object id="object (elecfence_BAR) (5)" doublesided="false" model="987" interior="0" dimension="0" posX="1282.6999511719" posY="-1817.1999511719" posZ="12.39999961853" rotX="0" rotY="0" rotZ="269.99951171875"></object>
+    <object id="object (elecfence_BAR) (6)" doublesided="false" model="987" interior="0" dimension="0" posX="1282.5999755859" posY="-1829.1999511719" posZ="12.39999961853" rotX="0" rotY="0" rotZ="269.99450683594"></object>
+    <object id="object (elecfence_BAR) (7)" doublesided="false" model="987" interior="0" dimension="0" posX="1282.5999755859" posY="-1840.6999511719" posZ="12.60000038147" rotX="0" rotY="0" rotZ="181.99450683594"></object>
+    <object id="object (elecfence_BAR) (8)" doublesided="false" model="987" interior="0" dimension="0" posX="1270.9000244141" posY="-1841.1999511719" posZ="12.39999961853" rotX="0" rotY="0" rotZ="181.99401855469"></object>
+    <object id="object (elecfence_BAR) (9)" doublesided="false" model="987" interior="0" dimension="0" posX="1259.0999755859" posY="-1841.5999755859" posZ="12.60000038147" rotX="0" rotY="0" rotZ="181.99401855469"></object>
+    <object id="object (elecfence_BAR) (10)" doublesided="false" model="987" interior="0" dimension="0" posX="1247.1999511719" posY="-1842.0999755859" posZ="12.60000038147" rotX="0" rotY="0" rotZ="179.99401855469"></object>
+    <object id="object (elecfence_BAR) (12)" doublesided="false" model="987" interior="0" dimension="0" posX="1235.1999511719" posY="-1842.0999755859" posZ="12.60000038147" rotX="0" rotY="0" rotZ="179.98901367188"></object>
+    <object id="object (ClubGate01_LAx) (1)" doublesided="false" model="3749" interior="0" dimension="0" posX="1213.5" posY="-1843.6999511719" posZ="18.200000762939" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (elecfence_BAR) (13)" doublesided="false" model="987" interior="0" dimension="0" posX="1203.5" posY="-1842.5" posZ="12.5" rotX="0" rotY="0" rotZ="179.98901367188"></object>
+    <object id="object (elecfence_BAR) (14)" doublesided="false" model="987" interior="0" dimension="0" posX="1191.5999755859" posY="-1842.5" posZ="12.800000190735" rotX="0" rotY="0" rotZ="93.989013671875"></object>
+    <object id="object (elecfence_BAR) (15)" doublesided="false" model="987" interior="0" dimension="0" posX="1190.6999511719" posY="-1830.5999755859" posZ="12.699999809265" rotX="0" rotY="0" rotZ="93.988037109375"></object>
+    <object id="object (elecfence_BAR) (17)" doublesided="false" model="987" interior="0" dimension="0" posX="1190.3000488281" posY="-1819.3000488281" posZ="12.60000038147" rotX="0" rotY="0" rotZ="55.988037109375"></object>
+</map>

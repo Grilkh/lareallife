@@ -1,0 +1,18 @@
+<map edf:definitions="editor_main">
+    <object id="object (fenceshit3) (1)" doublesided="false" model="983" interior="0" dimension="0" posX="-2119.6999511719" posY="404.29998779297" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fenceshit3) (2)" doublesided="false" model="983" interior="0" dimension="0" posX="-2126.1000976563" posY="404.29998779297" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fenceshit3) (3)" doublesided="false" model="983" interior="0" dimension="0" posX="-2132.5" posY="404.29998779297" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fenceshit3) (4)" doublesided="false" model="983" interior="0" dimension="0" posX="-2128.3999023438" posY="452.79998779297" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fenceshit3) (5)" doublesided="false" model="983" interior="0" dimension="0" posX="-2122" posY="452.79998779297" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fenceshit3) (6)" doublesided="false" model="983" interior="0" dimension="0" posX="-2115.6000976563" posY="452.79998779297" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (drvin_projhut) (1)" doublesided="false" model="16001" interior="0" dimension="0" posX="-2118.1999511719" posY="409.70001220703" posZ="34.200000762939" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (bollardlight) (1)" doublesided="false" model="1215" interior="0" dimension="0" posX="-2131.5" posY="453" posZ="34.700000762939" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollardlight) (2)" doublesided="false" model="1215" interior="0" dimension="0" posX="-2116.8999023438" posY="453" posZ="34.700000762939" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollardlight) (3)" doublesided="false" model="1215" interior="0" dimension="0" posX="-2116.8000488281" posY="404.10000610352" posZ="34.700000762939" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollardlight) (4)" doublesided="false" model="1215" interior="0" dimension="0" posX="-2135.6000976563" posY="404.10000610352" posZ="34.700000762939" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fenceshit3) (7)" doublesided="false" model="983" interior="0" dimension="0" posX="-2119.3000488281" posY="415.10000610352" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fenceshit3) (8)" doublesided="false" model="983" interior="0" dimension="0" posX="-2125.6999511719" posY="415.10000610352" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fenceshit3) (9)" doublesided="false" model="983" interior="0" dimension="0" posX="-2132.1000976563" posY="415.10000610352" posZ="34.900001525879" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (bollardlight) (5)" doublesided="false" model="1215" interior="0" dimension="0" posX="-2135.1999511719" posY="415.30001831055" posZ="34.700000762939" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollardlight) (6)" doublesided="false" model="1215" interior="0" dimension="0" posX="-2115.783203125" posY="415.10488891602" posZ="34.622695922852" rotX="0" rotY="0" rotZ="0"></object>
+</map>

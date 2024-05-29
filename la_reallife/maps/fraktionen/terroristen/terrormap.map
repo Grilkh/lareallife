@@ -1,0 +1,53 @@
+<map edf:definitions="editor_main">
+	<!--- GATE --->
+    <object id="object (elecfence_BAR) (1)" model="987" interior="0" dimension="0" posX="-2094.1389160156" posY="-1879.7414550781" posZ="109.32056427002" rotX="0" rotY="2" rotZ="55" />
+    <object id="object (elecfence_BAR) (2)" model="987" interior="0" dimension="0" posX="-2110.0334472656" posY="-1867.6032714844" posZ="109.40576171875" rotX="0" rotY="0" rotZ="322.28527832031" />
+    <object id="object (elecfence_BAR) (3)" model="987" interior="0" dimension="0" posX="-2110.0017089844" posY="-1867.6140136719" posZ="114.35258483887" rotX="0" rotY="359.96997070313" rotZ="322.28393554688" />
+    <object id="object (elecfence_BAR) (4)" model="987" interior="0" dimension="0" posX="-2087.3989257813" posY="-1870.2136230469" posZ="108.84878540039" rotX="0" rotY="4.74951171875" rotZ="57.482543945313" />
+    <object id="object (elecfence_BAR) (5)" model="987" interior="0" dimension="0" posX="-2080.9887695313" posY="-1860.1616210938" posZ="107.85849761963" rotX="0" rotY="5.99609375" rotZ="59.700439453125" />
+    <object id="object (elecfence_BAR) (6)" model="987" interior="0" dimension="0" posX="-2075.0856933594" posY="-1850.0228271484" posZ="106.65061950684" rotX="0" rotY="7.7432861328125" rotZ="62.934692382813" />
+    <object id="object (elecfence_BAR) (7)" model="987" interior="0" dimension="0" posX="-2069.6186523438" posY="-1839.4614257813" posZ="105.10441589355" rotX="0" rotY="6.9898681640625" rotZ="62.4296875" />
+    <object id="object (elecfence_BAR) (8)" model="987" interior="0" dimension="0" posX="-2064.0234375" posY="-1828.8028564453" posZ="103.66305541992" rotX="0" rotY="0.2373046875" rotZ="51.499389648438" />
+    <object id="object (elecfence_BAR) (9)" model="987" interior="0" dimension="0" posX="-2056.8188476563" posY="-1819.6422119141" posZ="103.59372711182" rotX="0" rotY="3.7362060546875" rotZ="41.808532714844" />
+    <object id="object (elecfence_BAR) (10)" model="987" interior="0" dimension="0" posX="-2048.34375" posY="-1811.9833984375" posZ="102.81993103027" rotX="0" rotY="8.7353515625" rotZ="37.368469238281" />
+    <object id="object (elecfence_BAR) (11)" model="987" interior="0" dimension="0" posX="-2038.994140625" posY="-1804.9431152344" posZ="100.89608764648" rotX="359.25" rotY="9.734130859375" rotZ="37.364501953125" />
+    <object id="object (elecfence_BAR) (12)" model="987" interior="0" dimension="0" posX="-2029.8630371094" posY="-1798.0560302734" posZ="98.836395263672" rotX="5.2474365234375" rotY="13.98388671875" rotZ="56.76904296875" />
+    <object id="object (elecfence_BAR) (14)" model="987" interior="0" dimension="0" posX="-2024.57421875" posY="-1789.8118896484" posZ="95.811828613281" rotX="5.2459716796875" rotY="13.980102539063" rotZ="72.146362304688" />
+    <object id="object (elecfence_BAR) (15)" model="987" interior="0" dimension="0" posX="-2021.2760009766" posY="-1778.5512695313" posZ="92.880043029785" rotX="3.240478515625" rotY="12.230102539063" rotZ="63.641723632813" />
+    <object id="object (elecfence_BAR) (16)" model="987" interior="0" dimension="0" posX="-2016.0651855469" posY="-1767.7531738281" posZ="90.281044006348" rotX="3.2354736328125" rotY="7.977783203125" rotZ="63.638305664063" />
+    <object id="object (elecfence_BAR) (17)" model="987" interior="0" dimension="0" posX="-2010.8560791016" posY="-1757.0935058594" posZ="88.603538513184" rotX="3.22998046875" rotY="8.22607421875" rotZ="67.608276367188" />
+    <object id="object (elecfence_BAR) (18)" model="987" interior="0" dimension="0" posX="-2006.3482666016" posY="-1745.9936523438" posZ="86.904983520508" rotX="3.2244873046875" rotY="2.7232666015625" rotZ="68.604370117188" />
+    <object id="object (elecfence_BAR) (19)" model="987" interior="0" dimension="0" posX="-2002.0603027344" posY="-1734.9328613281" posZ="86.305641174316" rotX="3.218994140625" rotY="3.2191162109375" rotZ="73.854125976563" />
+    <object id="object (elecfence_BAR) (20)" model="987" interior="0" dimension="0" posX="-1998.7863769531" posY="-1723.4919433594" posZ="85.589874267578" rotX="3.2135009765625" rotY="3.968994140625" rotZ="74.85009765625" />
+    <object id="object (elecfence_BAR) (21)" model="987" interior="0" dimension="0" posX="-1995.6820068359" posY="-1711.9105224609" posZ="84.747894287109" rotX="3.2080078125" rotY="3.966064453125" rotZ="74.849853515625" />
+	
+	<!--- GATE ENDE --->
+    <object id="object (cunt_rockgp2_13) (1)" model="17031" interior="0" dimension="0" posX="-1993.4429931641" posY="-1527.7321777344" posZ="83.128471374512" rotX="0" rotY="0" rotZ="79.579986572266" />
+    <object id="object (cunt_rockgp2_11) (1)" model="17030" interior="0" dimension="0" posX="-2007.0224609375" posY="-1591.8531494141" posZ="85.017082214355" rotX="0" rotY="0" rotZ="272.39025878906" />
+    <object id="object (CJ_CHRIS_CRATE) (1)" model="2669" interior="0" dimension="0" posX="-1998.7456054688" posY="-1537.9354248047" posZ="84.886833190918" rotX="0" rotY="0" rotZ="25.804870605469" />
+    <object id="object (imoildrum4_LAS) (1)" model="3633" interior="0" dimension="0" posX="-1999.8065185547" posY="-1536.9243164063" posZ="84.119003295898" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (imoildrum4_LAS) (2)" model="3633" interior="0" dimension="0" posX="-1998.3525390625" posY="-1537.5111083984" posZ="84.118988037109" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (quarry_barrel) (1)" model="3134" interior="0" dimension="0" posX="-1998.8792724609" posY="-1539.3537597656" posZ="84.085243225098" rotX="0" rotY="0" rotZ="328.10510253906" />
+    <object id="object (CJ_O2Tanks) (1)" model="1348" interior="0" dimension="0" posX="-1997.1296386719" posY="-1539.0694580078" posZ="84.371719360352" rotX="0" rotY="0" rotZ="293.21008300781" />
+    <object id="object (cxrf_oiltank) (1)" model="3287" interior="0" dimension="0" posX="-2004.2137451172" posY="-1537.7669677734" posZ="87.679298400879" rotX="0" rotY="0" rotZ="39.880004882813" />
+    <object id="object (rcbomb) (1)" model="1636" interior="0" dimension="0" posX="-1998.6234130859" posY="-1537.8262939453" posZ="84.704971313477" rotX="0" rotY="0" rotZ="169.48999023438" />
+    <object id="object (rcbomb) (2)" model="1636" interior="0" dimension="0" posX="-1998.3441162109" posY="-1537.8443603516" posZ="84.679969787598" rotX="0" rotY="0" rotZ="173.07055664063" />
+    <object id="object (tv_stand_by) (1)" model="16377" interior="0" dimension="0" posX="-1997.9423828125" posY="-1552.1383056641" posZ="84.885810852051" rotX="0" rotY="0" rotZ="0.0001220703125" />
+    <object id="object (CJ_CHRIS_CRATE) (5)" model="2669" interior="0" dimension="0" posX="-2004.7297363281" posY="-1577.197265625" posZ="86.561698913574" rotX="0" rotY="0" rotZ="154.82958984375" />
+    <object id="object (gunbox) (1)" model="1271" interior="0" dimension="0" posX="-2005.8863525391" posY="-1577.8621826172" posZ="85.694053649902" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (gunbox) (2)" model="1271" interior="0" dimension="0" posX="-2004.9758300781" posY="-1577.9969482422" posZ="85.694053649902" rotX="0" rotY="0" rotZ="320.1201171875" />
+    <object id="object (gunbox) (3)" model="1271" interior="0" dimension="0" posX="-2005.4096679688" posY="-1577.9691162109" posZ="86.385025024414" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (satdishsml) (1)" model="1596" interior="0" dimension="0" posX="-1951.9731445313" posY="-1625.6701660156" posZ="87.290252685547" rotX="0" rotY="0" rotZ="29.910003662109" />
+    <object id="object (cxrf_savhusgar1_) (2)" model="3359" interior="0" dimension="0" posX="-1999.8947753906" posY="-1562.3668212891" posZ="84.051147460938" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (CJ_FLAG2) (1)" model="2048" interior="0" dimension="0" posX="-1998.6331787109" posY="-1557.8132324219" posZ="86.794136047363" rotX="0" rotY="1.0150146484375" rotZ="176.57025146484" />
+    <object id="object (LOW_DIN_CHAIR_2) (1)" model="2121" interior="0" dimension="0" posX="-1997.4406738281" posY="-1555.7366943359" posZ="84.735610961914" rotX="0" rotY="0" rotZ="220.42041015625" />
+    <object id="object (LOW_DIN_CHAIR_2) (2)" model="2121" interior="0" dimension="0" posX="-1999.4812011719" posY="-1555.6875" posZ="84.738273620605" rotX="0" rotY="0" rotZ="130.69055175781" />
+    <object id="object (DYN_TABLE_03) (1)" model="1516" interior="0" dimension="0" posX="-1998.4760742188" posY="-1557.0101318359" posZ="84.324813842773" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (Gasgrenade) (1)" model="1672" interior="0" dimension="0" posX="-1998.1511230469" posY="-1556.7739257813" posZ="84.961135864258" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (kmb_deadtorso) (1)" model="2907" interior="0" dimension="0" posX="-1998.45703125" posY="-1557.4368896484" posZ="84.91805267334" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (kmb_cam) (1)" model="2921" interior="0" dimension="0" posX="-1973.3975830078" posY="-1582.6448974609" posZ="92.175437927246" rotX="0" rotY="0" rotZ="149.55001831055" />
+    <object id="object (CJ_TARGET6) (2)" model="2056" interior="0" dimension="0" posX="-1997.6391601563" posY="-1558.1497802734" posZ="86.019477844238" rotX="0" rotY="0" rotZ="358.7649230957" />
+    <object id="object (CJ_TARGET4) (1)" model="2051" interior="0" dimension="0" posX="-1998.6717529297" posY="-1558.1195068359" posZ="85.940368652344" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (CJ_POLICE_COUNTER) (1)" model="2604" interior="0" dimension="0" posX="-1994.8951416016" posY="-1563.0931396484" posZ="85.376976013184" rotX="0" rotY="0" rotZ="274.240234375" />
+    <object id="object (POLICE_NB2) (1)" model="2612" interior="0" dimension="0" posX="-2000.2502441406" posY="-1558.1439208984" posZ="85.92008972168" rotX="0" rotY="0" rotZ="0" />
+</map>

@@ -1,0 +1,17 @@
+<map edf:definitions="editor_main">
+    <object id="object (elecfence_BAR) (1)" doublesided="false" model="987" interior="0" dimension="0" posX="2764.3999023438" posY="-1590.5" posZ="12.39999961853" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (elecfence_BAR) (2)" doublesided="false" model="987" interior="0" dimension="0" posX="2761.3999023438" posY="-1557.9000244141" posZ="21.700000762939" rotX="0" rotY="16" rotZ="272"></object>
+    <object id="object (elecfence_BAR) (3)" doublesided="false" model="987" interior="0" dimension="0" posX="2760.8999023438" posY="-1524.8000488281" posZ="25.299999237061" rotX="0" rotY="2.99609375" rotZ="264.24951171875"></object>
+    <object id="object (elecfence_BAR) (4)" doublesided="false" model="987" interior="0" dimension="0" posX="2823.3994140625" posY="-1502.19921875" posZ="12.800000190735" rotX="1.7083740234375" rotY="347.49206542969" rotZ="178.3740234375"></object>
+    <object id="object (elecfence_BAR) (5)" doublesided="false" model="987" interior="0" dimension="0" posX="2835.1000976563" posY="-1502.6999511719" posZ="10.199999809265" rotX="1.7083740234375" rotY="347.49206542969" rotZ="178.3740234375"></object>
+    <object id="object (elecfence_BAR) (6)" doublesided="false" model="987" interior="0" dimension="0" posX="2836.599609375" posY="-1576.2994384766" posZ="9.8999996185303" rotX="0" rotY="0" rotZ="69.999389648438"></object>
+    <object id="object (elecfence_BAR) (7)" doublesided="false" model="987" interior="0" dimension="0" posX="2831.3994140625" posY="-1586.8994140625" posZ="9.5" rotX="0" rotY="0" rotZ="63.748168945313"></object>
+    <object id="object (elecfence_BAR) (8)" doublesided="false" model="987" interior="0" dimension="0" posX="2830.3999023438" posY="-1588.9000244141" posZ="9.5" rotX="0" rotY="0" rotZ="63.748168945313"></object>
+    <object id="object (cxrf_a51_stairs) (1)" doublesided="false" model="3399" interior="0" dimension="0" posX="2823.5" posY="-1524.099609375" posZ="20.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (cxrf_a51_stairs) (2)" doublesided="false" model="3399" interior="0" dimension="0" posX="2811.8000488281" posY="-1524.0999755859" posZ="15.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (helipad01) (1)" doublesided="false" model="3934" interior="0" dimension="0" posX="2835.3000488281" posY="-1555.0999755859" posZ="22.299999237061" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (elecfence_BAR) (4)" doublesided="false" model="987" interior="0" dimension="0" posX="2789.6999511719" posY="-1504.3000488281" posZ="21.700000762939" rotX="1.7083740234375" rotY="347.49206542969" rotZ="178.3740234375"></object>
+    <object id="object (helipad01) (2)" doublesided="false" model="3934" interior="0" dimension="0" posX="2844.3000488281" posY="-1509.4000244141" posZ="30.299999237061" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (tall_fence) (1)" doublesided="false" model="974" interior="0" dimension="0" posX="2835.3000488281" posY="-1578.8000488281" posZ="18.700000762939" rotX="0" rotY="0" rotZ="68"></object>
+    <object id="object (cxrf_a51_stairs) (1)" doublesided="false" model="3399" interior="0" dimension="0" posX="2822.1000976563" posY="-1540.6999511719" posZ="12.5" rotX="0" rotY="0" rotZ="90"></object>
+</map>
