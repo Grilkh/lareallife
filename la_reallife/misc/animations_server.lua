@@ -410,7 +410,7 @@ setPedAnimation(player, "PAULNMAC", "Piss_loop",13000,true,false,false,true)
 local x, y, z = getElementPosition( player ) --Get the players position
 local pname = getPlayerName ( player )
 _G["Piss"..pname] = createObject(2052, x, y, z)
-attachElementToElement( _G["Piss"..pname], player, 0, 0.3, 0 ) --Attach the tank to the player.
+attachElements( _G["Piss"..pname], player, 0, 0.3, 0 ) --Attach the tank to the player.
 setTimer ( piss3, 12000, 1, player )
 end
 

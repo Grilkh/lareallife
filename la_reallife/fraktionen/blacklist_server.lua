@@ -71,14 +71,24 @@ end
 local blackListCurTime = getSecTime ( 0 )
 function checkBlackListEntrys()
 
-	result = mysql_query ( handler, "SELECT * FROM blacklist" )
+	result = dbQuery ( handler, "SELECT * FROM blacklist" )
+	-- if result then
+	-- 	if ( mysql_num_rows ( result ) > 0 ) then
+	-- 		blackListData = mysql_fetch_assoc ( result )
+	-- 		mySQLBlackList ()
+	-- 	else
+	-- 		mysql_free_result ( result )
+	-- 	end
+	-- end
+
 	if result then
-		if ( mysql_num_rows ( result ) > 0 ) then
-			blackListData = mysql_fetch_assoc ( result )
+		local re, num_rows = dbPoll(result, -1)
+        if re and num_rows > 0 then
+            blackListData = re[1]
 			mySQLBlackList ()
-		else
-			mysql_free_result ( result )
-		end
+        else
+            dbFree(result)
+        end
 	end
 end
 setTimer ( privVeh_spawning, 5000, 1 )
@@ -90,11 +100,13 @@ function mySQLBlackList ()
 	local Fraktion = blackListData["Fraktion"]
 	local Eintragungsdatum = blackListData["Eintragungsdatum"]
 	
-	blackListData = mysql_fetch_assoc ( result )
+	-- blackListData = mysql_fetch_assoc ( result )
+	blackListData = dbPoll(result, -1)
 	if blackListData then
 		mySQLBlackList ()
 	else
-		mysql_free_result ( result )
+		-- mysql_free_result ( result )
+		dbFree ( result )
 	end
 end
 checkBlackListEntrys()
@@ -202,8 +214,10 @@ function addBlacklist_func ( player, member, ... )
 					local registerdatum = tostring(day.."."..month.."."..year..", "..hour..":"..minute)
 					local lastlogin = registerdatum
 					
-					local result = mysql_query ( handler, "INSERT INTO blacklist ( Name, Eintraeger, Fraktion, Eintragungsdatum, Grund ) VALUES ( '"..member.."', '"..pname.."', '"..fraktion.."', '"..lastlogin.."', '"..reason.."' ) " )
-					mysql_free_result ( result )
+					-- local result = mysql_query ( handler, "INSERT INTO blacklist ( Name, Eintraeger, Fraktion, Eintragungsdatum, Grund ) VALUES ( '"..member.."', '"..pname.."', '"..fraktion.."', '"..lastlogin.."', '"..reason.."' ) " )
+					local result = dbQuery ( handler, "INSERT INTO blacklist ( Name, Eintraeger, Fraktion, Eintragungsdatum, Grund ) VALUES ( '"..member.."', '"..pname.."', '"..fraktion.."', '"..lastlogin.."', '"..reason.."' ) " )
+					-- mysql_free_result ( result )
+					dbFree ( result )
 					infobox ( player, "\n\nDu hast "..targetname.." auf die Blacklist gesetzt!\n(Grund: "..tostring(reason)..")", 5000, 125, 0, 0 )
 					blacklistPlayers[fraktion][getPlayerName(getPlayerFromName(member))] = true
 					sendMSGForFaction ( "[FR]: "..pname.." hat "..targetname.." auf die Blacklist gesetzt.", fraktion, 0, 150, 0 )

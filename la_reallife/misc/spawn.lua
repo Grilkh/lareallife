@@ -23,7 +23,7 @@ function RemoteSpawnPlayer ( player )
 	if isElement ( player ) then
 		local pname = getPlayerName ( player )
 		toggleAllControls ( player, true )
-		showPlayerHudComponent ( player, "radar", true )
+		setPlayerHudComponentVisible ( player, "radar", true )
 		if laGetElementData ( player, "spawnpos_x" ) == "wohnmobil" then
 			local x, y, z, r = getTrailerSpawnKoords ( player )
 			savespawn ( player, x, y, z, 0, 0, r )
@@ -109,12 +109,13 @@ function RemoteSpawnPlayer ( player )
 			setElementInterior ( player, 0 )
 			setCameraMatrix ( player, -2537.9006347656, 618.84533691406, 33.35578918457, -2616.6801757813, 619.22979736328, 39.688884735107 )
 			toggleAllControls ( player, false )
-			showPlayerHudComponent ( player, "radar", false )
+			setPlayerHudComponentVisible ( player, "radar", false )
 			triggerClientEvent ( player, "showProgressBar", player )
 		end
 	end
 	triggerClientEvent ( player, "camfix", getRootElement() )
 	triggerClientEvent ( player, "showInfoText", getRootElement() )
+
 	if isPremium(player) then
 		setPedArmor(player, 100)
 	end

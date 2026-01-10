@@ -59,7 +59,8 @@ function changeEnvironment ()
 		end
 	end
 end
-setTimer ( changeEnvironment, 3*60*60*1000, -1 )
+-- setTimer ( changeEnvironment, 3*60*60*1000, -1 )
+setTimer ( changeEnvironment, 3*60*60*1000, 0 )
 
 function createBaustelle()
 

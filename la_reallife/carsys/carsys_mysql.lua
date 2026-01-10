@@ -3,22 +3,31 @@ carsSpawned = false
 
 function privVeh_spawning()
 
-	local tempresult = mysql_query(handler, "ALTER TABLE vehicles AUTO_INCREMENT = 1")
-	mysql_free_result(tempresult)
+	-- local tempresult = mysql_query(handler, "ALTER TABLE vehicles AUTO_INCREMENT = 1")
+	local tempresult = dbQuery(handler, "ALTER TABLE vehicles AUTO_INCREMENT = 1")
+	dbFree(tempresult)
 	
 	caramount = 0
 	deletedcars = 0
-	result = mysql_query(handler, "SELECT * FROM vehicles")
+	-- result = mysql_query(handler, "SELECT * FROM vehicles")
+	result = dbQuery(handler, "SELECT * FROM vehicles")
 	if( not result) then
-		 outputLog ( "[CARS]: Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+		 outputLog ( "[CARS]: Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 	else
-		if(mysql_num_rows(result) > 0) then
-			carsData = mysql_fetch_assoc(result)
-			--mySQLCarCreate ()
-		else
-			mysql_free_result(result)
-			outputLog ( "Es wurden keine Fahrzeuge gefunden.", "car" )
-		end
+		local re, num_rows = dbPoll(result, -1)
+		-- if(mysql_num_rows(result) > 0) then
+		-- 	carsData = mysql_fetch_assoc(result)
+		-- 	--mySQLCarCreate ()
+		-- else
+		-- 	mysql_free_result(result)
+		-- 	outputLog ( "Es wurden keine Fahrzeuge gefunden.", "car" )
+		-- end
+		if re and num_rows > 0 then
+            carsData = re[1]
+        else
+            dbFree(result)
+            outputLog ( "Es wurden keine Fahrzeuge gefunden.", "car" )
+        end
 	end
 end
 setTimer ( privVeh_spawning, 5000, 1 )
@@ -115,11 +124,13 @@ function mySQLCarCreate ()
 				end
 			end
 		end
-		carsData = mysql_fetch_assoc(result)
+		-- carsData = mysql_fetch_assoc(result)
+		carsData = dbPoll(result, -1)
 		if carsData then
 			mySQLCarCreate()
 		else
-			mysql_free_result(result)
+			-- mysql_free_result(result)
+			dbFree(result)
 			carsSpawned = true
 			outputLog ( "Es wurden "..caramount.." Fahrzeuge gefunden und "..deletedcars.." Fahrzeuge von inaktiven Benutzern entfernt.", "car" )
 		end

@@ -64,6 +64,7 @@ local function refreshPeds()
 	ped[4] = createPed(163, 2149.3093261719, 1603.3443603516, 1001.9676513672, 89.221527099609) -- Guard 4 uinten 2
 	ped[5] = createPed(163, 2149.3081054688, 1603.0529785156, 997.77655029297, 91.664123535156)
 	ped[6] = createPed(164, 2144.3195800781, 1606.1163330078, 993.568359375, 180.5398406982)
+	outputDebugString("bankrob_server: 61... - PED erstellt ped")
 	setPedArmor(ped[6], 100)
 	setElementInterior(ped[1], 3)
 	setElementInterior(ped[2], 3)

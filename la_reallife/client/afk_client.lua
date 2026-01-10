@@ -31,7 +31,8 @@ function afkCheck_func ()
 		end
 	end
 end
-setTimer ( afkCheck_func, 600000, -1 )
+-- setTimer ( afkCheck_func, 600000, -1 )
+setTimer ( afkCheck_func, 600000, 0 )
 
 afkRun = 0
 function positionAFKCheck ()
@@ -49,7 +50,8 @@ function positionAFKCheck ()
 	oldAFKXPos = x
 	oldAFKYPos = y
 end
-setTimer ( positionAFKCheck, 20000, -1 )
+-- setTimer ( positionAFKCheck, 20000, -1 )
+setTimer ( positionAFKCheck, 20000, 0 )
 
 function AFKPlayerChat ( msg )
 
@@ -69,7 +71,8 @@ function save_func ()
 			outputChatBox ( "[INFO]: Du kannst dich hier nicht ausloggen!", 125, 0, 0 )
 		else
 			outputChatBox ( "[INFO]: Du wirst in 30 Sekunden ausgeloggt, wenn du dich bewegst brichst du den Vorgang ab!", 0, 100, 200 )
-			logoutTimer = setTimer ( checkLogout, 500, -1 )
+			-- logoutTimer = setTimer ( checkLogout, 500, -1 )
+			logoutTimer = setTimer ( checkLogout, 500, 0 )
 			logoutRuns = 0
 			logoutX, logoutY, logoutZ = getElementPosition ( lp )
 			laSetElementData ( lp, "savetimer", true )

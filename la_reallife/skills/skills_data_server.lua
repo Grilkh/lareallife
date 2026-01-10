@@ -9,9 +9,10 @@ if MySQL_DatasetExist ( "skills", "Name LIKE '"..pname.."'" ) then
 else
 	local result = mysql_la_query ( "INSERT INTO skills ( id, Name ) VALUES ( '"..getIDByName ( pname ).."', '"..pname.."' )" )
 		if( not result) then
-			outputDebugString("Error executing the query Skills: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
+			outputDebugString("Error executing the query Skills: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
 		else
-			mysql_free_result(result)
+			-- mysql_free_result(result)
+			dbFree(result)
 			laSetElementData ( player, "fishingSkill", tonumber ( MySQL_GetString ( "skills", "fishing", "Name LIKE '"..pname.."'" ) ) )
 			laSetElementData ( player, "fishingSkillOld", laGetElementData ( player, "fishingSkill" ) )
 			laSetElementData ( player, "gambleSkill", tonumber ( MySQL_GetString ( "skills", "gamble", "Name LIKE '"..pname.."'" ) ) )

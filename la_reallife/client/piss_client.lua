@@ -84,7 +84,8 @@ function moreUrin()
 		end
 	end
 end
-setTimer ( moreUrin, 100000, -1 )
+-- setTimer ( moreUrin, 100000, -1 )
+setTimer ( moreUrin, 100000, 0 )
 
 function eaturinSomething_func ( value )
 

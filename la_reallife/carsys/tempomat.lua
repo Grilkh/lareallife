@@ -8,7 +8,8 @@ function limit_func ( cmd, amount )
 		curMaxSpeed = amount
 		--curMaxSpeed = curMaxSpeed*0.00464
 		if not isTimer ( curMaxSpeedTimer ) then
-			curMaxSpeedTimer = setTimer ( fixSpeed, 50, -1 )
+			-- curMaxSpeedTimer = setTimer ( fixSpeed, 50, -1 )
+			curMaxSpeedTimer = setTimer ( fixSpeed, 50, 0 )
 		end
 		outputChatBox ( "Maximale Geschwindigkeit auf "..amount.." Km/h gesetzt. Verwende /stoplimit, um den Tempomat zu entfernen.", 150, 150, 0 )
 	else

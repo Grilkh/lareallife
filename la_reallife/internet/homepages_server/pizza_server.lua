@@ -12,6 +12,8 @@
 			pizzaStackKasse = pizzaStackKasse + 10
 			local pizzaboy = createVehicle ( 448, x + 2, y + 2, z )
 			local pizzaboyDriver = createPed ( 155, x, y, z )
+			outputDebugString("pizza_server: 14 - PED erstellt pizzaboydelivery")
+
 			warpPedIntoVehicle ( pizzaboyDriver, pizzaboy )
 			triggerClientEvent ( player, "infobox_start", getRootElement(), "\nHaben Sie bestellt\nmit extra Käse?\n", 7500, 125, 0, 0 )
 			setTimer ( createPizzaPickup, 3500, 1, x, y, z )

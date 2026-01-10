@@ -7,10 +7,10 @@ function SubmitAmmunationGunshopAbbrechenBtn (btn)
 		guiSetVisible ( WaffenauswahlGunshopFenster, false )
 		showCursor ( false )
 		triggerServerEvent ( "cancel_gui_server", getLocalPlayer() )
-		showPlayerHudComponent ( "ammo", false )
-		showPlayerHudComponent ( "weapon", false )
-		showPlayerHudComponent ( "armour", false )
-		showPlayerHudComponent ( "money", false )
+		setPlayerHudComponentVisible ( "ammo", false )
+		setPlayerHudComponentVisible ( "weapon", false )
+		setPlayerHudComponentVisible ( "armour", false )
+		setPlayerHudComponentVisible ( "money", false )
 	end
 end
 addEvent ( "SubmitAmmunationGunshopAbbrechen", true)
@@ -409,10 +409,10 @@ end
 function createAmmunationGunshop_func ()
 
 	showCursor ( true )
-	showPlayerHudComponent ( "ammo", true )
-	showPlayerHudComponent ( "weapon", true )
-	showPlayerHudComponent ( "armour", true )
-	showPlayerHudComponent ( "money", true )
+	setPlayerHudComponentVisible ( "ammo", true )
+	setPlayerHudComponentVisible ( "weapon", true )
+	setPlayerHudComponentVisible ( "armour", true )
+	setPlayerHudComponentVisible ( "money", true )
 	if guiGetVisible ( WaffenauswahlGunshopFenster ) then
 		guiSetVisible ( WaffenauswahlGunshopFenster, true )
 	else

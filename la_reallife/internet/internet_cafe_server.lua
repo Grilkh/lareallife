@@ -8,15 +8,15 @@ if getElementType(hitElement) == "player" and (dim) then
 	if isPedInVehicle ( hitElement ) == false then
 			if source == internetExitMarker then
 				fadeElementInterior ( hitElement, 0, -1593.7854003906, 976.64703369141, 7.0444981575012 )
-				setTimer ( setPedFrozen, 1000, 1, hitElement, true )
-				setTimer ( setPedFrozen, 1250, 1, hitElement, false )
+				setTimer ( setElementFrozen, 1000, 1, hitElement, true )
+				setTimer ( setElementFrozen, 1250, 1, hitElement, false )
 				setPedRotation ( hitElement, 37.5 )
 			else
 				fadeElementInterior ( hitElement, 1, -2837.0725097656, 2811.4958496094, 68.059410095215 )
 				setPedRotation ( hitElement, 90 )
-				setTimer ( setPedFrozen, 1000, 1, hitElement, true )
-				setTimer ( setPedFrozen, 1250, 1, hitElement, false )
-				setTimer ( setPedFrozen, 250, 1, hitElement, false )
+				setTimer ( setElementFrozen, 1000, 1, hitElement, true )
+				setTimer ( setElementFrozen, 1250, 1, hitElement, false )
+				setTimer ( setElementFrozen, 250, 1, hitElement, false )
 			end
 		end
 	end

@@ -60,7 +60,7 @@ function startSecondRace_func ( player )
 					_G["secRaceVeh"..index] = createVehicle ( 415, x, y, z )
 					
 					local veh = _G["secRaceVeh"..index]
-					setVehicleFrozen ( veh, true )
+					setElementFrozen ( veh, true )
 					setElementInterior ( veh, 1 )
 					setElementDimension ( veh, 1 )
 					warpPedIntoVehicle ( player, veh )
@@ -183,7 +183,7 @@ end
 function defreezeSecRaceCars ()
 
 	for id, player in ipairs ( raceSecPlayer ) do
-		setVehicleFrozen ( _G["secRaceVeh"..id], false )
+		setElementFrozen ( _G["secRaceVeh"..id], false )
 	end
 	for i = 1, 8 do
 		_G["secRacePlace"..i] = nil

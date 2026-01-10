@@ -73,7 +73,11 @@ addEventHandler ( "loadFriendlist", getRootElement(), loadFriendlist_func )
 function showFriendlistSelf()
 
 	if gWindow["friendlistMenue"] then
-		guiSetVisible ( gWindow["friendlistMenue"], true )
+		if guiGetVisible(gWindow["friendlistMenue"]) then
+			guiSetVisible ( gWindow["friendlistMenue"], false )
+		else
+			guiSetVisible ( gWindow["friendlistMenue"], true )
+		end
 	else
 		local screenwidth, screenheight = guiGetScreenSize ()
 		
@@ -81,57 +85,68 @@ function showFriendlistSelf()
 		guiSetAlpha(gWindow["friendlistMenue"],1)
 		guiWindowSetMovable(gWindow["friendlistMenue"],false)
 		guiWindowSetSizable(gWindow["friendlistMenue"],false)
+		
 		gGrid["friendlistNames"] = guiCreateGridList(0.0302,0.0957,0.4038,0.8617,true,gWindow["friendlistMenue"])
 		guiGridListSetSelectionMode(gGrid["friendlistNames"],2)
 		gColumn["friendNames"] = guiGridListAddColumn(gGrid["friendlistNames"],"Name",0.8)
 		guiSetAlpha(gGrid["friendlistNames"],1)
+		
 		gLabel["addFriend"] = guiCreateLabel(0.4478,0.078,0.3269,0.0638,"Freund hinzufügen:",true,gWindow["friendlistMenue"])
 		guiSetAlpha(gLabel["addFriend"],1)
 		guiLabelSetColor(gLabel["addFriend"],200,200,000)
 		guiLabelSetVerticalAlign(gLabel["addFriend"],"top")
 		guiLabelSetHorizontalAlign(gLabel["addFriend"],"left",false)
 		guiSetFont(gLabel["addFriend"],"default-bold-small")
+		
 		gEdit["friendName"] = guiCreateEdit(0.4451,0.1348,0.2582,0.0957,"",true,gWindow["friendlistMenue"])
 		guiSetAlpha(gEdit["friendName"],1)
+		
 		gLabel["curFriendSelected"] = guiCreateLabel(0.4451,0.2695,0.3819,0.0674,"Momentan ausgewählt:",true,gWindow["friendlistMenue"])
 		guiSetAlpha(gLabel["curFriendSelected"],1)
 		guiLabelSetColor(gLabel["curFriendSelected"],000,125,000)
 		guiLabelSetVerticalAlign(gLabel["curFriendSelected"],"top")
 		guiLabelSetHorizontalAlign(gLabel["curFriendSelected"],"left",false)
 		guiSetFont(gLabel["curFriendSelected"],"default-bold-small")
+		
 		gLabel["FriendName"] = guiCreateLabel(0.467,0.3404,0.3489,0.0887,"",true,gWindow["friendlistMenue"])
 		guiSetAlpha(gLabel["FriendName"],1)
 		guiLabelSetColor(gLabel["FriendName"],255,255,255)
 		guiLabelSetVerticalAlign(gLabel["FriendName"],"top")
 		guiLabelSetHorizontalAlign(gLabel["FriendName"],"left",false)
+		
 		gLabel["friendHandNR"] = guiCreateLabel(0.4396,0.422,0.1758,0.0674,"Handy-NR:",true,gWindow["friendlistMenue"])
 		guiSetAlpha(gLabel["friendHandNR"],1)
 		guiLabelSetColor(gLabel["friendHandNR"],000,125,000)
 		guiLabelSetVerticalAlign(gLabel["friendHandNR"],"top")
 		guiLabelSetHorizontalAlign(gLabel["friendHandNR"],"left",false)
 		guiSetFont(gLabel["friendHandNR"],"default-bold-small")
+		
 		gLabel["friendState"] = guiCreateLabel(0.6923,0.422,0.2335,0.0674,"Status:",true,gWindow["friendlistMenue"])
 		guiSetAlpha(gLabel["friendState"],1)
 		guiLabelSetColor(gLabel["friendState"],000,125,000)
 		guiLabelSetVerticalAlign(gLabel["friendState"],"top")
 		guiLabelSetHorizontalAlign(gLabel["friendState"],"left",false)
 		guiSetFont(gLabel["friendState"],"default-bold-small")
+		
 		gLabel["friendHandyNRValue"] = guiCreateLabel(0.4396,0.4858,0.1484,0.0567,"",true,gWindow["friendlistMenue"])
 		guiSetAlpha(gLabel["friendHandyNRValue"],1)
 		guiLabelSetColor(gLabel["friendHandyNRValue"],125,125,50)
 		guiLabelSetVerticalAlign(gLabel["friendHandyNRValue"],"top")
 		guiLabelSetHorizontalAlign(gLabel["friendHandyNRValue"],"left",false)
+		
 		gLabel["friendStateValue"] = guiCreateLabel(0.6923,0.4858,0.1484,0.0603,"",true,gWindow["friendlistMenue"])
 		guiSetAlpha(gLabel["friendStateValue"],1)
 		guiLabelSetColor(gLabel["friendStateValue"],000,255,000)
 		guiLabelSetVerticalAlign(gLabel["friendStateValue"],"top")
 		guiLabelSetHorizontalAlign(gLabel["friendStateValue"],"left",false)
+		
 		gLabel["friendFaction"] = guiCreateLabel(0.4451,0.5816,0.1648,0.0638,"Fraktion:",true,gWindow["friendlistMenue"])
 		guiSetAlpha(gLabel["friendFaction"],1)
 		guiLabelSetColor(gLabel["friendFaction"],000,125,000)
 		guiLabelSetVerticalAlign(gLabel["friendFaction"],"top")
 		guiLabelSetHorizontalAlign(gLabel["friendFaction"],"left",false)
 		guiSetFont(gLabel["friendFaction"],"default-bold-small")
+		
 		gLabel["friendFactionValue"] = guiCreateLabel(0.4451,0.6383,0.1511,0.0638,"",true,gWindow["friendlistMenue"])
 		guiSetAlpha(gLabel["friendFactionValue"],1)
 		guiLabelSetColor(gLabel["friendFactionValue"],125,125,50)
@@ -143,12 +158,15 @@ function showFriendlistSelf()
 		
 		gButton["delFriend"] = guiCreateButton(0.4423,0.7128,0.2225,0.1099,"Freund entfernen",true,gWindow["friendlistMenue"])
 		guiSetAlpha(gButton["delFriend"],1)
-		--gButton["smsFriend"] = guiCreateButton(0.7088,0.7128,0.2225,0.1099,"SMS\nschreiben",true,gWindow["friendlistMenue"])
-		--guiSetAlpha(gButton["smsFriend"],1)
-		--gButton["pmFriend"] = guiCreateButton(0.4423,0.8511,0.2225,0.1099,"PM\nschreiben",true,gWindow["friendlistMenue"])
-		--guiSetAlpha(gButton["pmFriend"],1)
-		--gButton["callFriend"] = guiCreateButton(0.7088,0.8511,0.2225,0.1099,"Anrufen",true,gWindow["friendlistMenue"])
-		--guiSetAlpha(gButton["callFriend"],1)
+		
+		gButton["smsFriend"] = guiCreateButton(0.7088,0.7128,0.2225,0.1099,"SMS\nschreiben",true,gWindow["friendlistMenue"])
+		guiSetAlpha(gButton["smsFriend"],1)
+		
+		gButton["pmFriend"] = guiCreateButton(0.4423,0.8511,0.2225,0.1099,"PM\nschreiben",true,gWindow["friendlistMenue"])
+		guiSetAlpha(gButton["pmFriend"],1)
+		
+		gButton["callFriend"] = guiCreateButton(0.7088,0.8511,0.2225,0.1099,"Anrufen",true,gWindow["friendlistMenue"])
+		guiSetAlpha(gButton["callFriend"],1)
 		
 		addEventHandler("onClientGUIClick", gButton["friendAdd"],
 			function()

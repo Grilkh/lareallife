@@ -82,7 +82,8 @@ function moreSchlaf()
 		end
 	end
 end
-setTimer ( moreSchlaf, 200000, -1 )
+-- setTimer ( moreSchlaf, 200000, -1 )
+setTimer ( moreSchlaf, 200000, 0 )
 
 function sleepSomething_func ( value )
 

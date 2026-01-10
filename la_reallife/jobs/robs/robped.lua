@@ -6,25 +6,29 @@
 
 function createPenner ()
 local rnd = math.random ( 1, 4 )
-if rnd == 1 then
-	pennerped = createPed(239, -2135.45, -43.95, 35.32)
-	laSetElementData(pennerped,"anim", 1)
-	setPedRotation(pennerped, 0)
-elseif rnd == 2 then
-	pennerped = createPed(230, -2198.77, 78.35, 35.32)
-	laSetElementData(pennerped,"anim", 1)
-	setPedRotation(pennerped, 0)
-elseif rnd == 3 then
-	pennerped = createPed(134, -2123.19, 652.65, 52.36)
-	laSetElementData(pennerped,"anim", 1)
-	setPedRotation(pennerped, 0)
-elseif rnd == 4 then
-	pennerped = createPed(136, -1919.20, 143.28, 27.13)
-	laSetElementData(pennerped,"anim", 1)
-	setPedRotation(pennerped, 0)
+if not isElement(pennerped) then
+	if rnd == 1 then
+		pennerped = createPed(239, -2135.45, -43.95, 35.32)
+		laSetElementData(pennerped,"anim", 1)
+		setPedRotation(pennerped, 0)
+	elseif rnd == 2 then
+		pennerped = createPed(230, -2198.77, 78.35, 35.32)
+		laSetElementData(pennerped,"anim", 1)
+		setPedRotation(pennerped, 0)
+	elseif rnd == 3 then
+		pennerped = createPed(134, -2123.19, 652.65, 52.36)
+		laSetElementData(pennerped,"anim", 1)
+		setPedRotation(pennerped, 0)
+	elseif rnd == 4 then
+		pennerped = createPed(136, -1919.20, 143.28, 27.13)
+		laSetElementData(pennerped,"anim", 1)
+		setPedRotation(pennerped, 0)
+	end
+	outputDebugString("robped: createPenner - PED erstellt pennerped")
 end
 end
-setTimer ( createPenner, 6000, -1 )
+-- setTimer ( createPenner, 6000, -1 )
+setTimer ( createPenner, 6000, 0 )
 
 
 function playerTargetCheckPenner ( )

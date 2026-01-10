@@ -19,7 +19,7 @@ function timeBanTimersStart ()
 
 	timeBans = {}
 	timeBanReasons = {}
-	local result = mysql_query ( handler, "SELECT * FROM ban" )
+	-- local result = mysql_query ( handler, "SELECT * FROM ban" )
 	bans = mysql_fetch_assoc ( result )
 	if bans then
 		insertIntoTbanTable ()

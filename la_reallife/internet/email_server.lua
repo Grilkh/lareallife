@@ -1,16 +1,22 @@
 ﻿function checkForOldMails ()
 
-	result = mysql_query(handler, "SELECT * FROM email")
+	-- result = mysql_query(handler, "SELECT * FROM email")
+	result = dbQuery(handler, "SELECT * FROM email")
 	deletedMails = 0
 	mails = 0
+
 	if( not result) then
-		outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
+		outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
 	else
-		if(mysql_num_rows(result) > 0) then
-			mailData = mysql_fetch_assoc(result)
+		local re, num_rows = dbPoll(result, -1)
+		-- if(mysql_num_rows(result) > 0) then
+        if re and num_rows > 0 then
+			-- mailData = mysql_fetch_assoc(result)
+			mailData = re[1]
 			mySQLMailCheck ()
 		else
-			mysql_free_result(result)
+			-- mysql_free_result(result)
+			dbFree(result)
 			outputServerLog("Es wurden keine Mails gefunden")
 		end
 	end
@@ -26,11 +32,13 @@ function mySQLMailCheck ()
 		deletedMails = deletedMails + 1
 	end
 	
-	mailData = mysql_fetch_assoc(result)
+	-- mailData = mysql_fetch_assoc(result)
+	mailData = dbPoll(result, -1)
 	if mailData then
 		mySQLMailCheck ()
 	else
-		mysql_free_result(result)
+		-- mysql_free_result(result)
+		dbFree(result)
 		outputServerLog("Es wurden "..mails.." E-Mails gefunden und "..deletedMails.." alte Mails geloescht.")
 	end
 end
@@ -76,11 +84,13 @@ function sendMail_func ( text, betreff, to )
 			local y = time.year
 			local yd = time.yearday
 			
-			local result = mysql_query(handler, "INSERT INTO email (Empfaenger, Text, Yearday, Year) VALUES ('"..to.."', '"..mail.."', '"..yd.."', '"..y.."')")
+			-- local result = mysql_query(handler, "INSERT INTO email (Empfaenger, Text, Yearday, Year) VALUES ('"..to.."', '"..mail.."', '"..yd.."', '"..y.."')")
+			local result = dbQuery(handler, "INSERT INTO email (Empfaenger, Text, Yearday, Year) VALUES ('"..to.."', '"..mail.."', '"..yd.."', '"..y.."')")
 			if( not result) then
-				outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
+				outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
 			else
-				mysql_free_result(result)
+				-- mysql_free_result(result)
+				dbFree(result)
 			end
 			if isElement ( getPlayerFromName ( to ) ) and laGetElementData ( getPlayerFromName ( to ), "loggedin" ) == 1 then
 				getMailsForClient_func ( to )
@@ -98,16 +108,31 @@ addEventHandler ( "sendMail", getRootElement(), sendMail_func )
 function getMailsForClient_func ( pname )
 
 	local adress = pname
-	result = mysql_query(handler, "SELECT * FROM email WHERE Empfaenger LIKE '"..adress.."'")
+	-- result = mysql_query(handler, "SELECT * FROM email WHERE Empfaenger LIKE '"..adress.."'")
+	result = dbQuery(handler, "SELECT * FROM email WHERE Empfaenger LIKE '"..adress.."'")
 	player = getPlayerFromName ( pname )
-	if mysql_num_rows(result) > 0 then
-		mailData = mysql_fetch_assoc(result)
-		while mailData do
-			triggerClientEvent ( player, "reciveMail", getRootElement(), mailData["Text"] )
-			outputDebugString ( "Empfaenger LIKE "..adress.." AND Text LIKE "..mailData["Text"] )
-			mailData = mysql_fetch_assoc(result)
+	-- if mysql_num_rows(result) > 0 then
+	-- 	mailData = mysql_fetch_assoc(result)
+	-- 	while mailData do
+	-- 		triggerClientEvent ( player, "reciveMail", getRootElement(), mailData["Text"] )
+	-- 		outputDebugString ( "Empfaenger LIKE "..adress.." AND Text LIKE "..mailData["Text"] )
+	-- 		mailData = mysql_fetch_assoc(result)
+	-- 	end
+	-- 	mysql_free_result(result)
+	-- end
+	-- mysql_la_query ( "DELETE FROM email WHERE Empfaenger LIKE '"..pname.."'" )
+
+	if result then
+		local re, num_rows = dbPoll(result, -1)
+		if re and num_rows > 0 then
+			mailData = re
+			for _, row in ipairs ( mailData ) do
+				triggerClientEvent ( player, "reciveMail", getRootElement(), row["Text"] )
+				outputDebugString ( "Empfaenger LIKE "..adress.." AND Text LIKE "..row["Text"] )
+			end
+			dbFree(result)
 		end
-		mysql_free_result(result)
+		mysql_la_query ( "DELETE FROM email WHERE Empfaenger LIKE '"..pname.."'" )
+
 	end
-	mysql_la_query ( "DELETE FROM email WHERE Empfaenger LIKE '"..pname.."'" )
 end

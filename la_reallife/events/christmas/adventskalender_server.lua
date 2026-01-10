@@ -70,10 +70,10 @@ local daily_wins = {
 
 -- MYSQL VERBINDUNG --
 
-local m_dbname = "DATENBANK"
-local m_host = "IP"
-local m_user = "BENUTZER"
-local m_pw = "PASSWORT"
+local m_dbname = "lareallife"
+local m_host = "127.0.0.1"
+local m_user = "USERNAME_HERE"
+local m_pw = "PASSWORD_HERE"
 
 local whandler = dbConnect( "mysql", "dbname="..m_dbname..";host="..m_host, m_user, m_pw, "autoreconnect=1" )
 local dbptime = 5000

@@ -121,7 +121,7 @@ addEventHandler ( maindomane, getRootElement(),
 					guiSetText ( gLabel[2], "Auktion läuft noch:\n"..ends )
 					
 					guiSetText ( gLabel[6], gebot.." $" )
-					guiSetText ( gLabel[7], "Von: "..höchstbietender )
+					guiSetText ( gLabel[7], "Von: "..hoechstbietender )
 					
 					triggerServerEvent ( "getDescriptionForObject", lp, offerTypes[auktionOffer], offerID )
 				end

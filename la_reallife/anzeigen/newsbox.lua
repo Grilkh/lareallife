@@ -150,7 +150,8 @@ elseif playerCountcounter == 0 then
 end
 end
 
-playertimer = setTimer ( playerCount, 60000, -1 )
+-- playertimer = setTimer ( playerCount, 60000, -1 )
+playertimer = setTimer ( playerCount, 60000, 0 )
 
 function playerCount_command ( )
 	local players = getPlayerCount()

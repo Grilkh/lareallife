@@ -121,8 +121,10 @@ function createGangAreas ()
 			break
 		end
 	end
-	setTimer ( gangAreaBoni, 30*60*1000, -1 )
-	setTimer ( gangAreaEinnahmen, 10*60*1000, -1 )
+	-- setTimer ( gangAreaBoni, 30*60*1000, -1 )
+	setTimer ( gangAreaBoni, 30*60*1000, 0 )
+	-- setTimer ( gangAreaEinnahmen, 10*60*1000, -1 )
+	setTimer ( gangAreaEinnahmen, 10*60*1000, 0 )
 end
 addEventHandler ( "onResourceStart", getRootElement(), createGangAreas )
 

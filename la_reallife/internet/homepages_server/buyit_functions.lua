@@ -78,10 +78,12 @@ function buyItSendMail ( to, text )
 	local y = time.year + 1900
 	local yd = time.yearday
 	
-	local result = mysql_query(handler, "INSERT INTO email (Empfaenger, Text, Yearday, Year) VALUES ('"..to.."', '"..mail.."', '"..yd.."', '"..y.."')")
+	-- local result = mysql_query(handler, "INSERT INTO email (Empfaenger, Text, Yearday, Year) VALUES ('"..to.."', '"..mail.."', '"..yd.."', '"..y.."')")
+	local result = dbQuery(handler, "INSERT INTO email (Empfaenger, Text, Yearday, Year) VALUES ('"..to.."', '"..mail.."', '"..yd.."', '"..y.."')")
 	if( not result) then
-		outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
+		outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
 	else
-		mysql_free_result(result)
+		-- mysql_free_result(result)
+		dbFree(result)
 	end
 end

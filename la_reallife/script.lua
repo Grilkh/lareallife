@@ -94,22 +94,34 @@ function serverstart ()
 	for i = 1, 14 do
 		_G["arenaSlot"..i.."Occupied"] = false
 	end
-	setTimer ( checkRestartTimer, 50000, -1 )
+	-- setTimer ( checkRestartTimer, 50000, -1 )
+	setTimer ( checkRestartTimer, 50000, 0 )
 	clearPlayerList()
 end
 addEventHandler ( "onResourceStart", getResourceRootElement ( getThisResource() ), serverstart )
 
 function clearPlayerList()
 
-	local loggedresult = mysql_query(handler, "SELECT * FROM loggedin")
+	-- local loggedresult = mysql_query(handler, "SELECT * FROM loggedin")
+	local loggedresult = dbQuery(handler, "SELECT * FROM loggedin")
 	if loggedresult then
-		loggedsatz = mysql_fetch_assoc(loggedresult)
-		while loggedsatz do
-			MySQL_DelRow("loggedin", "Name LIKE '"..loggedsatz["Name"].."'")
-			loggedsatz = mysql_fetch_assoc(loggedresult)
+		-- loggedsatz = mysql_fetch_assoc(loggedresult)
+		-- while loggedsatz do
+		-- 	MySQL_DelRow("loggedin", "Name LIKE '"..loggedsatz["Name"].."'")
+		-- 	loggedsatz = mysql_fetch_assoc(loggedresult)
+		-- end
+
+		if loggedresult then
+			local rows = dbPoll(loggedresult, -1)
+			if rows and #rows > 0 then
+				for _, row in ipairs(rows) do
+					MySQL_DelRow("loggedin", "Name LIKE '"..row["Name"].."'")
+				end
+			end
 		end
+	-- mysql_free_result(loggedresult)
 	end
-	mysql_free_result(loggedresult)
+	dbFree(loggedresult)
 end
 
 function checkRestartTimer ()
@@ -123,8 +135,10 @@ function checkRestartTimer ()
 		outputChatBox ( "ACHTUNG: Server restartet in 5 Minuten!", getRootElement(), 200, 20, 20 )
 		local time = getRealTime()
 		if time.weekday == 6 then
-			local result = mysql_query ( handler, "TRUNCATE TABLE weed" )
-			mysql_free_result ( result )
+			-- local result = mysql_query ( handler, "TRUNCATE TABLE weed" )
+			local result = dbQuery(handler,"TRUNCATE TABLE weed")
+			-- mysql_free_result ( result )
+			dbFree(result)
 		end
 	end
 end
@@ -144,6 +158,7 @@ function checkForEmptyTrucks ()
 		end
 	end
 end
+
 --setTimer ( checkForEmptyTrucks, 60000, -1 )
 --[[
 badData = { ["adminlvl"]=true, ["money"]=true, [""]=true }

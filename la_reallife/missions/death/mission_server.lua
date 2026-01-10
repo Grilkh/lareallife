@@ -137,7 +137,7 @@ if not getPedOccupiedVehicle ( lp ) then
 			triggerClientEvent ( lp, "showMysteryBriefing", getRootElement() )
 			MissionName = "Die überraschende Wende"
 			addEventHandler("onClientRender",getRootElement(), createMissionName)
-			showPlayerHudComponent ( "radar", false )
+			setPlayerHudComponentVisible ( "radar", false )
 			setElementData ( lp, "points", 6 )
 		end
 	end

@@ -34,26 +34,51 @@ end
 
 function packageLoad ( player )
 
-	local pname = getPlayerName ( player )
+	-- local pname = getPlayerName ( player )
+	-- laSetElementData ( player, "foundpackages", 0 )
+	-- if not MySQL_GetString("packages", "Name", "Name LIKE '"..pname.."'") then
+	-- 	local result = mysql_query(handler, "INSERT INTO packages (Name, Paket1, Paket2, Paket3, Paket4, Paket5, Paket6, Paket7, Paket8, Paket9, Paket10, Paket11, Paket12, Paket13, Paket14, Paket15, Paket16, Paket17, Paket18, Paket19, Paket20, Paket21, Paket22, Paket23, Paket24, Paket25) VALUES ('"..pname.."','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0' )")
+	-- 	if( not result) then
+	-- 		outputDebugString("Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
+	-- 	else
+	-- 		mysql_free_result(result)
+	-- 	end
+	-- end
+
+	local pname = getPlayerName(player)
 	laSetElementData ( player, "foundpackages", 0 )
-	if not MySQL_GetString("packages", "Name", "Name LIKE '"..pname.."'") then
-		local result = mysql_query(handler, "INSERT INTO packages (Name, Paket1, Paket2, Paket3, Paket4, Paket5, Paket6, Paket7, Paket8, Paket9, Paket10, Paket11, Paket12, Paket13, Paket14, Paket15, Paket16, Paket17, Paket18, Paket19, Paket20, Paket21, Paket22, Paket23, Paket24, Paket25) VALUES ('"..pname.."','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0' )")
-		if( not result) then
-			outputDebugString("Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
+	if not MySQL_GetString("bonustable", "Name", "Name LIKE '"..pname.."'") then
+		local result = dbQuery(handler, "INSERT INTO bonustable (Name, Lungenvolumen, Muskeln, Kondition, Boxen, KungFu, Streetfighting, CurStyle, PistolenSkill, DeagleSkill, ShotgunSkill, AssaultSkill) VALUES ('"..pname.."', 'none', 'none', 'none', 'none', 'none', 'none', '4', 'none', 'none', 'none', 'none')")
+		if not result then
+			outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
 		else
-			mysql_free_result(result)
+			dbFree(result)
 		end
 	end
 	
+	-- local dsatz
+	-- local result = mysql_query ( handler, "SELECT * from packages WHERE Name LIKE '"..pname.."'" )
+	-- if result then
+	-- 	if ( mysql_num_rows ( result ) > 0 ) then
+	-- 		dsatz = mysql_fetch_assoc ( result )
+	-- 		mysql_free_result ( result )
+	-- 	end
+	-- end
+
 	local dsatz
-	local result = mysql_query ( handler, "SELECT * from packages WHERE Name LIKE '"..pname.."'" )
+	local result = dbQuery ( handler, "SELECT * from packages WHERE Name LIKE '"..pname.."'" )
 	if result then
-		if ( mysql_num_rows ( result ) > 0 ) then
-			dsatz = mysql_fetch_assoc ( result )
-			mysql_free_result ( result )
-		end
+		local re, num_rows = dbPoll(result, -1)
+        if re and num_rows > 0 then
+            dsatz = re[1]
+			dbFree(result)
+        else
+            dbFree(result)
+            return false
+        end
 	end
-	
+
+
 	for i = 1, 25 do
 		local paket = tonumber ( dsatz["Paket"..i] )
 		laSetElementData ( player, "package"..i, paket )

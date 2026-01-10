@@ -75,7 +75,7 @@ function startFirstRace_func ( player )
 			setElementDimension ( veh, 1 )
 			setElementDimension ( player, 1 )
 			warpPedIntoVehicle ( player, veh )
-			setVehicleFrozen ( veh, true )
+			setElementFrozen ( veh, true )
 			setTimer ( defreezeRace, 4000, 1, veh )
 			outputChatBox ( "Verlasse das Fahrzeug, um das Rennen zu beenden!", player, 200, 200, 0 )
 			suc = true
@@ -87,7 +87,7 @@ addEventHandler ( "startFirstRace", getRootElement(), startFirstRace_func )
 
 function defreezeRace ( veh )
 
-	setVehicleFrozen ( veh, false )
+	setElementFrozen ( veh, false )
 end
 
 function stopArenaSettings ( player )
@@ -158,7 +158,8 @@ function raceFinished_func ( player, ms, s, m )
 			p3t = p3ms+p3s*10+p3m*1000
 		end
 		if not p1name then
-			mysql_query(handler, "INSERT INTO racing (Name, MilliSekunden, Sekunden, Minuten, Platz) VALUES ('"..pname.."', '"..ms.."', '"..s.."', '"..m.."', '1')")
+			-- mysql_query(handler, "INSERT INTO racing (Name, MilliSekunden, Sekunden, Minuten, Platz) VALUES ('"..pname.."', '"..ms.."', '"..s.."', '"..m.."', '1')")
+			dbQuery(handler, "INSERT INTO racing (Name, MilliSekunden, Sekunden, Minuten, Platz) VALUES ('"..pname.."', '"..ms.."', '"..s.."', '"..m.."', '1')")
 		else
 			if pct < p1t then
 				if p2t then
@@ -176,7 +177,8 @@ function raceFinished_func ( player, ms, s, m )
 				p1m = m
 				p1name = pname
 			elseif not p2name then
-				mysql_query(handler, "INSERT INTO racing (Name, MilliSekunden, Sekunden, Minuten, Platz) VALUES ('"..pname.."', '"..ms.."', '"..s.."', '"..m.."', '2')")
+				-- mysql_query(handler, "INSERT INTO racing (Name, MilliSekunden, Sekunden, Minuten, Platz) VALUES ('"..pname.."', '"..ms.."', '"..s.."', '"..m.."', '2')")
+				dbQuery(handler, "INSERT INTO racing (Name, MilliSekunden, Sekunden, Minuten, Platz) VALUES ('"..pname.."', '"..ms.."', '"..s.."', '"..m.."', '2')")
 			else
 				if pct < p2t then
 					p3ms = p2ms
@@ -188,7 +190,8 @@ function raceFinished_func ( player, ms, s, m )
 					p2m = m
 					p2name = pname
 				elseif not p3name then
-					mysql_query(handler, "INSERT INTO racing (Name, MilliSekunden, Sekunden, Minuten, Platz) VALUES ('"..pname.."', '"..ms.."', '"..s.."', '"..m.."', '3')")
+					-- mysql_query(handler, "INSERT INTO racing (Name, MilliSekunden, Sekunden, Minuten, Platz) VALUES ('"..pname.."', '"..ms.."', '"..s.."', '"..m.."', '3')")
+					dbQuery(handler, "INSERT INTO racing (Name, MilliSekunden, Sekunden, Minuten, Platz) VALUES ('"..pname.."', '"..ms.."', '"..s.."', '"..m.."', '3')")
 				elseif pct < p3t then
 					p3ms = ms
 					p3s = s

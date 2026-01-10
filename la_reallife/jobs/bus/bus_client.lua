@@ -5,6 +5,8 @@
 ------------------------------
 
 function Busfahrer_GUI_func()
+	-- Just for debugging
+	-- outputChatBox("#FF0000Info: Busfahrer_GUI_func called at "..os.time(os.date("!*t")))
 	showCursor(true)
 	local screenWidth, screenHeight = guiGetScreenSize()
 	local windowWidth, windowHeight = 550, 143
@@ -32,38 +34,44 @@ function Busfahrer_GUI_func()
 	gButton["busStart"] = guiCreateButton(30, 105, 75, 23, "Fahrt starten", false, gWindow["busfahrerWindow"])
 	
 	gButton["busClose"] = guiCreateButton(130, 105, 75, 23, "Abbrechen", false, gWindow["busfahrerWindow"])
-	
-	addEventHandler("onClientGUIClick", getRootElement(),
-		function ()
-			if source == gButton["busClose"] then
-				guiSetVisible ( gWindow["busfahrerWindow"], false )
-				showCursor(false)
-				triggerServerEvent ( "cancel_gui_server", getLocalPlayer() )
-			elseif source == gButton["busStart"] then
-				if getElementData ( lp, "lkwlicense" ) == 1 then
-					if guiRadioButtonGetSelected ( gRadio["stadtroute"] ) then
-						if (laGetElementData ( getLocalPlayer(), "isBus" ) == false) then
-							triggerServerEvent ( "startBusJob", getLocalPlayer(), getLocalPlayer(), "stadt" )
-						end
-					elseif guiRadioButtonGetSelected ( gRadio["reiseroute"] ) then
-						if tonumber(laGetElementData(getLocalPlayer(), "buslevel")) >= 25 then
-							if (laGetElementData ( getLocalPlayer(), "isBus" ) == false) then
-								triggerServerEvent ( "startBusJob", getLocalPlayer(), getLocalPlayer(), "reise" )
-							end
-						else
-							outputChatBox ( "Dein Buslevel ist zu niedrig!", 125, 0, 0 )
-						end
+
+	guiSetText ( gLabel["label_3"], getElementData ( lp, "buslevel" ) )
+
+	addEventHandler("onClientGUIClick", gWindow["busfahrerWindow"],
+	function ()
+		-- Just for debugging
+		-- outputChatBox("Info: onClientGUIClick clicked at "..os.time(os.date("!*t")))
+		if source == gButton["busClose"] then
+			guiSetVisible ( gWindow["busfahrerWindow"], false )
+			showCursor(false)
+			triggerServerEvent ( "cancel_gui_server", getLocalPlayer() )
+		elseif source == gButton["busStart"] then
+			if getElementData ( lp, "lkwlicense" ) == 1 then
+				if guiRadioButtonGetSelected ( gRadio["stadtroute"] ) then
+					if (laGetElementData ( getLocalPlayer(), "isBus" ) == false) then
+						-- Just for debugging
+						-- outputChatBox("Info: startBusJob - stadt - triggered at "..os.time(os.date("!*t")))
+						triggerServerEvent ( "startBusJob", getLocalPlayer(), getLocalPlayer(), "stadt" )
 					end
-						guiSetVisible ( gWindow["busfahrerWindow"], false )
-						showCursor(false)
-						triggerServerEvent ( "cancel_gui_server", getLocalPlayer() )
-				else
-					outputChatBox ( "Du brauchst einen LKW-Führerschein!", 125, 0, 0 )
+				elseif guiRadioButtonGetSelected ( gRadio["reiseroute"] ) then
+					if tonumber(laGetElementData(getLocalPlayer(), "buslevel")) >= 25 then
+						if (laGetElementData ( getLocalPlayer(), "isBus" ) == false) then
+							-- Just for debugging
+							-- outputChatBox("Info: startBusJob - reise - triggered at "..os.time(os.date("!*t")))
+							triggerServerEvent ( "startBusJob", getLocalPlayer(), getLocalPlayer(), "reise" )
+						end
+					else
+						outputChatBox ( "Dein Buslevel ist zu niedrig!", 125, 0, 0 )
+					end
 				end
+					guiSetVisible ( gWindow["busfahrerWindow"], false )
+					showCursor(false)
+					triggerServerEvent ( "cancel_gui_server", getLocalPlayer() )
+			else
+				outputChatBox ( "Du brauchst einen LKW-Führerschein!", 125, 0, 0 )
 			end
 		end
-	)
-	guiSetText ( gLabel["label_3"], getElementData ( lp, "buslevel" ) )
+	end)
 end
 addEvent ( "Busfahrer_GUI", true )
 addEventHandler ( "Busfahrer_GUI", getRootElement(), Busfahrer_GUI_func )

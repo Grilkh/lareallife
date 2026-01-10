@@ -24,7 +24,8 @@ addEvent( "ejectPlayer", true )
 addEventHandler( "ejectPlayer", getRootElement(), ejectPlayerFunc )
 
 function removeJetPackFunc (player)
-	removePedJetPack(player)
+	-- removePedJetPack(player)
+	setPedWearingJetpack ( player, false )
 end
 addEvent( "removeJetPack", true )
 addEventHandler( "removeJetPack", getRootElement(), ejectPlayerFunc )

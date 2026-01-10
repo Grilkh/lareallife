@@ -368,7 +368,8 @@ function playerListKeyPressed ( key, state )
 		if isTimer ( playerListUpdateTimer ) then
 			killTimer ( playerListUpdateTimer )
 		end
-		scollBarAdjustTimer = setTimer ( reAdjustPlayerListScollBar, 50, -1 )
+		-- scollBarAdjustTimer = setTimer ( reAdjustPlayerListScollBar, 50, -1 )
+		scollBarAdjustTimer = setTimer ( reAdjustPlayerListScollBar, 50, 0 )
 		bindKey ( "mouse_wheel_up", "down", playerListScrollUp )
 		bindKey ( "mouse_wheel_down", "down", playerListScrollDown )
 		showPlayerList ()

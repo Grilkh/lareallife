@@ -112,6 +112,7 @@ end
 addEventHandler ( "onMarkerHit", SFPDHeliEnter, SFPDHeliEnter_func )
 
 sfpdped = createPed(280, 238.303, 112.845, 1003.21875)
+outputDebugString("sfpd_teleporters: 114 - PED erstellt sfpdped")
 setElementInterior (sfpdped, 10)
 setElementDimension ( sfpdped, 0)
 setPedRotation(sfpdped, 270)

@@ -187,8 +187,8 @@ function deactivateDrugEffect_func ()
 	toggleControl ( "vehicle_left", true )
 	toggleControl ( "vehicle_right", true )
 	
-	setControlState ( "vehicle_left", false )
-	setControlState ( "vehicle_right", false )
+	setPedControlState ( "vehicle_left", false )
+	setPedControlState ( "vehicle_right", false )
 	
 	setElementData ( lp, "drunken", false)
 	setElementData ( lp, "stoned", false)
@@ -202,7 +202,7 @@ addEventHandler ( "deactivateDrugEffect", getRootElement(), deactivateDrugEffect
 
 function drugAiming ()
 
-	if getControlState ( "aim_weapon" ) then
+	if getPedControlState ( "aim_weapon" ) then
 		local x, y, z = getPedTargetEnd ( lp )
 		local drugAimS = drugSettings.aimDisturbe * strenght
 		x = x + math.random ( -drugAimS, drugAimS )
@@ -228,9 +228,9 @@ function drunkDiveMode ()
 		toggleControl ( "vehicle_right", true )
 		toggleControl ( "vehicle_left", true )
 		if lastDrugControl == "left" then
-			setControlState ( "vehicle_left", false )
+			setPedControlState ( "vehicle_left", false )
 		else
-			setControlState ( "vehicle_right", false )
+			setPedControlState ( "vehicle_right", false )
 		end
 	end
 	
@@ -253,7 +253,7 @@ function drunkModeLeft ()
 	toggleControl ( "vehicle_left", false )
 	toggleControl ( "vehicle_right", false )
 	lastDrugControl = "left"
-	setControlState ( "vehicle_left", true )
+	setPedControlState ( "vehicle_left", true )
 end
 
 function drunkModeRight ()
@@ -261,7 +261,7 @@ function drunkModeRight ()
 	toggleControl ( "vehicle_right", false )
 	toggleControl ( "vehicle_left", false )
 	lastDrugControl = "right"
-	setControlState ( "vehicle_right", true )
+	setPedControlState ( "vehicle_right", true )
 end
 
 
@@ -270,7 +270,7 @@ function drunkModeNothing ()
 	toggleControl ( "vehicle_right", false )
 	toggleControl ( "vehicle_left", false )
 	lastDrugControl = "none"
-	setControlState ( "vehicle_right", false )
+	setPedControlState ( "vehicle_right", false )
 end
 
 
@@ -349,8 +349,8 @@ function fall()
 	if (isDrugActive) then
 		setPedAnimation(getLocalPlayer(), "ped", "getup_front",1000, false, false)
 		setTimer(function() fall() end, math.random(10000, 30000), 1)
-		setTimer(function() setControlState ('jump',true) end, 1500, 1)
-		setTimer(function() setControlState ('jump',false) end, 2000, 1)
+		setTimer(function() setPedControlState ('jump',true) end, 1500, 1)
+		setTimer(function() setPedControlState ('jump',false) end, 2000, 1)
 	end
 end
 
@@ -396,14 +396,14 @@ function drugSteer()
 	end
 
 	if (left) then
-		setControlState('vehicle_left', false)
-		setControlState('vehicle_right', true)
+		setPedControlState('vehicle_left', false)
+		setPedControlState('vehicle_right', true)
 	elseif (right) then
-		setControlState('vehicle_right', false)
-		setControlState('vehicle_left', true)
+		setPedControlState('vehicle_right', false)
+		setPedControlState('vehicle_left', true)
 	else 
-		setControlState('vehicle_right', false)
-		setControlState('vehicle_left', false)
+		setPedControlState('vehicle_right', false)
+		setPedControlState('vehicle_left', false)
 	end
 	
 	
@@ -436,14 +436,14 @@ function drugSteer()
 	end
 	
 	if (up) then
-		setControlState('accelerate', false)
-		setControlState('brake_reverse', true)
+		setPedControlState('accelerate', false)
+		setPedControlState('brake_reverse', true)
 	elseif (down) then
-		setControlState('brake_reverse', false)
-		setControlState('accelerate', true)
+		setPedControlState('brake_reverse', false)
+		setPedControlState('accelerate', true)
 	else 
-		setControlState('brake_reverse', false)
-		setControlState('accelerate', false)
+		setPedControlState('brake_reverse', false)
+		setPedControlState('accelerate', false)
 	end
 end
 

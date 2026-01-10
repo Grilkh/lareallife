@@ -49,7 +49,8 @@ function start_anticheat ()
 		setElementData ( lp, "weaponInSlot"..i.."Ammo", _G["gunElementData"..i.."Ammo"] )
 	end
 	
-	setTimer ( anticheat, 10000, -1 )
+	-- setTimer ( anticheat, 10000, -1 )
+	setTimer ( anticheat, 10000, 0 )
 end
 addEventHandler ( "onClientResourceStart", getRootElement(), start_anticheat )
 
@@ -83,14 +84,14 @@ function anticheat ()
 			showChat ( false )
 			guiSetVisible ( gLabels["InfoTextForum"], false )
 			guiSetVisible ( gLabels["InfoTextForumShadow"], false )
-			showPlayerHudComponent ( "radar", false )
+			setPlayerHudComponentVisible ( "radar", false )
 		else
 			--[[if getCameraTarget () == lp then
 				showChat ( true )
-				showPlayerHudComponent ( "radar", true )
+				setPlayerHudComponentVisible ( "radar", true )
 			else
 				showChat ( false )
-				showPlayerHudComponent ( "radar", false )
+				setPlayerHudComponentVisible ( "radar", false )
 			end]]
 			if guiGetVisible ( gLabels["InfoTextForum"] ) then
 			else

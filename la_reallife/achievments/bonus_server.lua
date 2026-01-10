@@ -2,23 +2,46 @@
 
 function bonusLoad ( player )
 
-	local pname = getPlayerName ( player )
+	-- local pname = getPlayerName ( player )
+	-- if not MySQL_GetString("bonustable", "Name", "Name LIKE '"..pname.."'") then
+	-- 	local result = mysql_query(handler, "INSERT INTO bonustable (Name, Lungenvolumen, Muskeln, Kondition, Boxen, KungFu, Streetfighting, CurStyle, PistolenSkill, DeagleSkill, ShotgunSkill, AssaultSkill) VALUES ('"..pname.."', 'none', 'none', 'none', 'none', 'none', 'none', '4', 'none', 'none', 'none', 'none' )")
+	-- 	if( not result) then
+	-- 		outputDebugString("Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
+	-- 	else
+	-- 		mysql_free_result(result)
+	-- 	end
+	-- end
+	
+	-- local dsatz
+	-- local result = mysql_query ( handler, "SELECT * from bonustable WHERE Name LIKE '"..pname.."'" )
+	-- if result then
+	-- 	if ( mysql_num_rows ( result ) > 0 ) then
+	-- 		dsatz = mysql_fetch_assoc ( result )
+	-- 		mysql_free_result ( result )
+	-- 	end
+	-- end
+
+	local pname = getPlayerName(player)
 	if not MySQL_GetString("bonustable", "Name", "Name LIKE '"..pname.."'") then
-		local result = mysql_query(handler, "INSERT INTO bonustable (Name, Lungenvolumen, Muskeln, Kondition, Boxen, KungFu, Streetfighting, CurStyle, PistolenSkill, DeagleSkill, ShotgunSkill, AssaultSkill) VALUES ('"..pname.."', 'none', 'none', 'none', 'none', 'none', 'none', '4', 'none', 'none', 'none', 'none' )")
-		if( not result) then
-			outputDebugString("Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
+		local result = dbQuery(handler, "INSERT INTO bonustable (Name, Lungenvolumen, Muskeln, Kondition, Boxen, KungFu, Streetfighting, CurStyle, PistolenSkill, DeagleSkill, ShotgunSkill, AssaultSkill) VALUES ('"..pname.."', 'none', 'none', 'none', 'none', 'none', 'none', '4', 'none', 'none', 'none', 'none')")
+		if not result then
+			outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
 		else
-			mysql_free_result(result)
+			dbFree(result)
 		end
 	end
-	
+
 	local dsatz
-	local result = mysql_query ( handler, "SELECT * from bonustable WHERE Name LIKE '"..pname.."'" )
+	local result = dbQuery(handler, "SELECT * FROM bonustable WHERE Name LIKE '"..pname.."'")
 	if result then
-		if ( mysql_num_rows ( result ) > 0 ) then
-			dsatz = mysql_fetch_assoc ( result )
-			mysql_free_result ( result )
-		end
+		local re, num_rows = dbPoll(result, -1)
+        if re and num_rows > 0 then
+            dsatz = re[1]
+			dbFree(result)
+        else
+            dbFree(result)
+            return false
+        end
 	end
 	
 	local Lungenvolumen = dsatz["Lungenvolumen"]

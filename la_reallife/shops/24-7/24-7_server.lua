@@ -292,12 +292,12 @@ local function Buy_24_7_Hit ( player, dim )
 
 	if dim == true then
 		triggerClientEvent ( player, "create24_7Shop", getRootElement() )
-		showPlayerHudComponent ( player, "ammo", true )
-		showPlayerHudComponent ( player, "weapon", true )
-		showPlayerHudComponent ( player, "armour", true )
-		showPlayerHudComponent ( player, "money", true )
-		showPlayerHudComponent ( player, "health", true )
-		showPlayerHudComponent ( player, "money", true )
+		setPlayerHudComponentVisible ( player, "ammo", true )
+		setPlayerHudComponentVisible ( player, "weapon", true )
+		setPlayerHudComponentVisible ( player, "armour", true )
+		setPlayerHudComponentVisible ( player, "money", true )
+		setPlayerHudComponentVisible ( player, "health", true )
+		setPlayerHudComponentVisible ( player, "money", true )
 	end
 end
 
@@ -314,6 +314,7 @@ local pex, pey, pez = -23.066, -57.456, 1003.547
 local Ped24_7 = {}
 for i=1, 14, 1 do
 Ped24_7[i] = createPed ( skin, pex, pey, pez )
+outputDebugString("24-7_server: 316 - PED erstellt ped247")
 setElementInterior ( Ped24_7[i], 6 )
 setElementDimension ( Ped24_7[i], i )
 setPedRotation ( Ped24_7[i], 0 )

@@ -116,8 +116,8 @@ local function burgerBuyHit ( player, dim )
 
 	if dim == true then
 		triggerClientEvent ( player, "show_Burgershot_GUI", player, player )
-		showPlayerHudComponent ( player, "health", true )
-		showPlayerHudComponent ( player, "money", true )
+		setPlayerHudComponentVisible ( player, "health", true )
+		setPlayerHudComponentVisible ( player, "money", true )
 	end
 end
 
@@ -134,6 +134,7 @@ local pex, pey, pez = 376.449, -65.647, 1001.508
 local Ped_Burger = {}
 for i=1, 10, 1 do
 Ped_Burger[i] = createPed ( skin, pex, pey, pez )
+outputDebugString("burgershot_server: 136 - PED erstellt ped_burger")
 setElementInterior ( Ped_Burger[i], 10 )
 setElementDimension ( Ped_Burger[i], i )
 setPedRotation ( Ped_Burger[i], 180 )

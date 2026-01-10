@@ -8,7 +8,7 @@ function guiStart ()
 ----------------------------FENTRE PRINCIPAL
 
 	maFen = guiCreateWindow( x / 2 - 100, y / 2 - 175, 200, 350, "8Ball Auto's", false )
-	guiCreateStaticImage( 10, 20, 230, 100, "8Ball.png", false, maFen )
+	guiCreateStaticImage( 10, 20, 230, 100, "images/8Ball.png", false, maFen )
 	CostLabel = guiCreateLabel( 0.08, 0.35, 0.82, 0.04, "", true, maFen )
 	guiWindowSetSizable (maFen, false )
 	guiWindowSetMovable (maFen, false )
@@ -31,7 +31,8 @@ function guiStart ()
 ---------------------------- SPEED BOMB
 
 	maFenSpeed = guiCreateWindow( x / 2 - 100, y / 2 - 175, 200, 400, "8Ball Auto's", false )
-	guiCreateStaticImage( 10, 20, 230, 100, "8Ball.png", false, maFenSpeed )
+	-- guiCreateStaticImage( 10, 20, 230, 100, "8Ball.png", false, maFenSpeed )
+	guiCreateStaticImage( 10, 20, 230, 100, "images/8Ball.png", false, maFenSpeed )
 	
 	speedTargetButton = guiCreateButton( 0.018, 0.32, 0.965, 0.065, "Ziel : ", true, maFenSpeed )
 	speedPostMButton = guiCreateButton( 0.018, 0.39, 0.965, 0.065, "Warnung", true, maFenSpeed )
@@ -63,7 +64,7 @@ function guiStart ()
 --------------------------- TARGUETING par defaut  ------------------
 
 	maFenSel = guiCreateWindow( x / 2 - 100, y / 2 - 175, 200, 350, "8Ball Auto's", false )
-	guiCreateStaticImage( 10, 20, 230, 100, "8Ball.png", false, maFenSel )
+	guiCreateStaticImage( 10, 20, 230, 100, "images/8Ball.png", false, maFenSel )
 	
 	selTargetButton = guiCreateButton( 0.018, 0.37, 0.965, 0.075, "Ziel : ", true, maFenSel )
 	selPostMButton = guiCreateButton( 0.018, 0.45, 0.965, 0.075, "Warnung", true, maFenSel )
@@ -80,7 +81,7 @@ function guiStart ()
 ---------------------------- REFUND REVENTE
 	
 	maFenUn = guiCreateWindow( x / 2 - 100, y / 2 - 125, 200, 250, "8Ball Auto's", false )
-	guiCreateStaticImage( 10, 20, 230, 100, "8Ball.png", false, maFenUn )
+	guiCreateStaticImage( 10, 20, 230, 100, "images/8Ball.png", false, maFenUn )
 	RefundLabel = guiCreateLabel( 0.08, 0.50, 0.82, 0.06, "", true, maFenUn )
 	guiWindowSetSizable (maFenUn, false )
 	guiWindowSetMovable (maFenUn, true )
@@ -97,7 +98,7 @@ function guiStart ()
 ----------------------------CHOIX DE L ACTIVATION TIMING BOMB
 	
 	maFenAct = guiCreateWindow( x / 2 - 100, y / 2 - 175, 200, 350, "8Ball Auto's", false )
-	guiCreateStaticImage( 10, 20, 230, 100, "8Ball.png", false, maFenAct )
+	guiCreateStaticImage( 10, 20, 230, 100, "images/8Ball.png", false, maFenAct )
 	activationLabel = guiCreateLabel( 0.14, 0.4, 0.82, 0.04, "Aktivierung bei", true, maFenAct )
 	aTargetButton = guiCreateButton( 0.018, 0.5, 0.965, 0.1, "Einsteigen in das Fahrzeug", true, maFenAct )
 	aClicButton = guiCreateButton( 0.018, 0.65, 0.965, 0.1, "Beim Mausklick", true, maFenAct )
@@ -118,8 +119,8 @@ function guiStart ()
 	
 
 	guiSetVisible ( playerList, false )
-	guiWindowSetSizable (playerList, false )
-	guiWindowSetMovable (playerList, false )
+	-- guiWindowSetSizable (playerList, false )
+	-- guiWindowSetMovable (playerList, false )
 	
 	addEventHandler ( "onClientGUIDoubleClick", playerList, aAClientDoubleClick )
 
@@ -127,7 +128,7 @@ function guiStart ()
 ----------------------------FENETRE DE CHOIX DE CIBLE ET Du TIMING
 
 	maFenTarg = guiCreateWindow( x / 2 - 100, y / 2 - 175, 200, 350, "8Ball Auto's", false )
-	guiCreateStaticImage( 10, 20, 230, 100, "8Ball.png", false, maFenTarg )
+	guiCreateStaticImage( 10, 20, 230, 100, "images/8Ball.png", false, maFenTarg )
 	aATargetButton = guiCreateButton( 0.018, 0.37, 0.965, 0.075, "Ziel : ", true, maFenTarg )
 	aPostMButton = guiCreateButton( 0.018, 0.45, 0.965, 0.075, "Warnung", true, maFenTarg )
 	
@@ -152,7 +153,7 @@ function guiStart ()
 ----------------------------FENTRE DE CHOIX DE TEMPS KAN SIMPLE CLIC
 
 	maFenClic = guiCreateWindow( x / 2 - 100, y / 2 - 175, 200, 350, "8Ball Auto's", false )
-	guiCreateStaticImage( 10, 20, 230, 100, "8Ball.png", false, maFenClic )
+	guiCreateStaticImage( 10, 20, 230, 100, "images/8Ball.png", false, maFenClic )
 	
 	chooseLabel = guiCreateLabel( 0.1, 0.4, 0.82, 0.04, "Countdown Methode", true, maFenClic )
 	chooseLabel2 = guiCreateLabel( 0.75, 0.64, 0.82, 0.04, ":", true, maFenClic )
@@ -176,7 +177,7 @@ function guiStart ()
 ----------------------------POST MORTEM ecriture
 
 	maFenMort = guiCreateWindow( x / 2 - 100, y / 2 - 175, 200, 350, "8Ball Auto's", false )
-	guiCreateStaticImage( 10, 20, 230, 100, "8Ball.png", false, maFenMort )
+	guiCreateStaticImage( 10, 20, 230, 100, "images/8Ball.png", false, maFenMort )
 	memo = guiCreateMemo ( 0.05, 0.37, 0.9, 0.5, "", true, maFenMort)
 	okMortButton = guiCreateButton( 0.05, 0.89, 0.33, 0.10, "Ok", true, maFenMort )
 	cancelMortButton = guiCreateButton( 0.63, 0.89, 0.33, 0.10, "Abbrechen", true, maFenMort )

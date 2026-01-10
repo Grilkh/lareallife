@@ -129,7 +129,7 @@ function pokerMarkerHit ( hit, dim )
 							_G["pokerPlayer"..i] = hit
 							_G["pokerPlayer"..i.."Money"] = 200
 							_G["pokerPlayer"..i.."In"] = false
-							setPedFrozen ( hit, true )
+							setElementFrozen ( hit, true )
 							setElementPosition ( hit, pokerPlayerPositions[i]["x"], pokerPlayerPositions[i]["y"], pokerPlayerPositions[i]["z"] )
 							setElementInterior ( hit, 12 )
 							setPedRotation ( hit, pokerPlayerPositions[i]["rot"] - 90 )
@@ -407,7 +407,7 @@ function setPlayerLeavingPoker_func ( player, id )
 		id = getPlayerPokerID ( player )
 	end
 	if isElement ( player ) then
-		setPedFrozen ( player, false )
+		setElementFrozen ( player, false )
 		setElementPosition ( player, -2504.489, 2362.214, 4.634 )
 		setElementInterior ( player, 0 )
 		setCameraTarget ( player, player )

@@ -2,14 +2,14 @@
 
 function hudAusblenden ()
 
-    showPlayerHudComponent ( "ammo", false )
-    showPlayerHudComponent ( "weapon", false )
-	showPlayerHudComponent ( "health", false )
-	showPlayerHudComponent ( "armour", false )
-	showPlayerHudComponent ( "money", false )
-	showPlayerHudComponent ( "radar", false )
-	showPlayerHudComponent ( "area_name", false )
-	showPlayerHudComponent ( "clock", false )
+    setPlayerHudComponentVisible ( "ammo", false )
+    setPlayerHudComponentVisible ( "weapon", false )
+	setPlayerHudComponentVisible ( "health", false )
+	setPlayerHudComponentVisible ( "armour", false )
+	setPlayerHudComponentVisible ( "money", false )
+	setPlayerHudComponentVisible ( "radar", false )
+	setPlayerHudComponentVisible ( "area_name", false )
+	setPlayerHudComponentVisible ( "clock", false )
 	
 	ausblendentimer_dmg_started = false
 	bindKey ( "b", "both", showall )
@@ -19,8 +19,8 @@ addEventHandler ( "onClientResourceStart", getRootElement(), hudAusblenden )
 function hudEinblendenDmg_func ( a, b, c, d, bool )
 
 	if ( source == getLocalPlayer() and not getElementData ( lp, "isInHighNoon" ) and not isPedDead ( lp ) ) or bool then
-		showPlayerHudComponent ( "health", true ) 
-		showPlayerHudComponent ( "armour", true )
+		setPlayerHudComponentVisible ( "health", true ) 
+		setPlayerHudComponentVisible ( "armour", true )
 		if ausblendentimer_dmg_started then
 			killTimer ( ausblendentimer_dmg )
 			ausblendentimer_dmg = setTimer ( hudAusblendenDmg, timetohide, 1 )
@@ -36,8 +36,8 @@ addEventHandler ( "onClientPlayerDamage", getRootElement (), hudEinblendenDmg_fu
 function hudEinblendenSwitch ( old, new )
 	
 	if source == getLocalPlayer() and not getElementData ( lp, "isInHighNoon" ) then
-		showPlayerHudComponent ( "ammo", true ) 
-		showPlayerHudComponent ( "weapon", true )
+		setPlayerHudComponentVisible ( "ammo", true ) 
+		setPlayerHudComponentVisible ( "weapon", true )
 		if fireModeWeapons[getPedWeapon( lp, new )] then
 			showWeaponFireState ( true )
 			if getElementData ( lp, "playingtime" ) <= 50*60 and not gunmodeInfo then
@@ -70,7 +70,7 @@ addEventHandler ( "onClientPlayerWeaponSwitch", getRootElement(), hudEinblendenS
 function hudEinblendenFire ()
 	
 	if source == getLocalPlayer() and not getElementData ( lp, "isInHighNoon" ) then
-		showPlayerHudComponent ( "ammo", true )
+		setPlayerHudComponentVisible ( "ammo", true )
 		if ausblendentimer_fire_started then
 			killTimer ( ausblendentimer_fire )
 			ausblendentimer_fire = setTimer ( hudAusblendenFire, timetohide, 1 )
@@ -85,7 +85,7 @@ addEventHandler ( "onClientPlayerWeaponFire", getRootElement(), hudEinblendenFir
 
 function hudEinblendenMoney_func ()
 	
-	showPlayerHudComponent ( "money", true ) 
+	setPlayerHudComponentVisible ( "money", true ) 
 	if ausblendentimer_money_started == true then
 		killTimer ( ausblendentimer_money )
 		ausblendentimer_money = setTimer ( hudAusblendenMoney, timetohide, 1 )
@@ -100,27 +100,27 @@ addEventHandler ("HudEinblendenMoney", getRootElement(), hudEinblendenMoney_func
 
 function hudAusblendenMoney ()
 
-	showPlayerHudComponent ( "money", false ) 
+	setPlayerHudComponentVisible ( "money", false ) 
 	ausblendentimer_money_started = false
 end
 
 function hudAusblendenDmg ()
 
-	showPlayerHudComponent ( "health", false ) 
-	showPlayerHudComponent ( "armour", false )
+	setPlayerHudComponentVisible ( "health", false ) 
+	setPlayerHudComponentVisible ( "armour", false )
 	ausblendentimer_dmg_started = false
 end
 
 function hudAusblendenFire ()
 
-	showPlayerHudComponent ( "ammo", false ) 
+	setPlayerHudComponentVisible ( "ammo", false ) 
 	
 	ausblendentimer_fire_started = false
 end
 
 function hudAusblendenSwitch ()
 
-    showPlayerHudComponent ( "weapon", false )
+    setPlayerHudComponentVisible ( "weapon", false )
 	
 	ausblendentimer_switch_started = false
 end
@@ -128,26 +128,26 @@ end
 function showall ( key, state )
 
 	if state == "down" and not isPedDead ( lp ) then
-		showPlayerHudComponent ( "ammo", true )
-		showPlayerHudComponent ( "weapon", true )
-		showPlayerHudComponent ( "health", true )
-		showPlayerHudComponent ( "armour", true )
-		showPlayerHudComponent ( "money", true )
-		showPlayerHudComponent ( "area_name", true )
-		showPlayerHudComponent ( "clock", true )
-		showPlayerHudComponent ( "radar", true )
+		setPlayerHudComponentVisible ( "ammo", true )
+		setPlayerHudComponentVisible ( "weapon", true )
+		setPlayerHudComponentVisible ( "health", true )
+		setPlayerHudComponentVisible ( "armour", true )
+		setPlayerHudComponentVisible ( "money", true )
+		setPlayerHudComponentVisible ( "area_name", true )
+		setPlayerHudComponentVisible ( "clock", true )
+		setPlayerHudComponentVisible ( "radar", true )
 		showHungerBar()
 		showUrinBar()
 		showSchlafBar()
 	end
 	if state == "up" then
-		showPlayerHudComponent ( "ammo", false )
-		showPlayerHudComponent ( "weapon", false )
-		showPlayerHudComponent ( "health", false )
-		showPlayerHudComponent ( "armour", false )
-		showPlayerHudComponent ( "money", false )
-		showPlayerHudComponent ( "area_name", false )
-		showPlayerHudComponent ( "clock", false )
+		setPlayerHudComponentVisible ( "ammo", false )
+		setPlayerHudComponentVisible ( "weapon", false )
+		setPlayerHudComponentVisible ( "health", false )
+		setPlayerHudComponentVisible ( "armour", false )
+		setPlayerHudComponentVisible ( "money", false )
+		setPlayerHudComponentVisible ( "area_name", false )
+		setPlayerHudComponentVisible ( "clock", false )
 		hideHungerBar()
 		hideUrinBar()
 		hideSchlafBar()
@@ -156,12 +156,12 @@ end
 
 function hideall ()
 
-	showPlayerHudComponent ( "ammo", false )
-	showPlayerHudComponent ( "weapon", false )
-	showPlayerHudComponent ( "health", false )
-	showPlayerHudComponent ( "armour", false )
-	showPlayerHudComponent ( "money", false )
-	showPlayerHudComponent ( "area_name", false )
-	showPlayerHudComponent ( "clock", false )
+	setPlayerHudComponentVisible ( "ammo", false )
+	setPlayerHudComponentVisible ( "weapon", false )
+	setPlayerHudComponentVisible ( "health", false )
+	setPlayerHudComponentVisible ( "armour", false )
+	setPlayerHudComponentVisible ( "money", false )
+	setPlayerHudComponentVisible ( "area_name", false )
+	setPlayerHudComponentVisible ( "clock", false )
 	local inprogress = false
 end

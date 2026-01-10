@@ -22,7 +22,7 @@
 					local ammo_outclip = getPedTotalAmmo ( player ) - getPedAmmoInClip ( player, getPedWeaponSlot ( player ) )
 					if ammo_outclip >= total_clip then
 						local cur_clip = getPedAmmoInClip ( player )
-						takeWeaponAmmo ( player, getPedWeapon ( player ), cur_clip )
+						takeWeapon ( player, getPedWeapon ( player ), cur_clip )
 						reloadPedWeapon(player)
 						triggerClientEvent ( player, "reload_settimer_trigger", getRootElement(), total_clip, cur_clip )
 					end

@@ -1,4 +1,5 @@
-﻿gWindow = {}
+﻿-- GLOBAL VARIABLES --
+gWindow = {}
 gWindows = {}
 gButton = {}
 gButtons = {}

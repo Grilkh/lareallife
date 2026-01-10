@@ -23,7 +23,8 @@ function nameTagSpawn ()
 			attachElements ( nameSphere, lp )
 	end
 end
-setTimer ( nameTagSpawn, 500, -1 )
+-- setTimer ( nameTagSpawn, 500, -1 )
+setTimer ( nameTagSpawn, 500, 0 )
 
 function nameTagSphereHit ( element, dim )
 
@@ -229,4 +230,5 @@ function reCheckNameTag ()
 		nameTagCheckPlayerSight ( key )
 	end
 end
-setTimer ( reCheckNameTag, 500, -1 )
+-- setTimer ( reCheckNameTag, 500, -1 )
+setTimer ( reCheckNameTag, 500, 0 )

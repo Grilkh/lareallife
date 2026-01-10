@@ -4,8 +4,8 @@ local jobchoosepickup = createPickup ( 362.4522, 173.657, 1008.00828125, 3, 1210
 setElementInterior (jobchoosepickup, 3, 362.39953613281, 180.4635925293, 1008.0034790039)
 
 local function jobchoosepickup_func (player)
-	setPedFrozen ( player, true )
-    setTimer ( setPedFrozen, 100, 1, player, false )
+	setElementFrozen ( player, true )
+    setTimer ( setElementFrozen, 100, 1, player, false )
 	triggerClientEvent ( player, "showJobGui", getRootElement() )
 	showCursor ( player, true )
 	setElementData ( player, "ElementClicked", true )

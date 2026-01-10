@@ -3,13 +3,17 @@
 function houseCreation()
 
 	local houseamount = 0
-	local result = mysql_query(handler, "SELECT * FROM houses")
+	-- local result = mysql_query(handler, "SELECT * FROM houses")
+	local result = dbQuery(handler, "SELECT * FROM houses")
 	if( not result) then
-		 outputLog ( "[HOUSE]: Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+		 outputLog ( "[HOUSE]: Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 	else
-		if(mysql_num_rows(result) > 0) then
-			local dsatz = mysql_fetch_assoc(result)
-			while( dsatz ) do
+		local re, num_rows = dbPoll(result, -1)
+		-- if(mysql_num_rows(result) > 0) then
+		if re and num_rows > 0 then
+			-- local dsatz = mysql_fetch_assoc(result)
+			-- while( dsatz ) do
+			for _, dsatz in ipairs ( re ) do
 				houseamount = houseamount + 1
 				local ID = tonumber(dsatz["ID"])
 				local SymbolX = tonumber(dsatz["SymbolX"])
@@ -48,13 +52,14 @@ function houseCreation()
 						end
 					end
 				end
-				dsatz = mysql_fetch_assoc(result)
+				-- dsatz = mysql_fetch_assoc(result)
 			end
 			outputLog("[START]: Es wurden "..houseamount.." Haeuser gefunden und "..deletedHouses.." Besitzer enteignet.", "house")
 		else
 			outputLog("[START]: Es wurden keine Häuser gefunden.", "house")
 		end
-	mysql_free_result(result)
+	-- mysql_free_result(result)
+	dbFree(result)
 	end
 end
 setTimer ( houseCreation, 10000, 1 )

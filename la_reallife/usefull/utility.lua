@@ -135,7 +135,7 @@ function toggleVehicleTrunk ( veh )
 		else
 			setVehicleDoorState ( veh, 1, 4 )
 		end
-		setVehicleFrozen ( veh, false )
+		setElementFrozen ( veh, false )
 		setElementPosition ( veh, x, y, z )
 		setElementVelocity ( veh, vx, vy, vz )
 	end

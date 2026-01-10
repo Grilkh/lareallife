@@ -5,7 +5,8 @@
 		setPedLookAt ( lp, x, y, z, -1, nil )
 	end
 end
-setTimer ( adjustPlayerHead, 100, -1 )
+-- setTimer ( adjustPlayerHead, 100, -1 )
+setTimer ( adjustPlayerHead, 100, 0 )
 
 -- DEBUG --
 curSpyGlass = false

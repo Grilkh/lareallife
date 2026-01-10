@@ -24,7 +24,7 @@ setVehicleDamageProof ( MistysFreeway1, true )
 setVehicleDoorsUndamageable ( MistysFreeway1, true )
 setVehicleLocked ( MistysFreeway1, true )
 laSetElementData ( MistysFreeway1, "owner", "console" )
---setVehicleFrozen ( MistysFreeway1, true )
+--setElementFrozen ( MistysFreeway1, true )
 
 MistysFreeway2 = createVehicle ( 463, -2243.92578125, -85.8095703125, 34.937313079834, 0, 0, 112 )
 toggleVehicleRespawn ( MistysFreeway2, true )
@@ -33,7 +33,7 @@ setVehicleDamageProof ( MistysFreeway2, true )
 setVehicleDoorsUndamageable ( MistysFreeway2, true )
 setVehicleLocked ( MistysFreeway2, true )
 laSetElementData ( MistysFreeway2, "owner", "console" )
---setVehicleFrozen ( MistysFreeway2, true )
+--setElementFrozen ( MistysFreeway2, true )
 
 MistysFreeway3 = createVehicle ( 463, -2243.9033203125, -91.5595703125, 34.937313079834, 0, 0, 104 )
 toggleVehicleRespawn ( MistysFreeway3, true )
@@ -42,7 +42,7 @@ setVehicleDamageProof ( MistysFreeway3, true )
 setVehicleDoorsUndamageable ( MistysFreeway3, true )
 setVehicleLocked ( MistysFreeway3, true )
 laSetElementData ( MistysFreeway3, "owner", "console" )
---setVehicleFrozen ( MistysFreeway3, true )
+--setElementFrozen ( MistysFreeway3, true )
 
 MistysFreeway4 = createVehicle ( 463, -2242.1435546875, -94.052627563477, 34.937313079834, 0, 0, 175 )
 toggleVehicleRespawn ( MistysFreeway4, true )
@@ -51,7 +51,7 @@ setVehicleDamageProof ( MistysFreeway4, true )
 setVehicleDoorsUndamageable ( MistysFreeway4, true )
 setVehicleLocked ( MistysFreeway4, true )
 laSetElementData ( MistysFreeway4, "owner", "console" )
---setVehicleFrozen ( MistysFreeway4, true )
+--setElementFrozen ( MistysFreeway4, true )
 
 bikerskins = {}
 bikerskins = { [100]=true, [247]=true, [248]=true, [254]=true }
@@ -59,7 +59,7 @@ bikerskins = { [100]=true, [247]=true, [248]=true, [254]=true }
 createBlip ( -2242.5334472656, -88.182876586914, 34.287929534912, 23, 2, 255, 0, 0, 255, 0, 200 )
 
 function defreeze ( player )
-	setPedFrozen ( player, false )
+	setElementFrozen ( player, false )
 end
 
 local function onBikerClubEnterHit ( hit, dim )
@@ -67,7 +67,7 @@ if getElementType(hit) == "player" and (dim) then
 	if isPedInVehicle ( hit ) == false then
 		fadeElementInterior ( hit, 1, 681.39819335938, -450.52166748047, -25.96 )
 		setPedRotation ( hit, 270 )
-		setPedFrozen ( hit, true )
+		setElementFrozen ( hit, true )
 		setTimer ( defreeze, 500, 1, hit )
 		outputLog ( "[MISTYS]: "..getPlayerName ( hit ).." hat Mistys Bar betreten.", "bad" )
 		infobox ( hit, "\n\nWillkommen in Misty's Bar!", 5000, 0, 125, 0 )

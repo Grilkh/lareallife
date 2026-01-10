@@ -76,6 +76,7 @@ function createZombie ( skin, x, y, z, attack )
 	end
 	if nr then
 		_G["slaveZombie"..nr] = createPed ( skin, x, y, z )
+		outputDebugString("zombie_ki: 78 - PED erstellt slaveZombie")
 		
 		setElementData ( _G["slaveZombie"..nr], "zombie", true )
 		setElementData ( _G["slaveZombie"..nr], "nr", nr )
@@ -214,7 +215,8 @@ function aiMasterStart ()
 		_G["slaveZombieAnimation"..i] = false
 	end
 	run = 0
-	aiMasterCheck = setTimer ( aiMasterCheck, 400, -1 )
+	-- aiMasterCheck = setTimer ( aiMasterCheck, 400, -1 )
+	aiMasterCheck = setTimer ( aiMasterCheck, 400, 0 )
 end
 
 function findRotation(x1,y1,x2,y2)

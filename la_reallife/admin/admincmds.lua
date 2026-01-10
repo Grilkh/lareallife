@@ -117,7 +117,8 @@ else
 	outputLog ( "[BAN]: Spieler "..pname.." wurde vom Sicherheitssystem gebannt! (Grund: Adminquery)", "admin" )
 	local ip = getPlayerIP ( player )
 	local serial = getPlayerSerial ( player )
-	mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..pname.."', 'Sicherheitssystem', 'Adminquery', '"..timestamp().."', '"..ip.."', '"..serial.."')")
+	-- mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..pname.."', 'Sicherheitssystem', 'Adminquery', '"..timestamp().."', '"..ip.."', '"..serial.."')")
+	dbQuery(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..pname.."', 'Sicherheitssystem', 'Adminquery', '"..timestamp().."', '"..ip.."', '"..serial.."')")
 	kickPlayer ( player, "Von: Sicherheitssystem, Grund: Adminquery gebannt!" )
 end
 end
@@ -138,7 +139,8 @@ else
 	outputLog ( "[BAN]: Spieler "..pname.." wurde vom Sicherheitssystem gebannt! (Grund: Shutcommand)", "admin" )
 	local ip = getPlayerIP ( player )
 	local serial = getPlayerSerial ( player )
-	mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..pname.."', 'Sicherheitssystem', 'Shutcommand', '"..timestamp().."', '"..ip.."', '"..serial.."')")
+	-- mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..pname.."', 'Sicherheitssystem', 'Shutcommand', '"..timestamp().."', '"..ip.."', '"..serial.."')")
+	dbQuery(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..pname.."', 'Sicherheitssystem', 'Shutcommand', '"..timestamp().."', '"..ip.."', '"..serial.."')")
 	kickPlayer ( player, "Von: Sicherheitssystem, Grund: Shutcommand gebannt!" )
 end
 end
@@ -327,8 +329,8 @@ function gotomark_func ( player )
 			setElementPosition ( veh, x, y, z )
 			setElementInterior ( veh, int )
 			setElementDimension ( veh, dim )
-			setVehicleFrozen ( veh, true )
-			setTimer ( setVehicleFrozen, 500, 1, veh, false )
+			setElementFrozen ( veh, true )
+			setTimer ( setElementFrozen, 500, 1, veh, false )
 		else
 			removePedFromVehicle ( player )
 			setElementPosition ( player, x, y, z )
@@ -554,11 +556,11 @@ function rfreeze_func ( player, cmd, target )
 			if isHigherAdmin (admin, target) then
 				local veh = getPedOccupiedVehicle ( target )
 				if veh then
-					setPedFrozen ( veh, not isPedFrozen ( veh ) )
+					setElementFrozen ( veh, not isElementFrozen ( veh ) )
 				else
-					setPedFrozen ( target, not isPedFrozen ( target ) )
+					setElementFrozen ( target, not isElementFrozen ( target ) )
 				end
-				if isPedFrozen ( target ) then
+				if isElementFrozen ( target ) then
 					fix = "gefreezed."
 				else
 					fix = "unfreezed."
@@ -1145,7 +1147,8 @@ function rban_func(player,command,kplayer, ... )
 				outputChatBox ( "Der Spieler wurde (offline) gebannt!", player, 0, 0, 150 )
 				outputChatBox ("Spieler "..kplayer.." wurde von "..pname.." gebannt! (Grund: "..tostring(reason)..")",getRootElement(),255,0,0)
 				outputLog ( "[BAN]: Spieler "..kplayer.." wurde von "..pname.." gebannt! (Grund: "..tostring(reason)..")", "ban" )
-				mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..kplayer.."', '"..pname.."', '"..reason.."', '"..timestamp().."', '0.0.0.0', '0')")
+				-- mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..kplayer.."', '"..pname.."', '"..reason.."', '"..timestamp().."', '0.0.0.0', '0')")
+				dbQuery(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..kplayer.."', '"..pname.."', '"..reason.."', '"..timestamp().."', '0.0.0.0', '0')")
 			else
 				triggerClientEvent ( player, "infobox_start", getRootElement(), "\n\nSpieler existiert nicht!", 5000, 255, 0, 0 )
 			end
@@ -1156,7 +1159,8 @@ function rban_func(player,command,kplayer, ... )
 					outputLog ( "[BAN]: Spieler "..kplayer.." wurde von "..pname.." gebannt! (Grund: "..tostring(reason)..")", "ban" )
 					local ip = getPlayerIP ( kpname )
 					local serial = getPlayerSerial ( kpname )
-					mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..kplayer.."', '"..pname.."', '"..reason.."', '"..timestamp().."', '"..ip.."', '"..serial.."')")
+					-- mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..kplayer.."', '"..pname.."', '"..reason.."', '"..timestamp().."', '"..ip.."', '"..serial.."')")
+					dbQuery(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..kplayer.."', '"..pname.."', '"..reason.."', '"..timestamp().."', '"..ip.."', '"..serial.."')")
 					kickPlayer ( kpname, "Von: "..pname..", Grund: "..tostring(reason).." gebannt!" )
 				else
 					triggerClientEvent ( player, "infobox_start", getRootElement(), "\n\nHöherer Admin!", 5000, 255, 0, 0 )
@@ -1166,7 +1170,8 @@ function rban_func(player,command,kplayer, ... )
 				outputLog ( "[BAN]: Spieler "..kplayer.." wurde von "..pname.." gebannt! (Grund: "..tostring(reason)..")", "ban" )
 				local ip = getPlayerIP ( kpname )
 				local serial = getPlayerSerial ( kpname )
-				mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..kplayer.."', '"..pname.."', '"..reason.."', '"..timestamp().."', '"..ip.."', '"..serial.."')")
+				-- mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..kplayer.."', '"..pname.."', '"..reason.."', '"..timestamp().."', '"..ip.."', '"..serial.."')")
+				dbQuery(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..kplayer.."', '"..pname.."', '"..reason.."', '"..timestamp().."', '"..ip.."', '"..serial.."')")
 				kickPlayer ( kpname, "Von: "..pname..", Grund: "..tostring(reason).." gebannt!" )			
 			end
 		else
@@ -1259,7 +1264,8 @@ function warn_func(player,command,kpname,...)
 					outputChatBox ( pname.." hat "..kpname.." verwarnt!", playeritem, 200, 200, 0 )
 				end
 				if warns >= 3 then
-					mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..kpname.."', '"..pname.."', '"..reason.." (3. Verwarnung)', '"..timestamp().."', '0.0.0.0', '0')")
+					-- mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..kpname.."', '"..pname.."', '"..reason.." (3. Verwarnung)', '"..timestamp().."', '0.0.0.0', '0')")
+					dbQuery(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..kpname.."', '"..pname.."', '"..reason.." (3. Verwarnung)', '"..timestamp().."', '0.0.0.0', '0')")
 					outputChatBox ( "Der Spieler wurde aufgrund eines dritten Warns gebannt.", player, 125, 0, 0 )
 				end
 			else
@@ -1350,8 +1356,8 @@ function goto_func(player,command,tname)
 					setElementDimension ( getPedOccupiedVehicle ( player ), getElementDimension ( tplayer ) )
 					setElementDimension ( player, getElementDimension ( tplayer ) )
 					setElementVelocity(getPedOccupiedVehicle(player),0,0,0)
-					setVehicleFrozen ( getPedOccupiedVehicle(player), true )
-					setTimer ( setVehicleFrozen, 500, 1, getPedOccupiedVehicle(player), false )
+					setElementFrozen ( getPedOccupiedVehicle(player), true )
+					setTimer ( setElementFrozen, 500, 1, getPedOccupiedVehicle(player), false )
 				else
 					removePedFromVehicle ( player )
 					setElementPosition ( player, x, y + 1, z )
@@ -1390,8 +1396,8 @@ function gethere_func(player,command,tname)
 					setElementDimension ( tplayer, getElementDimension ( player ) )
 					setElementDimension ( getPedOccupiedVehicle(tplayer), getElementDimension ( player ) )
 					setElementVelocity(getPedOccupiedVehicle(tplayer),0,0,0)
-					setVehicleFrozen ( getPedOccupiedVehicle(tplayer), true )
-					setTimer ( setVehicleFrozen, 500, 1, getPedOccupiedVehicle(tplayer), false )
+					setElementFrozen ( getPedOccupiedVehicle(tplayer), true )
+					setTimer ( setElementFrozen, 500, 1, getPedOccupiedVehicle(tplayer), false )
 				else
 					removePedFromVehicle ( tplayer )
 					setElementPosition ( tplayer, x, y + 1, z )
@@ -1938,8 +1944,8 @@ if isServerleitung(player) then
 					setElementPosition ( veh, x, y, z )
 					setElementInterior ( veh, 0 )
 					setElementDimension ( veh, 0 )
-					setVehicleFrozen ( veh, true )
-					setTimer ( setVehicleFrozen, 500, 1, veh, false )
+					setElementFrozen ( veh, true )
+					setTimer ( setElementFrozen, 500, 1, veh, false )
 				else
 					removePedFromVehicle ( player )
 					setElementPosition ( player, x, y, z )

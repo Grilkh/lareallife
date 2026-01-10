@@ -147,7 +147,7 @@ addEventHandler ( "onPlayerVehicleEnter", getRootElement(), enginecheck )
 
 --[[function switchEngine_func ()
 
-	mysql_query ( handler, "ALTER TABLE players CHANGE Passwort Passwort VARCHAR ( 30 )" )
+	-- mysql_query ( handler, "ALTER TABLE players CHANGE Passwort Passwort VARCHAR ( 30 )" )
 end
 addCommandHandler ( "switchEngineTOWARDS", switchEngine_func )
 ]]

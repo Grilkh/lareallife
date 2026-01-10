@@ -6,10 +6,11 @@ function infobox ( text, tts, r, g, b )
 end
 
 function showInfoText_func ()
-
 	if not gLabels["InfoTextForum"] then
-		gLabels["InfoTextForumShadow"] = guiCreateLabel(screenwidth-250, 9, 250, 50,"Forum: "..forumURL..", Hilfe: F1 oder /kontakt",false,getRootElement())
-		gLabels["InfoTextForum"] = guiCreateLabel(screenwidth-250, 10, 250, 50,"Forum: "..forumURL..", Hilfe: F1 oder /kontakt",false,getRootElement())
+		-- gLabels["InfoTextForumShadow"] = guiCreateLabel(screenwidth-250, 9, 250, 50,"Forum: "..forumURL..", Hilfe: F1 oder /kontakt",false,getRootElement())
+		gLabels["InfoTextForumShadow"] = guiCreateLabel(screenwidth-250, 9, 250, 50,"Forum: "..forumURL..", Hilfe: F1 oder /kontakt",false)
+		-- gLabels["InfoTextForum"] = guiCreateLabel(screenwidth-250, 10, 250, 50,"Forum: "..forumURL..", Hilfe: F1 oder /kontakt",false,getRootElement())
+		gLabels["InfoTextForum"] = guiCreateLabel(screenwidth-250, 10, 250, 50,"Forum: "..forumURL..", Hilfe: F1 oder /kontakt",false)
 		guiLabelSetColor(gLabels["InfoTextForum"],0,255,20)
 		guiLabelSetColor(gLabels["InfoTextForumShadow"],0,0,0)
 		guiSetFont(gLabels["InfoTextForum"],"default-bold-small")

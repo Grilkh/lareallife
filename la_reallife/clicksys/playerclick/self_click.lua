@@ -5,26 +5,36 @@
 ------------------------------
 
 function hideall ()
-
-	guiSetVisible ( gWindow["handybg"], false )
-	guiSetVisible ( gWindow["plistadmin"], false )
-	guiSetVisible ( gWindow["rtext"], false )
-	guiSetVisible ( gWindow["bonusmenue"], false )
-	guiSetVisible ( gWindow["anrufen"], false )
-	guiSetVisible ( gWindow["sms"], false )
-	guiSetVisible ( gWindow["handybg"], false )
-	guiSetVisible ( gWindow["stats"], false )
-	guiSetVisible ( gWindow["friendlistMenue"], false )
-	guiSetVisible ( optionsWindow, false )
-	guiSetVisible ( gWindow["passwordChange"], false )
-	guiSetVisible ( gWindow["selfNotes"], false )
-	guiSetVisible ( gWindow["selfAnimations"], false )
-	guiSetVisible ( gWindow["socialRankSelection"], false )
-	guiSetVisible ( gWindow["suchtInfo"], false )
-	guiSetVisible ( gWindow["achievmentList"], false )
-	guiSetVisible ( gWindow["spawnPointSelection"], false )
-	guiSetInputEnabled ( false )
-	saveNotes ()
+	local elementNames = {
+        "handybg", "plistadmin", "rtext", "bonusmenue", "anrufen", "sms",
+        "stats", "friendlistMenue", "passwordChange", "selfNotes",
+        "selfAnimations", "socialRankSelection", "suchtInfo", "achievmentList", "spawnPointSelection"
+    }
+	local guiElements = {}
+	 -- Iterate through the element names and check if each one exists
+	for _, name in ipairs(elementNames) do
+        if gWindow[name] and isElement(gWindow[name]) then
+            table.insert(guiElements, gWindow[name])
+        else
+            outputDebugString("Element " .. name .. " does not exist or is not valid.")
+        end
+    end
+	-- Hides the elements in guiElements
+	for _, element in ipairs(guiElements) do
+		if guiGetVisible(element) then
+			if guiGetVisible(element) then
+            	guiSetVisible(element, false)
+				outputDebugString("Element "..tostring(element).. " hiding")
+			end
+		end
+    end
+	-- Not Perfect yet
+	if isElement(optionsWindow) then
+		guiSetVisible(optionsWindow, false)
+	end
+    -- Disable input and save notes
+    guiSetInputEnabled(false)
+    saveNotes()
 end
 
 function SelfAdminBtn ()

@@ -44,7 +44,8 @@ function offlinemsg ( msg, sender, empfaenger )
 
 	datum = timestamp()
 	if msg == MySQL_Save ( msg ) and sender == MySQL_Save ( sender ) and empfaenger == MySQL_Save ( empfaenger ) then
-		mysql_query(handler, "INSERT INTO pm (Sender, Empfaenger, Text, Datum) VALUES ('"..sender.."','"..empfaenger.."','"..msg.."','"..datum.."')")
+		-- mysql_query(handler, "INSERT INTO pm (Sender, Empfaenger, Text, Datum) VALUES ('"..sender.."','"..empfaenger.."','"..msg.."','"..datum.."')")
+		dbQuery(handler, "INSERT INTO pm (Sender, Empfaenger, Text, Datum) VALUES ('"..sender.."','"..empfaenger.."','"..msg.."','"..datum.."')")
 	end
 end
 

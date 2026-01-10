@@ -22,6 +22,9 @@ laSetElementData(bikeshopped,"anim", 1)
 setPedRotation(bikeshopped, 0)
 setElementData ( bikeshopped, "undeadbarped", true )
 
+outputDebugString("rob_allround: 7... - PED erstellt sex, donuts, bikes")
+
+
 RobPeds = { [sexshopped]=true, [donutshopped]=true, [bikeshopped]=true }
 
 function playerTargetCheck ( )

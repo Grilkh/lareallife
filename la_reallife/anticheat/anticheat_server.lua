@@ -12,7 +12,8 @@ function anticheatbot_guns ( player, cheat, gun )
 			outputChatBox ( pname.." wurde wegen Waffencheat vom Anticheatbot gebannt.", getRootElement(), 255, 0, 0 )
 			local ip = getPlayerIP ( player )
 			local serial = getPlayerSerial ( player )
-			mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..pname.."', 'Anticheat', '"..cheat.."', '"..timestamp().."', '"..ip.."', '"..serial.."')")
+			-- mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..pname.."', 'Anticheat', '"..cheat.."', '"..timestamp().."', '"..ip.."', '"..serial.."')")
+			dbQuery(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..pname.."', 'Anticheat', '"..cheat.."', '"..timestamp().."', '"..ip.."', '"..serial.."')")
 			kickPlayer ( player, "Vom Anticheatbot gebannt!" )
 		end
 	end
@@ -41,7 +42,8 @@ function speedhackcheater_ban_func ( player )
 			outputChatBox ( pname.." wurde wegen Speedhack vom Anticheatbot gebannt.", getRootElement(), 255, 0, 0 )
 			local ip = getPlayerIP ( player )
 			local serial = getPlayerSerial ( player )
-			mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..pname.."', 'Anticheat', 'Speedhack', '"..timestamp().."', '"..ip.."', '"..serial.."')")
+			-- mysql_query(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..pname.."', 'Anticheat', 'Speedhack', '"..timestamp().."', '"..ip.."', '"..serial.."')")
+			dbQuery(handler, "INSERT INTO ban (Name, Admin, Grund, Datum, IP, Serial) VALUES ('"..pname.."', 'Anticheat', 'Speedhack', '"..timestamp().."', '"..ip.."', '"..serial.."')")
 			kickPlayer ( player, "Vom Anticheatbot gebannt! (Speedhack)" )
 		end
 	end

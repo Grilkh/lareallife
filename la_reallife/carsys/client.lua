@@ -53,13 +53,17 @@ addEventHandler("onClientPreRender", getRootElement(), function()
 		local fontbig = 1.5
 		fontbig = fontbig/1920*sx
 		local NR1, NR2, NR3, NR4, NR5, NR6 = getVehicleTraveledDistance ( veh )
-		dxDrawText(NR1..NR2..NR3..NR4..NR5..NR6, sx-(238/1920*sx), sy-(40/1080*sy), sx-(240/1920*sx), sy-(180/1080*sy), tocolor(0, 0, 0, 200), fontbig, "default-bold")
+		if NR1 == nil then
+			outputDebugString("Vehicle -> "..tostring( veh ))
+			outputDebugString("NR1 -> "..tostring(NR1).." NR2 -> "..tostring(NR2).." NR3 -> "..tostring(NR3).." NR4 -> "..tostring(NR4).." NR5 -> "..tostring(NR5).." NR6 -> "..tostring(NR6))
+		else	
+			dxDrawText(NR1..NR2..NR3..NR4..NR5..NR6, sx-(238/1920*sx), sy-(40/1080*sy), sx-(240/1920*sx), sy-(180/1080*sy), tocolor(0, 0, 0, 200), fontbig, "default-bold")
+		end
 	end
 end)
 
 
 function refreshVehDistance_client ()
-
 	veh = getPedOccupiedVehicle ( gMe )
 	if veh then
 		if getPedOccupiedVehicleSeat ( gMe ) == 0 then
@@ -74,7 +78,6 @@ function refreshVehDistance_client ()
 end
 
 function getDistanceTraveled ( veh, x1, y1, z1 )
-
 	local veh = getPedOccupiedVehicle ( gMe )
 	if veh then
 		if getPedOccupiedVehicleSeat ( gMe ) == 0 then
@@ -87,10 +90,16 @@ function getDistanceTraveled ( veh, x1, y1, z1 )
 end
 
 function getVehicleTraveledDistance ( veh )
-
-	local dis = getElementData ( veh, "distance" )
+	if veh then
+		local dis = getElementData ( veh, "distance" )
+	else
+		outputDebugString("[ERROR] Vehicle is not set in Function getVehicleTraveledDistance!")
+		return 9,9,9,9,9,9
+	end
 	if not dis then
 		setElementData ( veh, "distance", 0 )
+		outputDebugString("Distance is not set for vehicle -> "..tostring(veh))
+		dis = 0
 	end
 	if dis then
 		distance = math.floor ( dis ) + math.floor ( KMDistance )
@@ -134,7 +143,6 @@ addEventHandler("onClientVehicleEnter", root,
 		if (player == gMe) then
 			if (seat == 0) then
 				showSpeedometer()
-
 			end
 		end
 	end

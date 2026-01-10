@@ -151,15 +151,17 @@
 							end
 							
 
-							local result = mysql_query(handler, "INSERT INTO vehicles (Besitzer, Typ, Tuning, Spawnpos_X, Spawnpos_Y, Spawnpos_Z, Spawnrot_X, Spawnrot_Y, Spawnrot_Z, Farbe, Paintjob, Benzin, Slot) VALUES ('"..Besitzer.."', "..vehid..", '"..Tuning.."', '"..Spawnpos_X.."', '"..Spawnpos_Y.."', '"..Spawnpos_Z.."', '"..Spawnrot_X.."', '"..Spawnrot_Y.."', '"..Spawnrot_Z.."', '"..color.."', '"..Paintjob.."', '"..Benzin.."', '"..Slot.."')")
+							-- local result = mysql_query(handler, "INSERT INTO vehicles (Besitzer, Typ, Tuning, Spawnpos_X, Spawnpos_Y, Spawnpos_Z, Spawnrot_X, Spawnrot_Y, Spawnrot_Z, Farbe, Paintjob, Benzin, Slot) VALUES ('"..Besitzer.."', "..vehid..", '"..Tuning.."', '"..Spawnpos_X.."', '"..Spawnpos_Y.."', '"..Spawnpos_Z.."', '"..Spawnrot_X.."', '"..Spawnrot_Y.."', '"..Spawnrot_Z.."', '"..color.."', '"..Paintjob.."', '"..Benzin.."', '"..Slot.."')")
+							local result = dbQuery(handler, "INSERT INTO vehicles (Besitzer, Typ, Tuning, Spawnpos_X, Spawnpos_Y, Spawnpos_Z, Spawnrot_X, Spawnrot_Y, Spawnrot_Z, Farbe, Paintjob, Benzin, Slot, Special, AuktionsID) VALUES ('"..Besitzer.."', "..vehid..", '"..Tuning.."', '"..Spawnpos_X.."', '"..Spawnpos_Y.."', '"..Spawnpos_Z.."', '"..Spawnrot_X.."', '"..Spawnrot_Y.."', '"..Spawnrot_Z.."', '"..color.."', '"..Paintjob.."', '"..Benzin.."', '"..Slot.."', 0, 0)")
 							local id = MySQL_GetString("vehicles", "ID", "Besitzer LIKE '"..pname.."' AND Slot LIKE '"..tonumber(Slot).."'")
 							outputLog ( "[HANDEL]: "..pname.." hat ein Fahrzeug ( Modell: "..vehid..", ID: "..id..") für "..carprice.."$ gekauft!", "car")
 							if ( not result ) then
 								--outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-								outputLog ( "Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+								outputLog ( "Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 								destroyElement ( _G[getPrivVehString ( x, y )] )
 							else
-								mysql_free_result(result)
+								-- mysql_free_result(result)
+								dbFree(result)
 							end
 							return true
 						else

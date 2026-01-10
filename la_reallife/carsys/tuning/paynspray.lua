@@ -42,8 +42,8 @@ function PnsSFWangCarsHit ( hitelement )
 				local veh = hitelement
 				local x, y, z = getElementPosition ( hitelement )
 				if z > 37 and z < 46 and motorboats[getElementModel ( veh )] ~= true and raftboats[getElementModel ( veh )] ~= true and helicopters[getElementModel ( veh )] ~= true and planea[getElementModel ( veh )] ~= true and planeb[getElementModel ( veh )] ~= true then
-					setPedFrozen ( player, true )
-					setVehicleFrozen ( veh, true )
+					setElementFrozen ( player, true )
+					setElementFrozen ( veh, true )
 					pnsDohertyKasse = pnsDohertyKasse + math.floor(paynsprayprice/5)
 					--updateBizKasse()
 					setTimer ( wangrepair, 3000, 1, veh, hitelement )
@@ -75,8 +75,8 @@ function PnsSFJuniperHillHit ( hitelement )
 					takePlayerMoney ( player, paynsprayprice )
 					triggerClientEvent ( player, "HudEinblendenMoney", getRootElement() )
 					local x, y, z = getElementPosition ( hitelement )
-					setPedFrozen ( player, true )
-					setVehicleFrozen ( veh, true )
+					setElementFrozen ( player, true )
+					setElementFrozen ( veh, true )
 					pnsJuniperKasse = pnsJuniperKasse + math.floor(paynsprayprice/5)
 					--updateBizKasse()
 					setTimer ( juniperrepair, 3000, 1, veh, hitelement )
@@ -104,8 +104,8 @@ function PnsLVHit ( hitelement )
 					takePlayerMoney ( player, paynsprayprice )
 					triggerClientEvent ( player, "HudEinblendenMoney", getRootElement() )
 					local x, y, z = getElementPosition ( hitelement )
-					setPedFrozen ( player, true )
-					setVehicleFrozen ( veh, true )
+					setElementFrozen ( player, true )
+					setElementFrozen ( veh, true )
 
 					local gateID = laGetElementData ( source, "gateID" )
 					if isGarageOpen ( gateID ) then
@@ -140,8 +140,8 @@ function PnsIdleWoodHit ( hitelement )
 					takePlayerMoney ( player, paynsprayprice )
 					triggerClientEvent ( player, "HudEinblendenMoney", getRootElement() )
 					local x, y, z = getElementPosition ( hitelement )
-					setPedFrozen ( player, true )
-					setVehicleFrozen ( veh, true )
+					setElementFrozen ( player, true )
+					setElementFrozen ( veh, true )
 
 					local gateID = laGetElementData ( source, "gateID" )
 					if isGarageOpen ( gateID ) then
@@ -175,8 +175,8 @@ function PnsDillimoreHit ( hitelement )
 					takePlayerMoney ( player, paynsprayprice )
 					triggerClientEvent ( player, "HudEinblendenMoney", getRootElement() )
 					local x, y, z = getElementPosition ( hitelement )
-					setPedFrozen ( player, true )
-					setVehicleFrozen ( veh, true )
+					setElementFrozen ( player, true )
+					setElementFrozen ( veh, true )
 
 					local gateID = laGetElementData ( source, "gateID" )
 					if isGarageOpen ( gateID ) then
@@ -210,8 +210,8 @@ function PnsTempleHit ( hitelement )
 					takePlayerMoney ( player, paynsprayprice )
 					triggerClientEvent ( player, "HudEinblendenMoney", getRootElement() )
 					local x, y, z = getElementPosition ( hitelement )
-					setPedFrozen ( player, true )
-					setVehicleFrozen ( veh, true )
+					setElementFrozen ( player, true )
+					setElementFrozen ( veh, true )
 
 					local gateID = laGetElementData ( source, "gateID" )
 					if isGarageOpen ( gateID ) then
@@ -245,8 +245,8 @@ function PnsBeachHit ( hitelement )
 					takePlayerMoney ( player, paynsprayprice )
 					triggerClientEvent ( player, "HudEinblendenMoney", getRootElement() )
 					local x, y, z = getElementPosition ( hitelement )
-					setPedFrozen ( player, true )
-					setVehicleFrozen ( veh, true )
+					setElementFrozen ( player, true )
+					setElementFrozen ( veh, true )
 
 					local gateID = laGetElementData ( source, "gateID" )
 					if isGarageOpen ( gateID ) then
@@ -274,7 +274,7 @@ function wangrepair ( veh, hitelement )
 		setGarageOpen ( 19, true )
 	end
 	playSoundFrontEnd ( getVehicleOccupant ( hitelement ), 46 )
-	setPedFrozen ( getVehicleOccupant ( hitelement ), false )
+	setElementFrozen ( getVehicleOccupant ( hitelement ), false )
 
 	pnsFixVehicle ( veh )
 end
@@ -285,7 +285,7 @@ function juniperrepair ( veh, hitelement )
 		setGarageOpen ( 27, true )
 	end
 	playSoundFrontEnd ( getVehicleOccupant ( hitelement ), 46 )
-	setPedFrozen ( getVehicleOccupant ( hitelement ), false )
+	setElementFrozen ( getVehicleOccupant ( hitelement ), false )
 	
 	pnsFixVehicle ( veh )
 end
@@ -297,7 +297,7 @@ function LVRepair ( veh, hit, gateID )
 		setGarageOpen ( gateID, true )
 	end
 	playSoundFrontEnd ( player, 46 )
-	setPedFrozen ( player, false )
+	setElementFrozen ( player, false )
 	
 	pnsFixVehicle ( veh )
 end
@@ -309,5 +309,5 @@ function pnsFixVehicle ( veh )
 	if laGetElementData ( veh, "stuning2" ) then
 		setElementHealth ( veh, 1700 )
 	end
-	setVehicleFrozen ( veh, false )
+	setElementFrozen ( veh, false )
 end

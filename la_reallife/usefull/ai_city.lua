@@ -107,6 +107,7 @@ function createNewAI ()
 			typ = aiTypes["desc"][typ]
 			
 			local ped = createPed ( skin, x, y, z, r )
+			outputDebugString("ai_city: 109 - PED erstellt ped")
 			setPedRotation ( ped, r )
 			laSetElementData ( ped, "typ", typ )
 			laSetElementData ( ped, "clickPed", true )
@@ -169,7 +170,8 @@ createNewAI ()
 createNewAI ()
 createNewAI ()
 createNewAI ()
-setTimer ( createNewAI, 180000, -1 )
+-- setTimer ( createNewAI, 180000, -1 )
+setTimer ( createNewAI, 180000, 0 )
 
 function agreeWithPed_func ()
 

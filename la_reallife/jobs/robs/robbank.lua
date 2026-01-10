@@ -81,29 +81,32 @@ function raubueberfallxxxtimer()
 end
 
 function createRobDeliverMarker ()
-local rnd = math.random ( 1, 4 )
-if rnd == 1 then
-	RobDeliver = createMarker ( 2625.2678, 824.0264, 4.3157, "checkpoint", 7, 0, 125, 0, getRootElement() )
-	RobDeliverBlip = createBlip ( 2625.2678, 824.0264, 5.3157, 51, 1, 255, 0, 0, 255, 0, 99999 )
-	setElementVisibleTo ( RobDeliverBlip, getRootElement(), true )
-elseif rnd == 2 then
-	RobDeliver = createMarker ( 2843.221, 1675.5335, 9.82, "checkpoint", 7, 0, 125, 0, getRootElement() )
-	RobDeliverBlip = createBlip ( 2843.221, 1675.5335, 10.82, 51, 1, 255, 0, 0, 255, 0, 99999 )
-	setElementVisibleTo ( RobDeliverBlip, getRootElement(), true )
-elseif rnd == 3 then
-	RobDeliver = createMarker ( 2255.545, 2051.341, 9.820, "checkpoint", 7, 0, 125, 0, getRootElement() )
-	RobDeliverBlip = createBlip ( 2255.545, 2051.341, 10.820, 51, 1, 255, 0, 0, 255, 0, 99999 )
-	setElementVisibleTo ( RobDeliverBlip, getRootElement(), true )
-elseif rnd == 4 then
-	RobDeliver = createMarker ( 1664.414, 1935.505, 9.82, "checkpoint", 7, 0, 125, 0, getRootElement() )
-	RobDeliverBlip = createBlip ( 1664.414, 1935.505, 10.82, 51, 1, 255, 0, 0, 255, 0, 99999 )
-	setElementVisibleTo ( RobDeliverBlip, getRootElement(), true )
-end
+	local rnd = math.random ( 1, 4 )
+
+	if rnd == 1 then
+		RobDeliver = createMarker ( 2625.2678, 824.0264, 4.3157, "checkpoint", 7, 0, 125, 0, getRootElement() )
+		RobDeliverBlip = createBlip ( 2625.2678, 824.0264, 5.3157, 51, 1, 255, 0, 0, 255, 0, 99999 )
+		setElementVisibleTo ( RobDeliverBlip, getRootElement(), true )
+	elseif rnd == 2 then
+		RobDeliver = createMarker ( 2843.221, 1675.5335, 9.82, "checkpoint", 7, 0, 125, 0, getRootElement() )
+		RobDeliverBlip = createBlip ( 2843.221, 1675.5335, 10.82, 51, 1, 255, 0, 0, 255, 0, 99999 )
+		setElementVisibleTo ( RobDeliverBlip, getRootElement(), true )
+	elseif rnd == 3 then
+		RobDeliver = createMarker ( 2255.545, 2051.341, 9.820, "checkpoint", 7, 0, 125, 0, getRootElement() )
+		RobDeliverBlip = createBlip ( 2255.545, 2051.341, 10.820, 51, 1, 255, 0, 0, 255, 0, 99999 )
+		setElementVisibleTo ( RobDeliverBlip, getRootElement(), true )
+	else
+		RobDeliver = createMarker ( 1664.414, 1935.505, 9.82, "checkpoint", 7, 0, 125, 0, getRootElement() )
+		RobDeliverBlip = createBlip ( 1664.414, 1935.505, 10.82, 51, 1, 255, 0, 0, 255, 0, 99999 )
+		setElementVisibleTo ( RobDeliverBlip, getRootElement(), true )
+	end
+
+	addEventHandler ( "onMarkerHit", RobDeliver, RobDeliver_func )
 end
 
 function RobDeliver_func ( player, dim )
-   
 	local veh = getPedOccupiedVehicle ( player )
+
 	if veh then
 		if getPedOccupiedVehicleSeat ( player ) == 0 then
 			if veh == robsecur then
@@ -130,9 +133,9 @@ function RobDeliver_func ( player, dim )
 		end
 	end
 end
-addEventHandler ( "onMarkerHit", RobDeliver, RobDeliver_func )
 
 sexshopped = createPed(246, -104.77, -8.586, 1000.71875)
+outputDebugString("robbank: 137 - PED erstellt sexshopped")
 setElementInterior (sexshopped, 3)
 laSetElementData(sexshopped,"anim", 1)
 setPedRotation(sexshopped, 180)

@@ -94,15 +94,27 @@ end
 local whiteListCurTime = getSecTime ( 0 )
 function checkWhiteListEntrys()
 
-	result = mysql_query ( handler, "SELECT * FROM whitelist" )
+	-- result = mysql_query ( handler, "SELECT * FROM whitelist" )
+	result = dbQuery ( handler, "SELECT * FROM whitelist" )
+	-- if result then
+	-- 	if ( mysql_num_rows ( result ) > 0 ) then
+	-- 		whiteListData = mysql_fetch_assoc ( result )
+	-- 		mySQLWhiteList ()
+	-- 	else
+	-- 		mysql_free_result ( result )
+	-- 	end
+	-- end
+
 	if result then
-		if ( mysql_num_rows ( result ) > 0 ) then
-			whiteListData = mysql_fetch_assoc ( result )
+		local re, num_rows = dbPoll(result, -1)
+        if re and num_rows > 0 then
+            whiteListData = re[1]
 			mySQLWhiteList ()
-		else
-			mysql_free_result ( result )
-		end
+        else
+            dbFree(result)
+        end
 	end
+
 end
 setTimer ( privVeh_spawning, 5000, 1 )
 
@@ -114,11 +126,13 @@ function mySQLWhiteList ()
 	local Eintragungsdatum = whiteListData["Eintragungsdatum"]
 	local Anzahl = whiteListData["Anzahl"]
 	
-	whiteListData = mysql_fetch_assoc ( result )
+	-- whiteListData = mysql_fetch_assoc ( result )
+	whiteListData = dbPoll(result, -1)
 	if whiteListData then
 		mySQLWhiteList ()
 	else
-		mysql_free_result ( result )
+		-- mysql_free_result ( result )
+		dbFree ( result )
 	end
 end
 checkWhiteListEntrys()
@@ -279,8 +293,10 @@ function acceptwhitelist_func ( player )
 					local registerdatum = tostring(day.."."..month.."."..year..", "..hour..":"..minute)
 					local lastlogin = registerdatum
 					--Ev '1'--
-					local result = mysql_query ( handler, "INSERT INTO whitelist ( Name, Eintraeger, Fraktion, Eintragungsdatum, Anzahl ) VALUES ( '"..pname.."', '"..tname.."', '"..fraktion.."', '"..lastlogin.."', 1 ) " )
-					mysql_free_result ( result )
+					-- local result = mysql_query ( handler, "INSERT INTO whitelist ( Name, Eintraeger, Fraktion, Eintragungsdatum, Anzahl ) VALUES ( '"..pname.."', '"..tname.."', '"..fraktion.."', '"..lastlogin.."', 1 ) " )
+					local result = dbQuery ( handler, "INSERT INTO whitelist ( Name, Eintraeger, Fraktion, Eintragungsdatum, Anzahl ) VALUES ( '"..pname.."', '"..tname.."', '"..fraktion.."', '"..lastlogin.."', 1 ) " )
+					-- mysql_free_result ( result )
+					dbFree ( result )
 					whitelistPlayers[fraktion][pname] = true
 		else
 			triggerClientEvent ( player, "infobox_start", getRootElement(), "\n\nDu hast zu wenig Geld auf der Bank, es kostet "..rate.."$!", 7500, 125, 0, 0 )

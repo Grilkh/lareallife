@@ -118,8 +118,8 @@ function startShootingRanch_func ( gun )
 		giveWeapon ( player, id, 100, true )
 	end
 		
-	setPedFrozen ( player, true )
-	setTimer ( setPedFrozen, 5000, 1, player, false )
+	setElementFrozen ( player, true )
+	setTimer ( setElementFrozen, 5000, 1, player, false )
 	
 	setElementPosition ( player, 300.22164916992, -132.56831359863, 1003.711730957 )
 	setPedRotation ( player, 90 )

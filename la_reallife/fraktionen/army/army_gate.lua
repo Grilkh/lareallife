@@ -13,8 +13,8 @@ local armyTeleporterB = createMarker ( 290.01748657227, 1857.9688720703, 16.5906
 local function armyTeleportA ( hit )
 	if isArmy ( hit ) then
 	elseif getElementType ( hit ) == "vehicle" then
-		setVehicleFrozen ( hit, true )
-		setTimer ( setVehicleFrozen, 500, 1, hit, false )
+		setElementFrozen ( hit, true )
+		setTimer ( setElementFrozen, 500, 1, hit, false )
 	else
 		return nil
 	end
@@ -25,8 +25,8 @@ addEventHandler ( "onMarkerHit", armyTeleporterA, armyTeleportA )
 local function armyTeleportB ( hit )
 	if isArmy ( hit ) then
 	elseif getElementType ( hit ) == "vehicle" then
-		setVehicleFrozen ( hit, true )
-		setTimer ( setVehicleFrozen, 500, 1, hit, false )
+		setElementFrozen ( hit, true )
+		setTimer ( setElementFrozen, 500, 1, hit, false )
 	else
 		return nil
 	end

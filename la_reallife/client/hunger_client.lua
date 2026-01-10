@@ -83,10 +83,10 @@ function moreHunger()
 		end
 	end
 end
-setTimer ( moreHunger, 100000, -1 )
+-- setTimer ( moreHunger, 100000, -1 )
+setTimer ( moreHunger, 100000, 0 )
 
 function eatSomething_func ( value )
-
 	if not value then value = 100 end
 	setElementData ( lp, "hunger", getElementData ( lp, "hunger" )+value, false )
 	if getElementData ( lp, "hunger" ) > 100 then
@@ -97,3 +97,7 @@ function eatSomething_func ( value )
 end
 addEvent ( "eatSomething", true )
 addEventHandler ( "eatSomething", getRootElement(), eatSomething_func )
+-- FOR DEBUGGING
+addCommandHandler("eat100", function()
+	setElementData ( lp, "hunger", 100, false )
+end)

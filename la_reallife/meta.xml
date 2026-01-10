@@ -1,10 +1,8 @@
-
 <meta>
-
 	<info author="Leyynen" type="gamemode" name="LA Reallife" description="German Reallife" />
-	 <min_mta_version client="1.3.1" server="1.3.0-9.03968" />
-	 
-	<!-- MySQL IMMER als erstes starten!!! --->
+	<!-- <min_mta_version client="1.3.1" server="1.3.0-9.03968" /> --> 
+	<min_mta_version server="1.5.8-9.20740" client="1.5.8-9.20740" />
+	<!-- MySQL IMMER als erstes starten!!! -->
 	
 	<file src="handy/data/images/galaxy/icons/faq.png" />
 	<file src="handy/data/images/galaxy/icons/faqbackground.jpg" />
@@ -33,17 +31,16 @@
 	
 	<script src="client\definitions_client.lua" type="client" />
 	
-	<!---<script src="blips\imagelib.lua" type="client" />
+	<script src="blips\imagelib.lua" type="client" />
 	<script src="blips\blipstreamer_client.lua" type="client" />
 	<script src="blips\customblips.lua" type="client" />
 	<script src="blips\utility.lua" type="client" />
-	<script src="blips\blips.lua" type="client" />--->
-	
-	<file src="fonts/COPRGTB.TTF" />
+	<!-- Needs to be fixed!
+	<script src="blips\blips.lua" type="client" /> -->
 	
 	<file src="sounds\bell.ogg" />
 	<file src="sounds\cellphone.ogg" />
-	<!---<file src="sounds/fahrstuhlmusik.mp3" />--->
+	<file src="sounds/fahrstuhlmusik.mp3" />
 	<file src="sounds/pianochill.mp3" />
 	<file src="sounds\highnoon.ogg" />
 	<file src="sounds\klingel.mp3" />
@@ -102,8 +99,8 @@
 	<file src="images\addict\cig.png" />
 	<file src="images\addict\drug.png" />
 
-	<!---<file src="images\blips\tankstelle.png" />
-	<file src="images\blips\sexshop.png" />--->
+	<file src="images\blips\tankstelle.png" />
+	<file src="images\blips\sexshop.png" />
 	
 	<file src="images\carsys\nos\bottle.png" />
 	<file src="images\carsys\nos\nos.png" />
@@ -265,7 +262,7 @@
 	<file src="images/cards/images/k.png" />
 	<file src="images/cards/images/q.png" />
 
-	<!--- Maps --->
+	<!-- Maps -->
 	
 	<map src="schimpanse.map"/>
 	<map src="maps\else\abschlepp.map" />
@@ -273,22 +270,22 @@
 	<map src="maps\else\jobcenter.map" />
 	<map src="maps\else\eren58.map" />
 	<map src="maps\else\adminhouses.map" />
-	<!---<map src="maps\else\bikepark.map" /> --->
+	<map src="maps\else\bikepark.map" />
 	<map src="maps\else\deko.map" />
 	<map src="maps\else\internetcafe.map" />
 	<map src="maps\else\safetytank.map" />
-	<!--- <map src="maps\else\gpking.map" /> --->
-	<!--- <map src="maps\else\discols.map" /> --->
+	<map src="maps\else\gpking.map" />
+	<map src="maps\else\discols.map" />
 	<map src="maps\else\greenzones.map" />
 	<map src="maps\else\mautstellen.map" />
-	<!--- <map src="maps\else\xmas.map" /> --->
+	<map src="maps\else\xmas.map" />
 	<map src="maps\else\samu.map" />
 	<map src="maps\else\dax.map" />
 	<map src="maps\else\verleih.map" />
-	<!--- <map src="maps\else\stopper.map" /> --->
-	<!--- <map src="maps\starfish_island.map"/> --->
+	<map src="maps\else\stopper.map" />
+	<map src="maps\else\starfish_island.map"/>
 	
-	<!--- <map src="maps\fraktionen\army\alka_prison.map"/> --->
+	<map src="maps\fraktionen\army\alka_prison.map"/>
 	<map src="maps\fraktionen\army\army_base.map"/>
 	<map src="maps\fraktionen\army\ufo.map"/>
 	<map src="maps\fraktionen\camorra\camorra.map" />
@@ -318,7 +315,7 @@
 	<map src="maps\fun\prodigy.map" />
 	<map src="maps\fun\bombshop.map" />
 	
-	<!--<map src="maps\gangs\nostra.map" />-->
+	<map src="maps\gangs\nostra.map" />
 	
 	<map src="maps\jobs\drugs\drugs.map"/>
 	<map src="maps\jobs\drugs\farm.map"/>
@@ -328,12 +325,10 @@
 		
 	<map src="maps\mission\mysterydead.map" />
 
-	<!--- Buchstabe "A" --->
+	<!-- Buchstabe "A" -->
 	<script src="achievments\achievments_client.lua" type="client" />
 	<script src="achievments\achievments_server.lua" type="server" />
 	<script src="achievments\bonus_server.lua" />
-	<!--- <script src="achievments\horseshoes_server.lua" type="server" />
-	<script src="achievments\horseshoes_client.lua" type="client" /> --->
 	<script src="achievments\packages_server.lua" type="server" />
 	<script src="achievments\packages_client.lua" type="client" />
 	
@@ -359,7 +354,7 @@
 	<script src="anzeigen\infobox.lua" type="client"/>
 	<script src="anzeigen\newsbox.lua"/>
 	
-	<!--- Buchstabe "B" --->
+	<!-- Buchstabe "B" -->
 	<script src="beta\beta_server.lua" />
 
 	
@@ -368,7 +363,7 @@
 	
 	<map src="biz\sprunk\sprunk.map" />
 	
-	<!--- Buchstabe "C" --->
+	<!-- Buchstabe "C" -->
 	<script src="carsys\bikefalloff.lua" type="client"/>
 	<script src="carsys\blitzer_server.lua" />
 	<script src="carsys\blinker.lua" />
@@ -417,12 +412,13 @@
 	<script src="carsys\tacho\client.lua" type="client" />
 	<script src="carsys\tempomat.lua" type="client" />
 	<script src="carsys\veh_dmg.lua" />
-	<!--<script src="carsys\veh_dmg_client.lua" type="client" />-->
+	<!-- Needs to be fixed!
+	<script src="carsys\veh_dmg_client.lua" type="client" /> -->
 	
 	<script src="carsys\carsys_mysql.lua" />
 
 
-			<!--- Clicksystem --->
+			<!-- Clicksystem -->
 				<script src="clicksys\click_server.lua" />
 				<script src="clicksys\geld_server.lua" />
 				<script src="clicksys\rathaus_server.lua" />
@@ -455,7 +451,7 @@
 				<script src="clicksys\playerclick\waffenschein_click.lua" type="client" />
 				<script src="clicksys\playerclick\wdealer_click.lua" type="client" />
 				<script src="clicksys\playerclick\waffendealer_click.lua" type="client" />
-			<!--- Client --->
+			<!-- Client -->
 				<script src="client\deathbar_client.lua" type="client" />
 				<script src="client\afk_client.lua" type="client" />
 				<script src="client\ego_client.lua" type="client" />
@@ -464,7 +460,7 @@
 				<script src="client\piss_client.lua" type="client" />
 				<script src="client\sleep_client.lua" type="client" />
 				<script src="client\lookout_client.lua" type="client" />
-				<!--<script src="client\plist_client.lua" type="client" />-->
+				<script src="client\plist_client.lua" type="client" />
 				<script src="client\playerlist_client.lua" type="client" />
 				<script src="client\sprunk_client.lua" type="client" />
 				<script src="client\statement_client.lua" type="client" />
@@ -473,7 +469,7 @@
 				<script src="client\head_client.lua" type="client" />
 				<script src="client\jailfix_client.lua" type="client" />
 			
-			<!--- Clothes --->
+			<!-- Clothes -->
 				<script src="clothes\clothes_server.lua" />
 				<script src="clothes\clothes_settings_client.lua" type="client" />
 				<script src="clothes\clothes_client.lua" type="client" />
@@ -482,16 +478,9 @@
 				<script src="clothes\victim\clothes_settings_client.lua" type="client" />
 				<script src="clothes\victim\clothes_client.lua" type="client" />
 	
-	<!--- Buchstabe "D" --->
-	<!---<script src="driving\driving_client.lua" type="client" />
-	<script src="driving\driving_server.lua" />
-	<script src="driving\routes.lua" type="client" />
-	<script src="driving\routes.lua" />
-	<script src="driving\taxi\taxi_gui.lua" type="client" /> --->
-	
-	<!--- Buchstabe "E" --->
+	<!-- Buchstabe "E" -->
 
-	<!---
+	<!--
 	<script src="events/christmas/tannenbaum/client.lua" type="client" />
 	<script src="events/christmas/adventskalender_client.lua" type="client" />
 	<script src="events/christmas/adventskalender_server.lua" type="server" />
@@ -533,7 +522,7 @@
 	<file src="sounds/fireworks/boeller_explosion2.mp3" /> -->
 	
 	
-	<!--- Buchstabe "F" --->
+	<!-- Buchstabe "F" -->
 	
 	<script src="fraktionen\allround.lua" />
 	<script src="fraktionen\blacklist_server.lua" />
@@ -555,8 +544,11 @@
 	<script src="fraktionen\army\army_func.lua" />
 	<script src="fraktionen\army\army_gate.lua" />
 	<script src="fraktionen\army\army_refire.lua" type="client"/>
-	<!--- <script src="fraktionen\army\raketen.lua" />
-	<script src="fraktionen\army\raketen_client.lua" type="client"/> --->
+
+	<!-- Needs to be fixed!
+	
+	<script src="fraktionen\army\raketen.lua" />
+	<script src="fraktionen\army\raketen_client.lua" type="client"/> -->
 	
 	<script src="fraktionen\surenos\surenos_client.lua" type="client"/>
 	<script src="fraktionen\surenos\surenos_gate.lua" />
@@ -675,9 +667,9 @@
 	
 	<script src="fun\verleih\verleih.lua" />
 	
-	<!--- Buchstabe "G" --->
+	<!-- Buchstabe "G" -->
 		
-	<!--- s.h. unter "H" -->
+	<!-- s.h. unter "H" -->
 	
 	<script src="guns\guns_client.lua" type="client"/>
 	<script src="guns\dmgsys_server.lua" />
@@ -695,7 +687,7 @@
 	<script src="guns\reload\reload_server.lua" />
 	<script src="guns\reload\reload_client.lua" type="client" />
 	
-	<!--- Buchstabe "H" --->	
+	<!-- Buchstabe "H" -->	
 	
 	<script src="handy\handy_server.lua"/>
 	
@@ -716,12 +708,12 @@
 	<script src="housesys\houses_client.lua" type="client" />
 	<script src="housesys\houses_mysql.lua" />
 	
-	<!--- Buchstabe "G" --->
+	<!-- Buchstabe "G" -->
 	
-	<!--<script src="gangs\gangs_server.lua" />
-	<script src="gangs\gangs_gates.lua" />-->
+	<script src="gangs\gangs_server.lua" />
+	<script src="gangs\gangs_gates.lua" />
 	
-	<!--- Buchstabe "I" --->
+	<!-- Buchstabe "I" -->
 	<script src="internet\desktop_client.lua" type="client"/>
 	<script src="internet\email_client.lua" type="client"/>
 	<script src="internet\email_server.lua" />
@@ -765,7 +757,7 @@
 	<script src="items\items_place_server.lua" />
 	<script src="items\items_server.lua" />
 	
-	<!--- Buchstabe "J" --->
+	<!-- Buchstabe "J" -->
 
 	<script src="jobs\anwalt.lua"/>
 	<script src="jobs\lieferant\lieferant_server.lua"/>
@@ -795,7 +787,7 @@
 	<script src="jobs\gabelstapler\gabelstapler_server.lua" />
 	<script src="jobs\gabelstapler\gabelstapler_client.lua" type = "client" />
 	
-	<!--<script src="jobs\hitman\hitman_funcs.lua" />-->
+	<script src="jobs\hitman\hitman_funcs.lua" />
 	<script src="jobs\hotdog\hotdog_server.lua" />
 	<script src="jobs\hotdog\hotdog_client.lua" type="client" />
 	
@@ -803,8 +795,8 @@
 	<script src="jobs\peds\utils_server.lua" />
 	<script src="jobs\peds\utils_client.lua" type = "client" />
 	
-	<!---<script src="jobs\robs\robbank.lua" />--->
-	<!---<script src="jobs\robs\robped.lua" />--->
+	<script src="jobs\robs\robbank.lua" />
+	<script src="jobs\robs\robped.lua" />
 	<script src="jobs\robs\bankrob_server.lua" type="server"/>
 	<script src="jobs\robs\bankrob_client.lua" type="client"/>
 	<script src="jobs\robs\casino_server.lua" type="server"/>
@@ -830,19 +822,19 @@
 	
 	<script src="jobs\trucker\trucker_bar.lua" type="client" />
 	<script src="jobs\trucker\trucker_gui.lua" type="client" />
-	<!--- <script src="jobs\trucker\trucker_client.lua" type="client" /> --->
+	<!-- <script src="jobs\trucker\trucker_client.lua" type="client" /> -->
 	<script src="jobs\trucker\trucker_server.lua"/>
 	
 	<script src="jobs\mechaniker\mechaniker.lua"/>
 	
 	<script src="jobs\waffendealer\wdealer_job.lua" />	
 	
-	<!---<script src="jobs\jobsneu\mechanic_server.lua" />
+	<script src="jobs\jobsneu\mechanic_server.lua" />
 	<script src="jobs\jobsneu\mechanic_client.lua" type = "client" />
 	<script src="jobs\jobsneu\seeker_server.lua" />
-	<script src="jobs\jobsneu\seeker_client.lua" type = "client" />--->
+	<script src="jobs\jobsneu\seeker_client.lua" type = "client" />
 	
-	<!---Buchstabe "L" --->
+	<!--Buchstabe "L" -->
 	<script src="language\language_allround.lua" type="client" />
 	<script src="language\language_allround.lua" type="server" />
 	<script src="language\language_german.lua" type="client" />
@@ -854,7 +846,7 @@
 	<script src="la_gui\la_gui_server.lua" type="server" />
 	<file src="la_gui\cursor.png" />
 	
-	<!---Buchstabe "M" --->
+	<!--Buchstabe "M" -->
 	<script src="misc\animations_client.lua" type="client" />
 	<script src="misc\animations_server.lua" />
 	<script src="misc\camfix_client.lua" type="client"/>
@@ -865,45 +857,53 @@
 	<script src="misc\spawn.lua" />
 	
 	<script src="minigames/tetris/classes_client.lua" type="client" />
-	<script src="minigames/tetris/classes_client.lua" type="client" />
 	<script src="minigames/tetris/tetris_server.lua" type="server" />
 	<script src="minigames/tetris/tetris_client.lua" type="client" />
 	
+	<!-- Needs to be fixed
+	
+	Cannot open area51_ai_client.lua!
+
 	<script src="missions\area51\area51ai\area51_server.lua" />
 	<script src="missions\area51\area51ai\area51_ai_client.lua" type="client"/>
 	<script src="missions\area51\area51ai\area51_ai_genfuncs_client.lua" type="client"/>
-	<script src="missions\area51\thetruth_area51_mission.lua" type="client" />
+	<script src="missions\area51\thetruth_area51_mission.lua" type="client" /> 
 	
+	!!Removed for FPS DROP TEST
+
 	<script src="missions\death\mission_gui.lua" type="client" />
-	<script src="missions\death\mission_server.lua" type="server" />
+	<script src="missions\death\mission_server.lua" type="server" /> -->
 	
-	<!--- <script src="missions\zombie\zombie_client.lua" type="client" />
+	<script src="missions\zombie\zombie_client.lua" type="client" />
 	<script src="missions\zombie\zombie_ki.lua" />
 	<script src="missions\zombie\zombie_settings.lua" />
-	<script src="missions\zombie\zombie_start.lua" /> --->
+	<script src="missions\zombie\zombie_start.lua" />
 	
 	<script src="mysql\mysql_pm.lua"/>
 	
-    <!---<script src="mods\client.lua" type="client" />--->
-	<script src="mods\server.lua" type="server" />
+	<!-- Needs to be fixed
 	
-	<!---<script src="mods.lua" type="client"/>	
-    <file src="mods\gun_dildo1.txd" />
-    <file src="mods\gun_dildo1.dff" />--->
+	SOMETHING WITH BIG FOOT
+	
+    <script src="mods\client.lua" type="client" />
+	<script src="mods\server.lua" type="server" /> -->
+	
 	<file src="mods\riot_shield.txd" />
 	<file src="mods\riot_shield.dff" />
 	<file src="mods\riot_shield.col" />
 	<file src="mods\silenced.txd" />
     <file src="mods\silenced.dff" />
-	<!--- Buchstabe "O" --->
+	<!-- Buchstabe "O" -->
 	
-		<!---<script src="outdoor\blitzer.lua" /> --->
-	<!---<script src="outdoor\changing.lua" /> --->
+	<script src="outdoor\blitzer.lua" />
+	<script src="outdoor\changing.lua" />
 	<script src="outdoor\chat.lua" />
 	<script src="outdoor\drop.lua" />
 	<script src="outdoor\greenzone_client.lua" type="client" />
 	<script src="outdoor\greenzone.lua" />
-	<!--<script src="outdoor\klos.lua" />-->	
+	<!-- DO NOT USE THIS, THERES A BUG WHERE THE TRASHCONTAINERS CRASH THE GAME TO BLACK SCREEN
+	<script src="outdoor\klos.lua" />	 -->
+	
 	<script src="outdoor\lotto.lua" />
 	<script src="outdoor\weather.lua" />
 	<script src="outdoor\npcs.lua" />
@@ -911,18 +911,17 @@
 	<script src="outdoor\mautstellen_server.lua" />	
 	<script src="outdoor\mautstellen_client.lua" type="client" />
 	
-	<!--- Buchstabe "P" --->
+	<!-- Buchstabe "P" -->
 	<script src="peds\ped_animations.lua" />
 	
 	<script src="places\icons.lua" />
-	<!---<script src="places\mafia\mafia.lua" /> --->
 	<script src="places\disco\disco.lua" />
 	<script src="places\outdoor\bankautomaten.lua" />
 	<script src="places\outdoor\daxtor.lua" />
 	<script src="places\outdoor\medic.lua" />
 	<script src="places\outdoor\medic_gui.lua" type="client" />
-	<!--- <script src="places\outdoor\discols_client.lua" type="client" />
-	<script src="places\outdoor\discols_server.lua" type="server" />--->
+	<script src="places\outdoor\discols_client.lua" type="client" />
+	<script src="places\outdoor\discols_server.lua" type="server" />
 	<script src="places\rathaus\rathaus.lua" />
 	<script src="places\rathaus\fahrschule.lua" />
 	
@@ -935,7 +934,7 @@
 	<script src="poker\poker_settings.lua" type="server" />
 	<script src="poker\poker_server.lua" type="server"/>
 	
-	<!--- Buchstabe "R" --->
+	<!-- Buchstabe "R" -->
 	<script src="register_login\camflight_client.lua" type="client" />
 	<script src="register_login\login_window.lua" type="client"/>
 	<script src="register_login\register_login_server.lua" />
@@ -944,7 +943,7 @@
 	<script src="register_login\serial_validator.lua" />
 	
 	
-	<!--- Buchstabe "S" --->
+	<!-- Buchstabe "S" -->
 	
 	<script src="skills\skills_both.lua" type="client" />
 	<script src="skills\skills_both.lua" type="server" />
@@ -972,7 +971,7 @@
 	<file src="shader/ltrshader.fx" />
 	<file src="shader/ltrlogo.png" />
 	
-	<!--- Buchstabe "T" --->	
+	<!-- Buchstabe "T" -->	
 	
 	<script src="tutorial\tutorial_ai_client.lua" type="client"/>
 	<script src="tutorial\tutorial_bubble_client.lua" type="client"/>
@@ -982,21 +981,21 @@
 	<script src="tutorial\tutorial_server.lua" type="server"/>
 	<map src="tutorial\tutorial_map_client.map" type="client"/>
 
-	<!--- Buchstabe "U" --->	
+	<!-- Buchstabe "U" -->	
 
 	<script src="usefull\abseil\main_client.lua" type="client"/>
 	<script src="usefull\abseil\main_server.lua" type="server"/>
 	<script src="usefull\anti_msg.lua" type="server"/>
 	<script src="usefull\anti_spam.lua" type="server"/>
 	
-	<!--- Buchstabe "V" --->
+	<!-- Buchstabe "V" -->
 
 	
-	<!--- Bottomsettings --->
+	<!-- Bottomsettings -->
 	<script src="clicksys\clicksys_server.lua" />
 	
 	
-	<!--- CASINO --->
+	<!-- CASINO -->
 	
 <script src="casino/casino_client.lua" type="client" />
 <script src="casino/casino_server.lua" type="server" />
@@ -1017,11 +1016,11 @@
 <script src="casino/slotmachine/slotmachine_client.lua" type="client" />
 <script src="casino/slotmachine/slotmachine_server.lua" type="server" />
 	
-	<!--- NEU --->
+	<!-- NEU -->
 	
 	<file src="images/texturen/ambulance.png" />
-	<!--<file src="images/texturen/boden_textur.jpg" /> -->
-	<!--<file src="images/texturen/asphalttextur.jpg" /> -->
+	<file src="images/texturen/boden_textur.jpg" />
+	<file src="images/texturen/asphalttextur.jpg" />
 	<file src="images/texturen/garage_dach.jpg" />
 	<file src="images/texturen/garage_wand.jpg" />
 	<file src="images/texturen/garage_info.jpg" />
@@ -1031,7 +1030,6 @@
 	<file src="images/biz/0.png" />
 	<file src="images/biz/1.png" />
 	<file src="images/biz/2.png" />
-	<file src="images/header.png" />
 	<file src="images/tacho/background.png" />
 	<file src="images/tacho/nadel.png" />
 	<file src="images/tacho/kasten.png" />
@@ -1041,7 +1039,7 @@
 	<file src="fonts/COPRGTB.TTF" />
 	
 	
-	<!--- HANDY --->
+	<!-- HANDY -->
 	
 	<script src="handy/scripts/server.lua" />
 	<script src="handy/scripts/client.lua" type="client" />

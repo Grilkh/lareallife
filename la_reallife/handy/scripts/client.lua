@@ -373,7 +373,8 @@ function changeRandomEmpfang()
 	end
 end
 
-setTimer(changeRandomEmpfang, 30000, -1)
+-- setTimer(changeRandomEmpfang, 30000, -1)
+setTimer(changeRandomEmpfang, 30000, 0)
 --changeRandomEmpfang()
 
 function changeRandomAkku()
@@ -387,7 +388,8 @@ function changeRandomAkku()
 	end
 end
 
-setTimer(changeRandomAkku, 30*60*1000, -1)
+-- setTimer(changeRandomAkku, 30*60*1000, -1)
+setTimer(changeRandomAkku, 30*60*1000, 0)
 changeRandomAkku()
 
 --addCommandHandler("changeakku", changeRandomAkku)
@@ -399,7 +401,7 @@ setTimer(function()
 			akku = akku+1
 		end
 	end
-end, 60000, -1)
+end, 60000, 0)
 
 addEventHandler("onClientVehicleEnter", getRootElement(), function(thePlayer)
 	if(thePlayer == localPlayer) then
@@ -2040,22 +2042,27 @@ function show_browsersite(name)
 		width, height = 480/1.5, 450/1.5
 		width, height = width/1920*sx, height/1920*sx
 		button["browser:car_grid"] = guiCreateGridList(x+addx, y-addy, width, height, false)
-		
+		-- Creates the Grid-List (Table) for the cars that are owned by the user
+		-- Column definition
 		guiGridListAddColumn(button["browser:car_grid"], "Slot", 0.2)
 		guiGridListAddColumn(button["browser:car_grid"], "Name", 0.3)
 		guiGridListAddColumn(button["browser:car_grid"], "Standort", 0.4)
+		-- Gird Settings
 		guiGridListSetSelectionMode(button["browser:car_grid"], 1)
 		guiSetFont(button["browser:car_grid"], "default-bold-small")
 		color = 0
+		-- Gets trough each element in the dictionary 'vehicle' 
 		for index, k in pairs(getElementsByType("vehicle")) do
 			if(getElementData(k, "owner") ) and (getElementData(k, "owner") == getPlayerName(gMe)) then
-				
+				-- x,y,z Postition of car by index
+				outputDebugString("Coordinates of the car"..index.." "..x.." "..y.." "..z);
 				local x1, y1, z1 = getElementPosition(k)
 				if(isElement(vehBlip[k])) then
 					destroyElement(vehBlip[k])
 				end
 				
 				local zone1, zone2 = getZoneName(x1, y1, z1, false), getZoneName(x1, y1, z1, true)
+				-- Gets the id,name from the database and adds a new row for the car
 				local id = getElementData(k, "carslotnr_owner")
 				local name = getVehicleNameFromModel(getElementModel(k))
 				local row = guiGridListAddRow(button["browser:car_grid"])
@@ -2064,6 +2071,7 @@ function show_browsersite(name)
 				guiGridListSetItemText(button["browser:car_grid"], row, 3, zone1..", "..zone2, false, false)
 				-- GPS --
 				if(getElementData(k, "gps")) then
+					outputDebugString("In GPS Function to create the Blip");
 					color = color + 1
 					vehBlip[k] = createBlip ( x1, y1, z1, 0, 2, vehBlipColor["r"][color], vehBlipColor["g"][color], vehBlipColor["b"][color], 255, 0, 99999.0)
 					setTimer ( function() if(isElement(vehBlip[k])) then destroyElement(vehBlip[k]) end end, 10000, 1)
@@ -2297,7 +2305,7 @@ function show_browsersite(name)
 		local add = 20
 		local temp_name = "9mm"
 		
-		-- LABEL OBEN --
+		-- LABEL 'Name'
 		
 		addx = 640
 		addy = -70
@@ -2312,6 +2320,8 @@ function show_browsersite(name)
 		
 		guiLabelSetColor(this, 0, 255, 0)
 		
+		-- SECTION SEPERATOR LINE
+
 		addx = 630
 		addy = -72
 		addx = addx/1920*sx
@@ -2323,6 +2333,8 @@ function show_browsersite(name)
 		guiSetFont(this, "default-bold-small")
 		ammu_element[this] = this
 		
+		-- HEADLINE 'Munition'
+
 		addx = 825
 		addy = -70
 		addx = addx/1920*sx
@@ -2336,6 +2348,7 @@ function show_browsersite(name)
 		
 		guiLabelSetColor(this, 0, 255, 0)
 		
+		-- 9MM
 		
 		local temp_name = "9mm"
 		
@@ -2361,6 +2374,8 @@ function show_browsersite(name)
 		guiSetFont(this, "default-bold-small")
 		ammu_element[this] = this
 		add = add+25
+
+		-- DEAGLE
 		
 		local temp_name = "deagle"
 		
@@ -2386,6 +2401,8 @@ function show_browsersite(name)
 		guiSetFont(this, "default-bold-small")
 		ammu_element[this] = this
 		add = add+25
+
+		-- SHOTGUN
 		
 		local temp_name = "shotgun"
 		
@@ -2411,6 +2428,8 @@ function show_browsersite(name)
 		guiSetFont(this, "default-bold-small")
 		ammu_element[this] = this
 		add = add+25
+
+		-- MP5
 		
 		local temp_name = "mp5"
 		
@@ -2437,6 +2456,8 @@ function show_browsersite(name)
 		ammu_element[this] = this
 		add = add+25
 		
+		-- AK-47
+
 		local temp_name = "ak-47"
 		
 		addx = 630
@@ -2461,31 +2482,35 @@ function show_browsersite(name)
 		guiSetFont(this, "default-bold-small")
 		ammu_element[this] = this
 		add = add+25
+
+		-- M4
 		
-		--[[local temp_name = "m4"
+		-- local temp_name = "m4"
 		
-		addx = 630
-		addy = -55-add-17.25
-		addx = addx/1920*sx
-		addy = addy/1920*sx
-		width, height = 275/1.5, 34.5/1.5
-		width, height = width/1920*sx, height/1920*sx
-		button["browser:ammu_checkbox_"..temp_name] = guiCreateCheckBox(x+addx, y-addy, width, height, "M4 ($"..ammu_select[temp_name]["gunprice"].."/$"..ammu_select[temp_name]["ammoprice"]..")", false, false)
-		this = button["browser:ammu_checkbox_"..temp_name]
-		guiSetFont(this, "default-bold-small")
-		ammu_element[this] = this
+		-- addx = 630
+		-- addy = -55-add-17.25
+		-- addx = addx/1920*sx
+		-- addy = addy/1920*sx
+		-- width, height = 275/1.5, 34.5/1.5
+		-- width, height = width/1920*sx, height/1920*sx
+		-- button["browser:ammu_checkbox_"..temp_name] = guiCreateCheckBox(x+addx, y-addy, width, height, "M4 ($"..ammu_select[temp_name]["gunprice"].."/$"..ammu_select[temp_name]["ammoprice"]..")", false, false)
+		-- this = button["browser:ammu_checkbox_"..temp_name]
+		-- guiSetFont(this, "default-bold-small")
+		-- ammu_element[this] = this
 		
-		addx = 825
-		addy = -67-add
-		addx = addx/1920*sx
-		addy = addy/1920*sx
-		width, height = 100/1.5, 32/1.5
-		width, height = width/1920*sx, height/1920*sx
-		button["browser:ammu_edit_"..temp_name] = guiCreateEdit(x+addx, y-addy, width, height, "0", false)
-		this = button["browser:ammu_edit_"..temp_name]
-		guiSetFont(this, "default-bold-small")
-		ammu_element[this] = this
-		add = add+25]]
+		-- addx = 825
+		-- addy = -67-add
+		-- addx = addx/1920*sx
+		-- addy = addy/1920*sx
+		-- width, height = 100/1.5, 32/1.5
+		-- width, height = width/1920*sx, height/1920*sx
+		-- button["browser:ammu_edit_"..temp_name] = guiCreateEdit(x+addx, y-addy, width, height, "0", false)
+		-- this = button["browser:ammu_edit_"..temp_name]
+		-- guiSetFont(this, "default-bold-small")
+		-- ammu_element[this] = this
+		-- add = add+25
+
+		-- RIFLE
 		
 		local temp_name = "rifle"
 		
@@ -2511,6 +2536,8 @@ function show_browsersite(name)
 		guiSetFont(this, "default-bold-small")
 		ammu_element[this] = this
 		add = add+25
+
+		-- NACHTSICHT
 		
 		local temp_name = "nachtsicht"
 		
@@ -2537,6 +2564,8 @@ function show_browsersite(name)
 		guiSetEnabled(this, false)
 		ammu_element[this] = this
 		add = add+25
+
+		-- WAERME
 		
 		local temp_name = "waerme"
 		
@@ -2564,6 +2593,8 @@ function show_browsersite(name)
 		ammu_element[this] = this
 		add = add+25
 		
+		-- ARMOUR
+
 		local temp_name = "armour"
 		
 		addx = 630
@@ -2589,6 +2620,8 @@ function show_browsersite(name)
 		guiSetEnabled(this, false)
 		ammu_element[this] = this
 		add = add+25
+
+		-- KNIFE
 		
 		local temp_name = "knife"
 		
@@ -2615,6 +2648,8 @@ function show_browsersite(name)
 		guiSetEnabled(this, false)
 		ammu_element[this] = this
 		add = add+25
+
+		-- BAT
 		
 		local temp_name = "bat"
 		
@@ -2641,6 +2676,8 @@ function show_browsersite(name)
 		guiSetEnabled(this, false)
 		ammu_element[this] = this
 		add = add+25
+
+		-- AMU LABEL WAFFEN LIEFERN
 		
 		addx = 710
 		addy = -430
@@ -2771,13 +2808,12 @@ function show_browsersite(name)
 			accept2["shotgun"] = tonumber(guiGetText(button["browser:ammu_edit_shotgun"]))
 			accept2["mp5"] = tonumber(guiGetText(button["browser:ammu_edit_mp5"]))
 			accept2["ak-47"] = tonumber(guiGetText(button["browser:ammu_edit_ak-47"]))
-			accept2["m4"] = tonumber(guiGetText(button["browser:ammu_edit_m4"]))
+			-- accept2["m4"] = tonumber(guiGetText(button["browser:ammu_edit_m4"]))
 			accept2["rifle"] = tonumber(guiGetText(button["browser:ammu_edit_rifle"]))
 			
 			if(accept["9mm"]) and (accept2["9mm"] < 1) or (accept["deagle"]) and (accept2["deagle"] < 1) or (accept["shotgun"]) and (accept2["shotgun"] < 1) or (accept["mp5"]) and (accept2["mp5"] < 1) or (accept["ak-47"]) and (accept2["ak-47"] < 1) or (accept["rifle"]) and (accept2["rifle"] < 0) then outputChatBox("Bad ammo input!", 255, 0, 0) return end
 			triggerServerEvent("onMTAmmunationBuy", gMe, weapon_price, accept, accept2)
-			--[[
-			triggerServerEvent("onMTAmmunationBuy", gMe, weapon_price, accept["9mm"], accept2["9mm"], accept["deagle"], accept2["deagle"], accept["shotgun"], accept2["shotgun"], accept["mp5"], accept2["mp5"], accept["ak-47"], accept2["ak-47"],accept["m4"], accept2["m4"], accept["rifle"], accept2["rifle"], accept["nachtsicht"], accept["waerme"], accept["armour"], accept["knife"], accept["bat"])]]
+			triggerServerEvent("onMTAmmunationBuy", gMe, weapon_price, accept["9mm"], accept2["9mm"], accept["deagle"], accept2["deagle"], accept["shotgun"], accept2["shotgun"], accept["mp5"], accept2["mp5"], accept["ak-47"], accept2["ak-47"],accept["m4"], accept2["m4"], accept["rifle"], accept2["rifle"], accept["nachtsicht"], accept["waerme"], accept["armour"], accept["knife"], accept["bat"])
 		end)
 	elseif(name == "iqc") then
 		iqc_text = ""
@@ -3156,7 +3192,7 @@ addEventHandler("onClientMTHandyIQCMessageSend", getLocalPlayer(), function(mess
 	iqc_text = iqc_text.."\n"..message
 	if(isElement(button["browser:iqc_memo"])) then
 		guiSetText(button["browser:iqc_memo"], iqc_text)
-		guiMemoSetCaratIndex(button["browser:iqc_memo"], #iqc_text)
+		guiMemoSetCaretIndex(button["browser:iqc_memo"], #iqc_text)
 		if(value) then
 			guiSetText(button["browser:iqc_online"], "Leute im Chat: "..value)
 		end
@@ -4663,7 +4699,7 @@ function hide_buttonMain()
 	buttonmain = false
 end
 
-
+-- Draws the BACKGROUND/FRAME/APP Icons etc. for the Phone
 addEventHandler("onClientRender", getRootElement(), function()
 	if(enabled == true) then
 		for index, knopf in pairs(button) do
@@ -4694,11 +4730,15 @@ addEventHandler("onClientRender", getRootElement(), function()
 		addy = addy/1920*sx
 		width, height = 488/1.5, 815/1.5
 		width, height = width/1920*sx, height/1920*sx
-		if(fileExists("handy/data/images/galaxy/icons/backgrounds/background"..current_background..".jpg")) then
-			dxDrawImage(x+addx, y-addy, width, height, "handy/data/images/galaxy/icons/backgrounds/background"..current_background..".jpg")
-		else
-			dxDrawImage(x+addx, y-addy, width, height, "handy/data/images/galaxy/icons/backgrounds/background1.jpg")
-		end
+		
+		-- BACKGROUND DRAW NOT WORKING CAUSE OF .JPG INSTED OF .PNG CAN BE FIXED!
+		-- outputDebugString("handy/data/images/galaxy/icons/backgrounds/background"..current_background..".jpg")
+		-- if(fileExists("handy/data/images/galaxy/icons/backgrounds/background"..current_background..".jpg")) then
+		-- 	dxDrawImage(x+addx, y-addy, width, height, "handy/data/images/galaxy/icons/backgrounds/background"..current_background..".jpg")
+		-- else
+		-- dxDrawImage(x+addx, y-addy, width, height, "handy/data/images/galaxy/icons/backgrounds/background2.jpg")
+		-- end
+
 		-- EMPFANG & AKKU --
 		addx = 840
 		addy = 75
@@ -5568,8 +5608,8 @@ if laGetElementData ( gMe, "handystate" ) == "on" then
 		end
 		local sx, sy = guiGetScreenSize()
 		if(sx < 1025) or (sy < 769) then 
-			--[[outputChatBox("Warnung: Du besitzt einen 19.Hundert Anno Tabak Monitor & hast eine Aufloesung von/kleiner als 1024x768 Pixeln.", 255, 0, 0)
-			outputChatBox("Das Handy wird bei dir falsch Dargestellt sein!", 255, 0, 0)]]
+			outputChatBox("Warnung: Du besitzt einen 19.Hundert Anno Tabak Monitor & hast eine Aufloesung von/kleiner als 1024x768 Pixeln.", 255, 0, 0)
+			outputChatBox("Das Handy wird bei dir falsch Dargestellt sein!", 255, 0, 0)
 		end
 		if(radio == true) then
 			radio = false
@@ -5642,7 +5682,8 @@ local function refreshAntiSpam()
 	end
 end
 
-setTimer(refreshAntiSpam, 500, -1)
+-- setTimer(refreshAntiSpam, 500, -1)
+setTimer(refreshAntiSpam, 500, 0)
 
 -- ANIMATION CHECK --
 
@@ -5663,7 +5704,8 @@ local function checkAnimationForPlayers()
 	end
 end
 
-setTimer(checkAnimationForPlayers, 500, -1)
+-- setTimer(checkAnimationForPlayers, 500, -1)
+setTimer(checkAnimationForPlayers, 500, 0)
 
 -- EVENT HANDLERS --
 addEventHandler("onClientResourceStart", getResourceRootElement(), function()
@@ -5792,5 +5834,7 @@ addEventHandler("onClientPlayerWeaponFire", getLocalPlayer(), function(weapon, a
 end)]]
 
 addEventHandler("onClientResourceStart", getResourceRootElement(), function()
-	fileDelete(pfad.."client.lua")
+	if fileExists(pfad.."client.lua") then
+		fileDelete(pfad.."client.lua")
+	end
 end)

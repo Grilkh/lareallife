@@ -40,7 +40,7 @@ function fireKatjuscha ( id, x, y, z )
 			laSetElementData ( katjuscha, "fireAble", false )
 			setTimer ( laSetElementData, 60*kS, 1, katjuscha, "fireAble", true )
 			outputChatBox ( "Salve abgefeuert - nächste Salve in 1 Minute verfügbar!", player, 0, 125, 0 )
-			setVehicleFrozen ( katjuscha, true )
+			setElementFrozen ( katjuscha, true )
 			
 			local kx, ky, kz = getElementPosition ( katjuscha )
 			soundSphere = createColSphere ( kx, ky, kz, 30 )
@@ -52,7 +52,7 @@ function fireKatjuscha ( id, x, y, z )
 			
 			fireKatjuschaRocket ( x, y, z, player, katjuscha, id, x2, y2, z2 )
 			
-			setTimer ( setVehicleFrozen, 5000, 1, katjuscha, false )
+			setTimer ( setElementFrozen, 5000, 1, katjuscha, false )
 		else
 			outputChatBox ( "Du kannst noch nicht wieder feuern!", player, 125, 0, 0 )
 		end

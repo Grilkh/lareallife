@@ -100,7 +100,7 @@ function scene3 ()
 	setTimer ( triggerServerEvent, 1000, 1, "intfix", lp )
 	setTimer ( 
 		function ()
-			showPlayerHudComponent ( "radar", true )
+			setPlayerHudComponentVisible ( "radar", true )
 			showChat ( true )
 		end,
 	12000, 1 )

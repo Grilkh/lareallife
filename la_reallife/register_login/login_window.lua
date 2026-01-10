@@ -33,11 +33,6 @@ local Bild = {}
 local Radio = {}
 local Knopf = {}
 local loginsound
-		
-addEvent("ShowLoginWindow", true)
-addEvent("ShowRegisterGui", true)
-addEvent("ShowBannedWindow", true)
-addEvent("DisableLoginWindow", true)
 
 local cam_pos = {
 	{-2003.1451416016, 994.40289306641, 75.748260498047, -1967.6363525391, 903.46746826172, 54.071701049805},
@@ -58,22 +53,23 @@ local schriftart = dxCreateFont("fonts/COPRGTB.ttf", 30, true)
 
 local sx, sy = guiGetScreenSize()
 
+addEvent("ShowRegisterGui", true)
 addEventHandler("ShowRegisterGui", getRootElement(), function()
 	canlogin = false
 	canregister = true
 	getsBanned = false
-	--enableLoginShow()
+	outputDebugString("ShowRegisterGui Handler executed")
 end)
 
+addEvent("ShowLoginWindow", true)
 addEventHandler("ShowLoginWindow", getRootElement(), function()
 	canlogin = true
 	canregister = false
 	getsBanned = false
-	--enableLoginShow()
+	outputDebugString("ShowLoginWindow Handler executed")
 end)
 
 function ShowBannedWindow_func ( reason, admin, date, time )
-
 	local reason = reason
 	local admin = admin
 	local date = date
@@ -81,8 +77,8 @@ function ShowBannedWindow_func ( reason, admin, date, time )
 	canregister = false
 	getsBanned = true
 	toggleBannedGui ( reason, admin, date, time )
-	--enableLoginShow()
 end
+addEvent("ShowBannedWindow", true)
 addEventHandler("ShowBannedWindow", getRootElement(), ShowBannedWindow_func )
 
 addEventHandler("onClientPreRender", getRootElement(), function()
@@ -91,7 +87,8 @@ addEventHandler("onClientPreRender", getRootElement(), function()
 	local addx, addy, width, height, scale, bx, by
 	if(login_doing == true) then
 		showCursor(true)
-		showPlayerHudComponent("all", false)
+		-- setPlayerHudComponentVisible("all", false)
+		setPlayerHudComponentVisible("all", false)
 		-- RAHMEN OBEN UND UNTEN --
 
 		-- Oben --
@@ -105,8 +102,8 @@ addEventHandler("onClientPreRender", getRootElement(), function()
 		-- Oben LA --
 		local fontbig = 1
 		fontbig = fontbig/1920*sx
-		dxDrawText("Los Angeles Reallife "..curVersion.."", sx/2-(270/1920*sx)+1, 80/1080*sy+1, "left", "top", tocolor(0, 0, 0, 220), fontbig, schriftart)
-		dxDrawText("Los Angeles Reallife "..curVersion.."", sx/2-(270/1920*sx), 80/1080*sy, "left", "top", tocolor(255, 255, 255, 220), fontbig, schriftart)
+		dxDrawText("Los Angeles Reallife "..curVersion.."", sx/2-(270/1920*sx)+1, 80/1080*sy+1, sx, sy, tocolor(0, 0, 0, 220), fontbig, schriftart)
+		dxDrawText("Los Angeles Reallife "..curVersion.."", sx/2-(270/1920*sx), 80/1080*sy, sx, sy, tocolor(255, 255, 255, 220), fontbig, schriftart)
 		
 		-- TEXTE UNTEN --
 		
@@ -115,19 +112,19 @@ addEventHandler("onClientPreRender", getRootElement(), function()
 		fontbig = fontbig/1920*sx
 		local a = 200
 		if(b_light["login"] == true) then a = 255 end
-		dxDrawText("Login", 50/1920*sx, sy-160/1080*sy, "left", "top", tocolor(255, 255, 255, a), fontbig, schriftart)
+		dxDrawText("Login", 50/1920*sx, sy-160/1080*sy, sx, sy, tocolor(255, 255, 255, a), fontbig, schriftart)
 		-- Register --
 		fontbig = 0.7
 		fontbig = fontbig/1920*sx
 		a = 200
 		if(b_light["register"] == true) then a = 255 end
-		dxDrawText("Register", 250/1920*sx, sy-160/1080*sy, "left", "top", tocolor(255, 255, 255, a), fontbig, schriftart)
+		dxDrawText("Register", 250/1920*sx, sy-160/1080*sy, sx, sy, tocolor(255, 255, 255, a), fontbig, schriftart)
 		-- Help --
 		fontbig = 0.7
 		fontbig = fontbig/1920*sx
 		a = 200
 		if(b_light["help"] == true) then a = 255 end
-		dxDrawText("Help", 500/1920*sx, sy-160/1080*sy, "left", "top", tocolor(255, 255, 255, a), fontbig, schriftart)
+		dxDrawText("Help", 500/1920*sx, sy-160/1080*sy, sx, sy, tocolor(255, 255, 255, a), fontbig, schriftart)
 	end
 end)
 
@@ -360,10 +357,7 @@ local function setToNextLoginCam()
 end
 
 
-
-
 local function enableLoginShow()
-	--lp = getLocalPlayer()
 	guiSetInputMode("no_binds_when_editing")
 	triggerServerEvent("regcheck", getLocalPlayer(), getLocalPlayer())
 	for i = 1, 30, 1 do
@@ -383,7 +377,7 @@ local function enableLoginShow()
 	local x, y, z, x2, y2, z2 = cam_pos[rand][1], cam_pos[rand][2], cam_pos[rand][3], cam_pos[rand][4], cam_pos[rand][5], cam_pos[rand][6]
 	setCameraMatrix(x, y, z, x2, y2, z2)
 	setToNextLoginCam()
-	cur_cam_pos_timer = setTimer(setToNextLoginCam, 10000, -1)
+	cur_cam_pos_timer = setTimer(setToNextLoginCam, 10000, 0)
 	-- BUTTONS --
 	b_ele["login"] = guiCreateButton(50/1920*sx, sy-160/1080*sy, 150/1920*sx, 40/1080*sy, "login", false)
 	b_ele["register"] = guiCreateButton(250/1920*sx, sy-160/1080*sy, 170/1920*sx, 40/1080*sy, "register", false)
@@ -391,7 +385,7 @@ local function enableLoginShow()
 	guiSetAlpha(b_ele["login"], 0)
 	guiSetAlpha(b_ele["register"], 0)
 	guiSetAlpha(b_ele["help"], 0)
-	
+
 	addEventHandler("onClientMouseEnter", b_ele["login"], function()
 		if(canlogin == true) then
 			b_light["login"] = true
@@ -470,7 +464,7 @@ local function disableLoginShow()
 	end
 end
 
-
+addEvent("DisableLoginWindow", true)
 addEventHandler("DisableLoginWindow", getLocalPlayer(), function()
 	disableLoginShow()
 	killTimer(cur_cam_pos_timer)
@@ -487,7 +481,7 @@ addEventHandler("DisableLoginWindow", getLocalPlayer(), function()
 	Guivar[4] = 0
 	login_doing = false
 	showCursor(false)
-	setTimer ( checkForSocialStateChanges, 10000, -1 )
+	setTimer ( checkForSocialStateChanges, 10000, 0 )
 	setTimer ( getPlayerSocialAvailableStates, 1000, 1 )
 	setTimer(function()
 		for i = 1, 10, 1 do
@@ -497,10 +491,3 @@ addEventHandler("DisableLoginWindow", getLocalPlayer(), function()
 		setTimer(destroyElement, 1000, 1, loginsound)
 	end, 2000, 1)
 end)
-
---enableLoginShow()
-
---
---[[addCommandHandler("logindoing", function()
-	enableLoginShow()
-end)]]

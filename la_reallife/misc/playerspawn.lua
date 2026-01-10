@@ -3,7 +3,7 @@ if getElementData(source, "wereDead") == true then
 
 else
 	setPedSkin ( source, laGetElementData ( source, "skinid") )
-	showPlayerHudComponent ( source, "radar", true )
+	setPlayerHudComponentVisible ( source, "radar", true )
 	setTimer ( ShowWanteds_func, 250, 1, source )
 if getElementData ( source, "sprache" ) == "" then
 	triggerClientEvent ( source, "showLanguageOldGui", getRootElement() )

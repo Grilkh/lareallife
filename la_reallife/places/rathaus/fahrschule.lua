@@ -46,8 +46,8 @@ setElementDimension ( fahrschulmarker, 5)
 local function fahrschulmarker_func (hitElement, dim)
 if getElementType(hitElement) == "player" and (dim) then
 	if isPedInVehicle ( hitElement ) == false then
-		setPedFrozen ( hitElement, true )
-		setTimer ( setPedFrozen, 100, 1, hitElement, false )
+		setElementFrozen ( hitElement, true )
+		setTimer ( setElementFrozen, 100, 1, hitElement, false )
 		triggerClientEvent ( hitElement, "ShowRathausMenue", getRootElement() )
 		showCursor ( hitElement, true )
 		setElementData ( hitElement, "ElementClicked", true )

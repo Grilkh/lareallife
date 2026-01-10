@@ -186,6 +186,7 @@ addEventHandler ( "onClientResourceStart" , resourceRoot ,
 function createInvulnerablePed ( skin, x, y, z, r, int, dim )
 
 	local ped = createPed ( skin, x, y, z )
+	outputDebugString("utils_client: 188 - PED erstellt ped")
 	if not dim then
 		dim = 0
 	end

@@ -22,7 +22,8 @@ function showTime_func ( minutes, seconds )
 	end
 	truckRemMinutes = minutes
 	truckRemSeconds = seconds
-	remainingTimeTruck = setTimer ( checkTruckTime, 1000, -1 )
+	-- remainingTimeTruck = setTimer ( checkTruckTime, 1000, -1 )
+	remainingTimeTruck = setTimer ( checkTruckTime, 1000, 0 )
 end
 addEvent ( "showTime", true )
 addEventHandler ( "showTime", getRootElement(), showTime_func )
@@ -69,7 +70,8 @@ function showDamageBarReal_func ()
 		guiSetAlpha(gProgress["damageBar"],1)
 		guiProgressBarSetProgress(gProgress["damageBar"],0)
 	end
-	damageUpdateTimer = setTimer ( refreshDamageBar, 200, -1 )
+	-- damageUpdateTimer = setTimer ( refreshDamageBar, 200, -1 )
+	damageUpdateTimer = setTimer ( refreshDamageBar, 200, 0 )
 end
 --addEvent ( "showDamageBar", true )
 --addEventHandler ( "showDamageBar", getRootElement(), showDamageBar_func )

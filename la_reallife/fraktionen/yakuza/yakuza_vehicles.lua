@@ -313,7 +313,7 @@ toggleVehicleRespawn ( YakuzaSultanLV6, true )
 setVehicleRespawnDelay ( YakuzaSultanLV6, FCarDestroyRespawn*1000*60 )
 setVehicleIdleRespawnDelay ( YakuzaSultanLV6, FCarIdleRespawn*1000*60 )
 
-YakuzaMaverickLV = createVehicle ( 487, 2004.6790771484, 1007.2655029297, 39.356094360352, 0, 90, "YAKUZA" )
+YakuzaMaverickLV = createVehicle ( 487, 2004.6790771484, 1007.2655029297, 39.356094360352, 0, 0, 90, "YAKUZA" )
 setVehicleColor ( YakuzaMaverickLV, r, g, b )
 setVehiclePaintjob ( YakuzaMaverickLV, 3 )
 toggleVehicleRespawn ( YakuzaMaverickLV, true )

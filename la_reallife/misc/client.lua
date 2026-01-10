@@ -19,11 +19,11 @@ addCommandHandler("hideall", function()
 	if(state == false) then
 		state = true
 		showChat(false)
-		showPlayerHudComponent("all", false)
+		setPlayerHudComponentVisible("all", false)
 	else
 		state = false
 		showChat(true)
-		showPlayerHudComponent("all", true)
+		setPlayerHudComponentVisible("all", true)
 	end
 end)
 

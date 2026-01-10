@@ -53,31 +53,45 @@ carhouses = {
  ["rz"]={}
  }
 
-function createCarhouses ()
+-- function createCarhouses ()
 
-	result = mysql_query ( handler, "SELECT * FROM carhouses_icons" )
-	if ( mysql_num_rows ( result ) > 0 ) then
-		carHousesData = mysql_fetch_assoc ( result )
-		mySQLCarhouseCreate ()
-	else
-		mysql_free_result ( result )
-		outputServerLog ( "Es wurden keine Autohaeuser gefunden" )
-	end
-end
+	-- result = mysql_query ( handler, "SELECT * FROM carhouses_icons" )	
+	-- if ( mysql_num_rows ( result ) > 0 ) then
+	-- 	carHousesData = mysql_fetch_assoc ( result )
+	-- 	mySQLCarhouseCreate ()
+	-- else
+	-- 	mysql_free_result ( result )
+	-- 	outputServerLog ( "Es wurden keine Autohaeuser gefunden" )
+	-- end
+-- end
 
 function createVehiclesForCarhouses ()
 
-	result = mysql_query ( handler, "SELECT * FROM carhouses_vehicles" )
-	if ( mysql_num_rows ( result ) > 0 ) then
-		carHouseVehicleData = mysql_fetch_assoc ( result )
-		mySQLCarhouseVehicleCreate ()
+	-- result = mysql_query ( handler, "SELECT * FROM carhouses_vehicles" )
+	result = dbQuery ( handler, "SELECT * FROM carhouses_vehicles" )
+	-- if ( mysql_num_rows ( result ) > 0 ) then
+	-- 	carHouseVehicleData = mysql_fetch_assoc ( result )
+	-- 	mySQLCarhouseVehicleCreate ()
+	-- else
+	-- 	mysql_free_result ( result )
+	-- 	outputServerLog ( "Es wurden keine Autohaus-Fahrzeuge gefunden" )
+	-- end
+
+	if result then
+		local re, num_rows = dbPoll(result, -1)
+	if re and num_rows > 0 then
+		for _, row in ipairs ( re ) do
+			mySQLCarhouseVehicleCreate (row)
+		end
+		dbFree ( result )
 	else
-		mysql_free_result ( result )
+		dbFree(result)
 		outputServerLog ( "Es wurden keine Autohaus-Fahrzeuge gefunden" )
+	end
 	end
 end
 
-function mySQLCarhouseVehicleCreate ()
+function mySQLCarhouseVehicleCreate (carHouseVehicleData)
 
 	local ID = tonumber ( carHouseVehicleData["AutohausID"] )
 	local x = tonumber ( carHouseVehicleData["X"] )
@@ -102,16 +116,17 @@ function mySQLCarhouseVehicleCreate ()
 	
 	MySQLCarHousesCars[typ] = true
 	
-	carHouseVehicleData = mysql_fetch_assoc ( result )
-	if carHouseVehicleData then
-		mySQLCarhouseVehicleCreate ()
-	else
-		mysql_free_result ( result )
-	end
+	-- carHouseVehicleData = mysql_fetch_assoc ( result )
+	-- carHouseVehicleData = dbPoll(result, -1)
+	-- if carHouseVehicleData then
+	-- 	mySQLCarhouseVehicleCreate ()
+	-- else
+	-- 	-- mysql_free_result ( result )
+	-- 	dbFree ( result )
+	-- end
 end
 
-function mySQLCarhouseCreate ()
-
+function mySQLCarhouseCreate (carHousesData)
 	local Name = carHousesData["Name"]
 	local ID = carHousesData["ID"]
 	local x, y, z = carHousesData["X"], carHousesData["Y"], carHousesData["Z"]
@@ -153,14 +168,15 @@ function mySQLCarhouseCreate ()
 		end
 	)
 	
-	carHousesData = mysql_fetch_assoc ( result )
-	if carHousesData then
-		mySQLCarhouseCreate ()
-	else
-		mysql_free_result ( result )
-		outputServerLog ( "Es wurden "..( #MySQLCarhouses ).." Autohaeuser gefunden!")
-		createVehiclesForCarhouses ()
-	end
+	-- carHousesData = mysql_fetch_assoc ( result )
+	-- if carHousesData then
+	-- 	mySQLCarhouseCreate ()
+	-- else
+	-- 	-- mysql_free_result ( result )
+	-- 	dbFree ( result )
+	-- 	outputServerLog ( "Es wurden "..( #MySQLCarhouses ).." Autohaeuser gefunden!")
+	-- 	createVehiclesForCarhouses ()
+	-- end
 end
 
 function MySQLCarhouseEnter ( player, ID )
@@ -271,4 +287,24 @@ function setCarhouseCamSight ( player )
 	triggerClientEvent ( player, "displayCarData", player, name, price, info )
 end
 
-createCarhouses ()
+-- Fix by Luki
+-- Function Creates the Carhouses from table loop trough it
+result = dbQuery ( handler, "SELECT * FROM carhouses_icons" )
+	
+if result then
+	local re, num_rows = dbPoll(result, -1)
+if re and num_rows > 0 then
+	for _, row in ipairs ( re ) do
+		mySQLCarhouseCreate (row)
+	end
+	dbFree ( result )
+	outputServerLog ( "Es wurden "..( #MySQLCarhouses ).." Autohaeuser gefunden!")
+	createVehiclesForCarhouses ()
+else
+	dbFree(result)
+	outputServerLog ( "Es wurden keine Autohaeuser gefunden" )
+end
+end
+
+
+-- createCarhouses ()

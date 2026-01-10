@@ -325,7 +325,7 @@ if not getPedOccupiedVehicle ( lp ) then
 			setTimer ( showMysteryBriefing, 5000, 1 )
 			MissionName = "Die Wende"
 			addEventHandler("onClientRender",getRootElement(), createMysteryName)
-			showPlayerHudComponent ( "radar", false )
+			setPlayerHudComponentVisible ( "radar", false )
 			setElementData ( lp, "points", 7 )
 		end
 	end

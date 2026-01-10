@@ -3,34 +3,66 @@
 function mySQLBlocksCreate ()
 
 	highscoreCounter = highscoreCounter + 1
-	blocksData = mysql_fetch_assoc(result)
+	-- blocksData = mysql_fetch_assoc(result)
+	blocksData = dbPoll(result, -1)
 	if blocksData then
 		tetrisHighscores[highscoreCounter] = {}
 		
-		tetrisHighscores[highscoreCounter]["name"] = blocksData["Name"]
-		tetrisHighscores[highscoreCounter]["points"] = tonumber ( blocksData["Punkte"] )
+		tetrisHighscores[highscoreCounter]["name"] = blocksData[1]["Name"]
+		tetrisHighscores[highscoreCounter]["points"] = tonumber ( blocksData[1]["Punkte"] )
 		
 		mySQLBlocksCreate ()
 	else
-		mysql_free_result(result)
+		-- mysql_free_result(result)
+		dbFree(result)
 		outputDebugString("Es wurden "..(highscoreCounter-1).." Tetris-Highscores gefunden.")
 	end
 end
   
-function initTetrisHighscores ()
-
+function initTetrisHighscores ( lp )
 	highscoreCounter = 0
-	result = mysql_query(handler, "SELECT * FROM blocks")
+	-- result = mysql_query(handler, "SELECT * FROM blocks")
+	result = dbQuery(handler, "SELECT * FROM blocks")
 	if( not result) then
-		outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
+		outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
 	else
-		if(mysql_num_rows(result) > 0) then
+		local re, num_rows = dbPoll(result, -1)
+		-- if(mysql_num_rows(result) > 0) then
+		-- 	mySQLBlocksCreate ()
+		-- else
+		-- 	mysql_free_result(result)
+		-- 	outputServerLog("Es wurden keine Highscores gefunden.")
+		-- end
+        if re and num_rows > 0 then
 			mySQLBlocksCreate ()
 		else
-			mysql_free_result(result)
+			dbFree(result)
 			outputServerLog("Es wurden keine Highscores gefunden.")
 		end
 	end
+	-- //
+	-- OUT COMMENTED BY LUKI!!
+	-- //
+	-- local dsatz
+	-- local pname = getPlayerName( lp )
+	-- if pname then
+	-- 	local result = dbQuery(handler, "SELECT * FROM bonustable WHERE Name LIKE '"..pname.."'")
+		
+	-- 	if result then
+	-- 		local re, num_rows = dbPoll(result, -1)
+	-- 		if re and num_rows > 0 then
+	-- 			dsatz = re[1]
+	-- 			dbFree(result)
+	-- 		else
+	-- 			dbFree(result)
+	-- 			return false
+	-- 		end
+	-- 	end
+	-- end
+	
+
+
+
 end
 setTimer ( initTetrisHighscores, 5000, 1 )
 
@@ -109,7 +141,7 @@ end
 
 function tetrisFinished_func ( score )
 
-	local player = client
+	-- local player = client
 	if score < 99999 then
 		local lowestPoints, lowestPlace = getLowestScore ()
 		if lowestPoints then

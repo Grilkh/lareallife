@@ -1,83 +1,117 @@
-﻿gMysqlHost = "localhost"
-gMysqlUser = "BENUTZER"
-gMysqlPass = "PASSWORT"
-gMysqlDatabase1 = "DATENBANK"
-gMysqlDatabase2 = "DATENBANK"
+﻿gMysqlHost = "127.0.0.1"
+gMysqlUser = "USERNAME_HERE"
+gMysqlPass = "PASSWORD_HERE"
+gMysqlDatabase1 = "lareallife"
+gMysqlDatabase2 = "lareallife"
 
 function MySQL_Startup()
-	handler = mysql_connect(gMysqlHost, gMysqlUser, gMysqlPass, gMysqlDatabase1)
+	-- handler = mysql_connect(gMysqlHost, gMysqlUser, gMysqlPass, gMysqlDatabase1)
+	handler = dbConnect("mysql", "dbname="..gMysqlDatabase1..";host="..gMysqlHost, gMysqlUser, gMysqlPass)
 	if( not handler) then
-		outputDebugString("Couldn't run query: Unable to connect to the MySQL server!")
+		outputDebugString("Couldn't run query: Unable to connect to the MySQL server - used DB1!")
 		outputDebugString("Please shutdown the server and start the MySQL server!")
 	end	
-	handler_old = mysql_connect(gMysqlHost, gMysqlUser, gMysqlPass, gMysqlDatabase2)
+	-- handler_old = mysql_connect(gMysqlHost, gMysqlUser, gMysqlPass, gMysqlDatabase2)
+	handler_old = dbConnect("mysql", "dbname="..gMysqlDatabase1..";host="..gMysqlHost, gMysqlUser, gMysqlPass)
 	if( not handler_old) then
-		outputDebugString("Couldn't run query: Unable to connect to the MySQL server!")
+		outputDebugString("Couldn't run query: Unable to connect to the MySQL server - used DB2!")
 		outputDebugString("Please shutdown the server and start the MySQL server!")
 	end	
 end
 MySQL_Startup()
 
 function MySQL_End()
-	mysql_close(handler)
+	-- mysql_close(handler)
+	if ( handler ) then
+		destroyElement(handler)
+	elseif ( handler_old ) then
+		destroyElement(handler_old)
+	end
 end
 
 function MySQL_GetVar(tablename, feldname, bedingung)
-	local result = mysql_query(handler, "SELECT "..feldname.." from "..tablename.." WHERE "..bedingung)
+	-- local result = mysql_query(handler, "SELECT "..feldname.." from "..tablename.." WHERE "..bedingung)
+	local result = dbQuery(handler, "SELECT "..feldname.." from "..tablename.." WHERE "..bedingung)
 	if( not result) then
-		outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-		outputLog ( "[GetVar]: Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+		outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+		outputLog ( "[GetVar]: Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 	else
-		if(mysql_num_rows(result) > 0) then
-			local dsatz = mysql_fetch_assoc(result)
+		-- if(mysql_num_rows(result) > 0) then
+		-- 	local dsatz = mysql_fetch_assoc(result)
+		-- 	local savename = feldname
+		-- 	mysql_free_result(result)
+		-- 	return tonumber(dsatz[feldname])
+		-- else
+		-- 	mysql_free_result(result)
+		-- 	return false
+		-- end
+
+		local re, num_rows = dbPoll(result, -1)
+		if re and num_rows > 0 then
+			-- outputDebugString("In Function MySQL_GetVar " .. tostring(num_rows) .. " - " .. tostring(re) .. " - ".. tostring(re[1][feldname]))
 			local savename = feldname
-			mysql_free_result(result)
-			return tonumber(dsatz[feldname])
-		else
-			mysql_free_result(result)
-			return false
-		end
+            dbFree(result)
+            return tonumber(re[1][feldname])
+        else
+            dbFree(result)
+            return false
+        end
 	end
 end
 
 function MySQL_GetString(tablename, feldname, bedingung)
-	local result = mysql_query(handler, "SELECT "..feldname.." from "..tablename.." WHERE "..bedingung)
+	-- local result = mysql_query(handler, "SELECT "..feldname.." from "..tablename.." WHERE "..bedingung)
+	local result = dbQuery(handler, "SELECT "..feldname.." from "..tablename.." WHERE "..bedingung)
 	if( not result) then
-		 outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-		 outputLog ( "[GetString]: Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+		 outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+		 outputLog ( "[GetString]: Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 	else
-		if(mysql_num_rows(result) > 0) then
-			local dsatz = mysql_fetch_assoc(result)
+		-- if(mysql_num_rows(result) > 0) then
+		-- 	local dsatz = mysql_fetch_assoc(result)
+		-- 	local savename = feldname
+		-- 	mysql_free_result(result)
+		-- 	return dsatz[feldname]
+		-- else
+		-- 	mysql_free_result(result)
+		-- 	return false
+		-- end
+		local re, num_rows = dbPoll(result, -1)
+        if re and num_rows > 0 then
+			-- outputDebugString("In Function MySQL_GetString " .. tostring(num_rows) .. " - " .. tostring(re) .. " - ".. tostring(re[1][feldname]))
 			local savename = feldname
-			mysql_free_result(result)
-			return dsatz[feldname]
-		else
-			mysql_free_result(result)
-			return false
-		end
+            dbFree(result)
+            return re[1][feldname]
+        else
+            dbFree(result)
+            return false
+        end
 	end
 end
 
 function MySQL_SetVar(tablename, feldname, var, bedingung)
 	if var then
-		local result = mysql_query(handler, "UPDATE "..tablename.." SET "..feldname.." = "..var.." WHERE "..bedingung)
+		-- local result = mysql_query(handler, "UPDATE "..tablename.." SET "..feldname.." = "..var.." WHERE "..bedingung)
+		local result = dbQuery(handler, "UPDATE "..tablename.." SET "..feldname.." = "..var.." WHERE "..bedingung)
 		if( not result) then
-			 outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-			 outputLog ( "[SetVar]: Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+			 outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+			 outputLog ( "[SetVar]: Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 		else
-			mysql_free_result(result)
+			-- mysql_free_result(result)
+			dbFree(result)
 			return false
 		end
 	end
 end
 
 function MySQL_DelRow(tablename, bedingung)
-	local result = mysql_query(handler, "DELETE FROM "..tablename.." WHERE "..bedingung)
+	-- local result = mysql_query(handler, "DELETE FROM "..tablename.." WHERE "..bedingung)
+	local result = dbQuery(handler, "DELETE FROM "..tablename.." WHERE "..bedingung)
 	if( not result) then
-		 outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-		 outputLog ( "[DelRow]: Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+		 outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+		 outputLog ( "[DelRow]: Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 	else
-		mysql_free_result(result)
+		-- mysql_free_result(result)
+		dbFree(result)
 		return false
 	end
 	outputDebugString ("geloescht?!")
@@ -85,45 +119,57 @@ end
 
 function MySQL_SetString(tablename, feldname, var, bedingung)
 	if var and bedingung then
-		local result = mysql_query(handler, "UPDATE "..tablename.." SET "..feldname.." = '"..var.."' WHERE "..bedingung)
+		-- local result = mysql_query(handler, "UPDATE "..tablename.." SET "..feldname.." = '"..var.."' WHERE "..bedingung)
+		local result = dbQuery(handler, "UPDATE "..tablename.." SET "..feldname.." = '"..var.."' WHERE "..bedingung)
 		if( not result) then
-			outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-			outputLog ( "[SetString]: Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+			outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+			outputLog ( "[SetString]: Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 		else
-			mysql_free_result(result)
+			-- mysql_free_result(result)
+			dbFree(result)
 			return false
 		end
 	end
 end
 
 function MySQL_DatasetExist(tablename, bedingung)
-	local result = mysql_query(handler, "SELECT * from "..tablename.." WHERE "..bedingung)
+	-- local result = mysql_query(handler, "SELECT * from "..tablename.." WHERE "..bedingung)
+	local result = dbQuery(handler, "SELECT * from "..tablename.." WHERE "..bedingung)
 	if( not result) then
-		 outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-		 outputLog ( "[DatasetExist]: Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+		 outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+		 outputLog ( "[DatasetExist]: Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 	else
-		if(mysql_num_rows(result) > 0) then
-			mysql_free_result(result)
-			return true
-		else
-			mysql_free_result(result)
-			return false
-		end
-	end
-end
+		-- if(mysql_num_rows(result) > 0) then
+		-- 	mysql_free_result(result)
+		-- 	return true
+		-- else
+		-- 	mysql_free_result(result)
+		-- 	return false
+		-- end
 
-function MySQL_Safe ( string )
-	return MySQL_Save ( string )
+		local re, num_rows = dbPoll(result, -1)
+        if re and num_rows > 0 then
+			local savename = feldname
+            dbFree(result)
+            return true
+        else
+            dbFree(result)
+            return false
+        end
+	end
 end
 
 function MySQL_Save ( string )
 	
+	-- if string then
+	-- 	return mysql_escape_string ( handler, string )
+	-- end
 	if string then
-		return mysql_escape_string ( handler, string )
+		return dbPrepareString ( handler, string )
 	end
 end
 
---[[function MySQL_Save ( string ) 
+--[[function GSave ( string ) 
 if(not(string) or  type(string)~="string")then
 		outputDebugString("ErrorHelp save_message: "..debug.traceback())
 end
@@ -137,14 +183,16 @@ function mysql_la_query ( query )
 	if stringSaveFind(query, "Adminlevel") then
 		outputDebugString ( "Query: "..query)
 	end
-	local result = mysql_query ( handler, query )
+	-- local result = mysql_query ( handler, query )
+	local result = dbQuery ( handler, query )
 	local oldres = result
 	if not result then
 		outputDebugString ( "Error: Invalid Query: "..tostring ( query ) )
-		outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-		outputLog ( "[LaQuery]: Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+		outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+		outputLog ( "[LaQuery]: Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 	else
-		mysql_free_result ( result )
+		-- mysql_free_result ( result )
+		dbFree(result)
 	end
 	return oldres
 end

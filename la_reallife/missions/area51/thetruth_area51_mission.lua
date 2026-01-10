@@ -25,7 +25,7 @@ function TheTruthMarkerHit ( hit, dim )
 			setTimer ( showMissionBriefing, 5000, 1 )
 			MissionName = "The Truth is out there!"
 			addEventHandler("onClientRender",getRootElement(), createMissionName)
-			showPlayerHudComponent ( "radar", false )
+			setPlayerHudComponentVisible ( "radar", false )
 		end
 	end
 end
@@ -155,7 +155,7 @@ function briefingFinalStep2 ()
 	removeEventHandler("onClientRender",getRootElement(), createDialogText)
 	fadeCamera ( true, 1 )
 	setCameraTarget ( getLocalPlayer() )
-	showPlayerHudComponent ( "radar", true )
+	setPlayerHudComponentVisible ( "radar", true )
 	showChat ( true )
 	toggleAllControls ( true )
 	greenGooBlip = createBlip ( 268.71075439453, 1883.5866699219, -30.48, 0, 2, 255, 0, 0, 255, 0, 99999.0, getLocalPlayer() )

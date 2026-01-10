@@ -1,4 +1,6 @@
 ﻿koksped = createPed(1, -1088.948, -1613.681, 76.367)
+outputDebugString("koksped: 91 - PED erstellt koksped")
+
 setElementInterior (koksped, 0)
 setElementDimension ( koksped, 0)
 setPedRotation(koksped, 180)
@@ -332,6 +334,8 @@ end
 addEvent ("cancel_gui_server", true )
 addEventHandler ( "cancel_gui_server", getRootElement (), cancel_gui_server_func )
 
+
+-- FUNCTION THAT SHOWS THE CURSOR, needs to be debugged
 function showcurser ( player )
 
 	if tonumber(getElementData ( player, "loggedin" )) == 1 and not getElementData ( player, "isInRace" ) then

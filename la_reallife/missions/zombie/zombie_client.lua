@@ -22,15 +22,15 @@ function checkZombieAttackZones ()
 				setTimer ( setPedControlState, 800, 1, ped, "fire", false )
 				--[[
 				setPedAnimation ( ped )
-				--setPedControlState ( ped, "fire", false )
+				--setControlState ( ped, "fire", false )
 				--setPedVoice(theZomb, "PED_TYPE_DISABLED")
 				local x, y, z = getElementPosition ( lp )
 				setPedAimTarget ( ped, x, y, z )
 				local x1, y1, z1 = getElementPosition ( ped )
 				local rot = findRotation ( x1, y1, x, y )
 				setPedRotation ( ped, rot )
-				setPedControlState ( ped, "fire", true )
-				setTimer ( setPedControlState, 800, 1, ped, "fire", false )]]
+				setControlState ( ped, "fire", true )
+				setTimer ( setControlState, 800, 1, ped, "fire", false )]]
 			end
 		end
 	end
@@ -71,9 +71,12 @@ function createPlayerColShapes ()
 	local x, y, z = getElementPosition ( lp )
 	playerShape = createColSphere ( x, y, z, 40 )
 	playerAttackShape = createColSphere ( x, y, z, 1 )
-	setTimer ( updateColPositions, 1000, -1 )
-	setTimer ( checkZombieAlertZones, 1000, -1 )
-	setTimer ( checkZombieAttackZones, 1000, -1 )
+	-- setTimer ( updateColPositions, 1000, -1 )
+	setTimer ( updateColPositions, 1000, 0 )
+	-- setTimer ( checkZombieAlertZones, 1000, -1 )
+	setTimer ( checkZombieAlertZones, 1000, 0 )
+	-- setTimer ( checkZombieAttackZones, 1000, -1 )
+	setTimer ( checkZombieAttackZones, 1000, 0 )
 end
 addEventHandler ( "onClientResourceStart", getResourceRootElement ( getThisResource() ), createPlayerColShapes )
 

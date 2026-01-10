@@ -17,11 +17,15 @@ function weedAddMySQL ( x, y, z, hour, minute, player, weedart )
 	local y = math.floor ( y * 100 ) / 100
 	local z = math.floor ( z * 100 ) / 100
 if weedart == "big" then
-	local result = mysql_query ( handler, "INSERT INTO weed ( X, Y, Z, Hour, Min, Spieler, Art ) VALUES ( '"..x.."', '"..y.."', '"..z.."', '"..hour.."', '"..minute.."', '"..player.."', '"..weedart.."'  )" )
-	mysql_free_result(result)
+	-- local result = mysql_query ( handler, "INSERT INTO weed ( X, Y, Z, Hour, Min, Spieler, Art ) VALUES ( '"..x.."', '"..y.."', '"..z.."', '"..hour.."', '"..minute.."', '"..player.."', '"..weedart.."'  )" )
+	local result = dbQuery ( handler, "INSERT INTO weed ( X, Y, Z, Hour, Min, Spieler, Art ) VALUES ( '"..x.."', '"..y.."', '"..z.."', '"..hour.."', '"..minute.."', '"..player.."', '"..weedart.."'  )" )
+	-- mysql_free_result(result)
+	dbFree(result)
 elseif weedart == "small" then
-	local result = mysql_query ( handler, "INSERT INTO weed ( X, Y, Z, Hour, Min, Spieler, Art ) VALUES ( '"..x.."', '"..y.."', '"..z.."', '"..hour.."', '"..minute.."', '"..player.."', '"..weedart.."'  )" )
-	mysql_free_result(result)
+	-- local result = mysql_query ( handler, "INSERT INTO weed ( X, Y, Z, Hour, Min, Spieler, Art ) VALUES ( '"..x.."', '"..y.."', '"..z.."', '"..hour.."', '"..minute.."', '"..player.."', '"..weedart.."'  )" )
+	local result = dbQuery ( handler, "INSERT INTO weed ( X, Y, Z, Hour, Min, Spieler, Art ) VALUES ( '"..x.."', '"..y.."', '"..z.."', '"..hour.."', '"..minute.."', '"..player.."', '"..weedart.."'  )" )
+	-- mysql_free_result(result)
+	dbFree(result)
 end
 end
 
@@ -63,11 +67,30 @@ addEventHandler ( "drugsHobbySellCloseServer", getRootElement(), drugsHobbySellC
 
 function createWeedPlants ()
 
-	result = mysql_query ( handler, "SELECT * FROM weed" )
+	-- result = mysql_query ( handler, "SELECT * FROM weed" )
+	result = dbQuery ( handler, "SELECT * FROM weed" )
 	weedCount = 0
+	-- if result then
+	-- 	weedData = mysql_fetch_assoc ( result )
+	-- 	while weedData and weedCount < 2000 do
+	-- 		weedCount = weedCount + 1
+	-- 		local x = weedData["X"]
+	-- 		local y = weedData["Y"]
+	-- 		local z = weedData["Z"]
+	-- 		local hour = tonumber ( weedData["Hour"] )
+	-- 		local minute = tonumber ( weedData["Min"] )
+	-- 		local art = weedData["Art"]
+	-- 		addWeed ( x, y, z, hour, minute, art )
+	-- 		weedData = mysql_fetch_assoc ( result )
+	-- 	end
+	-- 	mysql_free_result(result)
+	-- end
+	-- outputServerLog ( "Es wurden "..weedCount.." Hanfpflanzen gefunden!" )
+
 	if result then
-		weedData = mysql_fetch_assoc ( result )
-		while weedData and weedCount < 2000 do
+		re = dbPoll(result, -1)
+        -- while weedData and weedCount < 2000 do
+		for _, weedData in ipairs ( re ) do
 			weedCount = weedCount + 1
 			local x = weedData["X"]
 			local y = weedData["Y"]
@@ -76,9 +99,9 @@ function createWeedPlants ()
 			local minute = tonumber ( weedData["Min"] )
 			local art = weedData["Art"]
 			addWeed ( x, y, z, hour, minute, art )
-			weedData = mysql_fetch_assoc ( result )
+			weedData = dbPoll(result, -1)
 		end
-		mysql_free_result(result)
+		dbFree(result)
 	end
 	outputServerLog ( "Es wurden "..weedCount.." Hanfpflanzen gefunden!" )
 end
@@ -164,12 +187,12 @@ function grow_func ( player, cmd, planttype )
 			if not laGetElementData ( player, "growing" ) then
 				if laGetElementData ( player, "flowerseeds" ) >= 1 then
 					laSetElementData ( player, "growing", true )
-					--setPedFrozen ( player, true ) n
+					--setElementFrozen ( player, true ) n
 					laSetElementData(player,"anim", 1)
 					setTimer ( growFinished, 28500, 1, player )
 					toggleAllControls ( player, false, true, true ) -- n
 					--setTimer ( toggleAllControls, 30*1000, 1, player, false, true, true ) -- n
-					--setTimer ( setPedFrozen, 30*1000, 1, player, false )
+					--setTimer ( setElementFrozen, 30*1000, 1, player, false )
 					--setTimer ( laSetElementData, 30*1000, 1, player, "growing", false )
 					setPedAnimation ( player, "BOMBER", "BOM_Plant_Crouch_In", 1500, false, false, false, true )
 					setTimer ( setPedAnimation, 1500, 1, player, "BOMBER", "BOM_Plant_Loop", -1, true, false, false, true )
@@ -215,12 +238,12 @@ function grow_func ( player, cmd, planttype )
 			if not laGetElementData ( player, "growing" ) then
 				if laGetElementData ( player, "premiumseeds" ) >= 1 then
 					laSetElementData ( player, "growing", true )
-					--setPedFrozen ( player, true ) n
+					--setElementFrozen ( player, true ) n
 					laSetElementData(player,"anim", 1)
 					setTimer ( growFinished, 42750, 1, player )
 					toggleAllControls ( player, false, true, true ) -- n
 					--setTimer ( toggleAllControls, 30*1000, 1, player, false, true, true ) -- n
-					--setTimer ( setPedFrozen, 30*1000, 1, player, false )
+					--setTimer ( setElementFrozen, 30*1000, 1, player, false )
 					--setTimer ( laSetElementData, 30*1000, 1, player, "growing", false )
 					setPedAnimation ( player, "BOMBER", "BOM_Plant_Crouch_In", 1500, false, false, false, true )
 					setTimer ( setPedAnimation, 1500, 1, player, "BOMBER", "BOM_Plant_Loop", -1, true, false, false, true )

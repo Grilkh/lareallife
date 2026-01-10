@@ -16,11 +16,13 @@
 					local Preis = tonumber ( preis )
 					local Mindestzeit = tonumber ( playtime )
 					local CurrentInterior = tonumber ( int )
-					local result = mysql_query(handler, "INSERT INTO houses (ID, SymbolX, SymbolY, SymbolZ, Besitzer, Preis, Mindestzeit, CurrentInterior, Kasse, Miete) VALUES ('"..ID.."', '"..SymbolX.."', '"..SymbolY.."', '"..SymbolZ.."', '"..Besitzer.."', '"..Preis.."', '"..Mindestzeit.."', '"..CurrentInterior.."', '0', '0')")
+					-- local result = mysql_query(handler, "INSERT INTO houses (ID, SymbolX, SymbolY, SymbolZ, Besitzer, Preis, Mindestzeit, CurrentInterior, Kasse, Miete) VALUES ('"..ID.."', '"..SymbolX.."', '"..SymbolY.."', '"..SymbolZ.."', '"..Besitzer.."', '"..Preis.."', '"..Mindestzeit.."', '"..CurrentInterior.."', '0', '0')")
+					local result = dbQuery(handler, "INSERT INTO houses (ID, SymbolX, SymbolY, SymbolZ, Besitzer, Preis, Mindestzeit, CurrentInterior, Kasse, Miete) VALUES ('"..ID.."', '"..SymbolX.."', '"..SymbolY.."', '"..SymbolZ.."', '"..Besitzer.."', '"..Preis.."', '"..Mindestzeit.."', '"..CurrentInterior.."', '0', '0')")
 					if( not result) then
-						outputLog ( "[HOUSE]: Error executing the query 1: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+						outputLog ( "[HOUSE]: Error executing the query 1: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 					else
-						mysql_free_result(result)
+						-- mysql_free_result(result)
+						dbFree(result)
 						outputLog ("[CREATE]: Haus (ID: "..i..") wurde angelegt!", "house")
 						for playeritem, key in pairs(adminsIngame) do
 							outputChatBox ( getPlayerName(player).." hat ein Haus (ID: "..i..") angelegt!", playeritem, 200, 200, 0 )

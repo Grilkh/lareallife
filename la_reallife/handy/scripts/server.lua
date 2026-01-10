@@ -28,17 +28,17 @@ addEvent("doHandyKickAntiSpam", true)
 addEvent("doLAHandyCarAction", true)
 
 
-local mysqlhost1 = "IP"
-local mysqluser1 = "BENUTZER"
-local mysqlpassword1 = "PASSWORT"
-local mysqldatabase1 = "DATENBANK"
+local mysqlhost1 = "127.0.0.1"
+local mysqluser1 = "USERNAME_HERE"
+local mysqlpassword1 = "PASSWORD_HERE"
+local mysqldatabase1 = "lareallife"
 
 -- SECOND CONNECTION, OPTIONAL IF CONNECTION 1 DON'T WORK
 
-local mysqlhost2 = "IP2"
-local mysqluser2 = "BENUTZER2"
-local mysqlpassword2 = "PASSWORT2"
-local mysqldatabase2 = "DATENBANK2"
+local mysqlhost2 = "127.0.0.1"
+local mysqluser2 = "USERNAME_HERE"
+local mysqlpassword2 = "PASSWORD_HERE"
+local mysqldatabase2 = "lareallife"
 
 local FUNC = {}
 
@@ -73,6 +73,7 @@ local function flyPlaneOverPosition(x, y, z)
 	local nx, ny, nz = x+150, y-150, z+70
 	local car = createVehicle(getVehicleModelFromName("Dodo"), ox, oy, oz, 0, 0, 90)
 	local ped = createPed(60, ox, oy, oz)
+	outputDebugString("server: 75 - PED erstellt ped")
 	warpPedIntoVehicle(ped, car)
 	local ob = createObject(1337, ox, oy, oz)
 	setElementAlpha(ob, 0)
@@ -497,6 +498,8 @@ if getElementInterior ( source ) == 0 and getElementDimension ( source ) == 0 th
 				local skin = nutten_skins[math.random(1, #nutten_skins)]
 				local rot = getPedRotation(player)
 				local ped = createPed (skin, x, y, z-0.5, rot )
+				outputDebugString("server: 500 - PED erstellt ped")
+
 				setElementFrozen(ped, true)
 				local rnd = math.random ( 1, 4 )
 				if (rnd == 1) then
@@ -599,7 +602,8 @@ local function checkPlayerHandyTable(thePlayer)
 		dbFree(query)
 		local linie = "======================"
 		local memo = linie.."\nNotiz von "..getPlayerName(thePlayer).."\n"..linie
-		query = dbQuery(ghandler, "INSERT INTO galaxy_users (NAME, MEMO, BACKGROUND) values ('"..getPlayerName(thePlayer).."', '"..memo.."', '1');")
+		-- query = dbQuery(ghandler, "INSERT INTO galaxy_users (NAME, MEMO, BACKGROUND) values ('"..getPlayerName(thePlayer).."', '"..memo.."', '1');")
+		query = dbQuery(ghandler, "INSERT INTO galaxy_users (NAME, MEMO) values ('"..getPlayerName(thePlayer).."', '"..memo.."');")
 		result = dbPoll(query, dbpTime)
 		if(result) then
 			dbFree(query)
@@ -720,6 +724,13 @@ end
 function mtGetPlayerMoney(thePlayer)
 	return 10000
 end
+
+-- Just for debugging
+addCommandHandler( "tp", 
+    function( player, cmd, x, y, z)
+        setElementPosition( player, x, y, z )
+    end 
+) 
 
 --[[function laGetElementData(thePlayer, value)
 	return getElementData(thePlayer, value)

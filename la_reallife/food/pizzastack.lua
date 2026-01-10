@@ -136,9 +136,9 @@ local function pizzaBuyHit ( player, dim )
 		bindKey ( player, "space", "down", pizzaLeave, player )
 		bindKey ( player, "enter", "down", pizzaBuy, player )
 		foodtext ( player, "Salat", "5" )
-		setPedFrozen ( player, true )
-		showPlayerHudComponent ( player, "health", true )
-		showPlayerHudComponent ( player, "money", true )
+		setElementFrozen ( player, true )
+		setPlayerHudComponentVisible ( player, "health", true )
+		setPlayerHudComponentVisible ( player, "money", true )
 	end
 end
 
@@ -156,6 +156,7 @@ local pex, pey, pez = 376.69479370117, -117.20676422119, 1001.141418457
 local Ped_Pizza = {}
 for i=1, 10, 1 do
 Ped_Pizza[i] = createPed ( skin, pex, pey, pez )
+outputDebugString("pizzastack: 158 - PED erstellt ped_pizza")
 setElementInterior ( Ped_Pizza[i], 5 )
 setElementDimension ( Ped_Pizza[i], i )
 setPedRotation ( Ped_Pizza[i], 180 )
@@ -214,9 +215,9 @@ function pizzaLeave ( player )
 	unbindKey ( player, "arrow_r", "down", pizzaRight )
 	unbindKey ( player, "space", "down", pizzaLeave )
 	unbindKey ( player, "enter", "down", pizzaBuy )
-	setPedFrozen ( player, false )
-	showPlayerHudComponent ( player, "health", false )
-	showPlayerHudComponent ( player, "money", false )
+	setElementFrozen ( player, false )
+	setPlayerHudComponentVisible ( player, "health", false )
+	setPlayerHudComponentVisible ( player, "money", false )
 end
 
 function pizzaLeft ( player )

@@ -4,6 +4,8 @@
 	nuttedance2 = createPed ( 214, -2677.5344238281, 1402.2591552734, 907.2195 )
 	nuttedance3 = createPed ( 87, -2677.9592285156, 1416.2357177734, 907.212 )
 	nuttedance4 = createPed ( 244, -2670.9343261719, 1427.6400146484, 906.3 )
+	outputDebugString("pets: 3.. - PED erstellt nutten")
+
 	
 	setElementInterior ( nuttedance1, 3 )
 	setElementInterior ( nuttedance2, 3 )
@@ -37,7 +39,8 @@ function stripperAnimationsStart ()
 	setPedAnimation ( nuttedance2, "STRIP", "STR_Loop_B",-1,true,false,false )
 	setPedAnimation ( nuttedance3, "STRIP", "STR_Loop_C",-1,true,false,false )
 	setPedAnimation ( nuttedance4, "STRIP", "STR_Loop_A",-1,true,false,false )
-	setTimer ( changeDance, 10000, -1 )
+	-- setTimer ( changeDance, 10000, -1 )
+	setTimer ( changeDance, 10000, 1 )
 end
 
 function changeDance ()

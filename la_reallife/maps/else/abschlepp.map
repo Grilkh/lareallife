@@ -74,7 +74,7 @@
     <object id="object (fenceshit3) (75)" doublesided="false" model="983" interior="0" dimension="0" posX="-2087.29296875" posY="-256.3903503418" posZ="35.003868103027" rotX="0" rotY="0" rotZ="0"></object>
     <object id="object (fenceshit3) (76)" doublesided="false" model="983" interior="0" dimension="0" posX="-2058.5427246094" posY="-220.17272949219" posZ="35.003868103027" rotX="0" rotY="0" rotZ="90"></object>
     <object id="object (fenceshit3) (77)" doublesided="false" model="983" interior="0" dimension="0" posX="-2064.9296875" posY="-220.17272949219" posZ="35.003868103027" rotX="0" rotY="0" rotZ="90"></object>
-    <object id="object (BinNt07_LA) (2)" doublesided="false" model="1337" interior="0" dimension="0"></object>
+    <!-- <object id="object (BinNt07_LA) (2)" doublesided="false" model="1337" interior="0" dimension="0"></object> -->
     <object id="object (fenceshit3) (78)" doublesided="false" model="983" interior="0" dimension="0" posX="-2071.27734375" posY="-220.17272949219" posZ="35.003868103027" rotX="0" rotY="0" rotZ="90"></object>
     <object id="object (fenceshit3) (79)" doublesided="false" model="983" interior="0" dimension="0" posX="-2017.0217285156" posY="-223.50405883789" posZ="35.010948181152" rotX="0" rotY="0" rotZ="0"></object>
     <object id="object (fenceshit3) (80)" doublesided="false" model="983" interior="0" dimension="0" posX="-2077.6647949219" posY="-220.17272949219" posZ="35.003868103027" rotX="0" rotY="0" rotZ="90"></object>

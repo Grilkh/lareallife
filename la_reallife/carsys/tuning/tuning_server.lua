@@ -104,10 +104,10 @@ function MarkerTuningHit ( hitElement, matchingDimension )
 							setElementVelocity ( hitElement, 0, 0, 0 )
 							setCameraMatrix ( player, -2059.251953125, 149.47894287109, 31.377527236938, -2047.3326416016, 137.53858947754, 29.064981460571 )
 							triggerClientEvent ( player, "createTuningMenue", getRootElement() )
-							showPlayerHudComponent ( player, "ammo", true )
-							showPlayerHudComponent ( player, "weapon", true )
-							showPlayerHudComponent ( player, "armour", true )
-							showPlayerHudComponent ( player, "money", true )
+							setPlayerHudComponentVisible ( player, "ammo", true )
+							setPlayerHudComponentVisible ( player, "weapon", true )
+							setPlayerHudComponentVisible ( player, "armour", true )
+							setPlayerHudComponentVisible ( player, "money", true )
 							laSetElementData ( player, "ElementClicked", true )
 						else
 							if getElementData ( player, "sprache" ) == "Deutsch" then
@@ -215,9 +215,9 @@ function CancelTuning_func ( player, veh, c1, c2, c3, c4, paintjob, t0, t1, t2, 
 		
 		setElementPosition ( veh, x, y, z )
 		setElementRotation ( veh, 0, 0, 90 )
-		setVehicleFrozen ( veh, true )
+		setElementFrozen ( veh, true )
 		setElementVelocity ( veh, 0, 0, 0 )
-		setTimer ( setVehicleFrozen, 2000, 1, veh, false )
+		setTimer ( setElementFrozen, 2000, 1, veh, false )
 		setCameraTarget ( player, player )
 		for i = 0, 16 do
 			local upgrade = getVehicleUpgradeOnSlot ( veh, i )

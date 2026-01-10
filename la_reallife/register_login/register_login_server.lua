@@ -235,49 +235,61 @@ function register_func ( player, passwort, bday, bmon, byear, geschlecht, werber
 				local passwort = md5 ( passwort .. salt )
 				local lastLoginInt = getSecTime ( 0 )
 				
-				local result = mysql_query(handler, "INSERT INTO players (Name, Serial, IP, Last_login, Geburtsdatum_Tag, Geburtsdatum_Monat, Geburtsdatum_Jahr, Passwort, Geschlecht, RegisterDatum, Salt, LastLogin) VALUES ( '"..pname.."', '"..getPlayerSerial(player).."', '"..getPlayerIP ( player ).."', '"..lastlogin.."', "..tonumber ( bday)..", "..tonumber ( bmon)..", "..tonumber ( byear)..", '"..passwort.."', '"..geschlecht.."', '"..registerdatum.."', '"..salt.."', '"..lastLoginInt.."' )")
+				-- local result = mysql_query(handler, "INSERT INTO players (Name, Serial, IP, Last_login, Geburtsdatum_Tag, Geburtsdatum_Monat, Geburtsdatum_Jahr, Passwort, Geschlecht, RegisterDatum, Salt, LastLogin) VALUES ( '"..pname.."', '"..getPlayerSerial(player).."', '"..getPlayerIP ( player ).."', '"..lastlogin.."', "..tonumber ( bday)..", "..tonumber ( bmon)..", "..tonumber ( byear)..", '"..passwort.."', '"..geschlecht.."', '"..registerdatum.."', '"..salt.."', '"..lastLoginInt.."' )")
+				local result = dbQuery(handler, "INSERT INTO players (Name, Serial, IP, Last_login, Geburtsdatum_Tag, Geburtsdatum_Monat, Geburtsdatum_Jahr, Passwort, Geschlecht, Anreise, RegisterDatum, Salt, Werber, LastLogin, PWChange) VALUES ( '"..pname.."', '"..getPlayerSerial(player).."', '"..getPlayerIP ( player ).."', '"..lastlogin.."', "..tonumber ( bday)..", "..tonumber ( bmon)..", "..tonumber ( byear)..", '"..passwort.."', '"..geschlecht.."', '0', '"..registerdatum.."', '"..salt.."', '"..werber.."', '"..lastLoginInt.."', 0)")
 				if( not result) then
-					outputDebugString("Error executing the query 1: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
-					outputLog ( "[REGISTER]: Error executing the query 1: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+					outputDebugString("Error executing the query 1: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+					outputLog ( "[REGISTER]: Error executing the query 1: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 				else
-					mysql_free_result(result)
+					-- mysql_free_result(result)
+					dbFree(result)
 					triggerClientEvent ( player, "infobox_start", getRootElement(), "\n\Du hast dich erfolgreich registriert!\n\nDeine Daten werden nun gespeichert!", 7500, 0, 255, 0 )
 				end
 				
-				local result = mysql_query(handler, "INSERT INTO achievments (Name) VALUES ('"..pname.."')")
+				-- local result = mysql_query(handler, "INSERT INTO achievments (Name) VALUES ('"..pname.."')")
+				local result = dbQuery(handler, "INSERT INTO achievments (Name) VALUES ('"..pname.."')")
 				if( not result) then
-					outputDebugString("Error executing the query 2: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
-					outputLog ( "[REGISTER]: Error executing the query 2: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+					outputDebugString("Error executing the query 2: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+					outputLog ( "[REGISTER]: Error executing the query 2: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 				else
-					mysql_free_result(result)
+					-- mysql_free_result(result)
+					dbFree(result)
 				end
-				local result = mysql_query(handler, "INSERT INTO inventar (Name) VALUES ('"..pname.."')")
+				-- local result = mysql_query(handler, "INSERT INTO inventar (Name) VALUES ('"..pname.."')")
+				local result = dbQuery(handler, "INSERT INTO inventar (Name) VALUES ('"..pname.."')")
 				if( not result) then
-					outputDebugString("Error executing the query 3: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
-					outputLog ( "[REGISTER]: Error executing the query 3: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+					outputDebugString("Error executing the query 3: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+					outputLog ( "[REGISTER]: Error executing the query 3: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 				else
-					mysql_free_result(result)
+					-- mysql_free_result(result)
+					dbFree(result)
 				end
-				local result = mysql_query(handler, "INSERT INTO jobdata (Name, Bus, Drogendealer, Farmer, Fischer, Flughafen, Gabelstapler, Hotdog, Lieferant, Strassenreinigung, Taxi, Trucker) VALUES ('"..pname.."','1','1','1','1','1','1','1','1','1','1','1' )")
+				-- local result = mysql_query(handler, "INSERT INTO jobdata (Name, Bus, Drogendealer, Farmer, Fischer, Flughafen, Gabelstapler, Hotdog, Lieferant, Strassenreinigung, Taxi, Trucker) VALUES ('"..pname.."','1','1','1','1','1','1','1','1','1','1','1' )")
+				local result = dbQuery(handler, "INSERT INTO jobdata (Name, Bus, Drogendealer, Farmer, Fischer, Flughafen, Gabelstapler, Hotdog, Lieferant, Strassenreinigung, Taxi, Trucker) VALUES ('"..pname.."','1','1','1','1','1','1','1','1','1','1','1' )")
 				if( not result) then
-					outputDebugString("Error executing the query 4: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
-					outputLog ( "[REGISTER]: Error executing the query 4: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+					outputDebugString("Error executing the query 4: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+					outputLog ( "[REGISTER]: Error executing the query 4: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 				else
-					mysql_free_result(result)
+					-- mysql_free_result(result)
+					dbFree(result)
 				end
-				local result = mysql_query(handler, "INSERT INTO packages (Name, Paket1, Paket2, Paket3, Paket4, Paket5, Paket6, Paket7, Paket8, Paket9, Paket10, Paket11, Paket12, Paket13, Paket14, Paket15, Paket16, Paket17, Paket18, Paket19, Paket20, Paket21, Paket22, Paket23, Paket24, Paket25) VALUES ('"..pname.."','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0' )")
+				-- local result = mysql_query(handler, "INSERT INTO packages (Name, Paket1, Paket2, Paket3, Paket4, Paket5, Paket6, Paket7, Paket8, Paket9, Paket10, Paket11, Paket12, Paket13, Paket14, Paket15, Paket16, Paket17, Paket18, Paket19, Paket20, Paket21, Paket22, Paket23, Paket24, Paket25) VALUES ('"..pname.."','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0' )")
+				local result = dbQuery(handler, "INSERT INTO packages (Name, Paket1, Paket2, Paket3, Paket4, Paket5, Paket6, Paket7, Paket8, Paket9, Paket10, Paket11, Paket12, Paket13, Paket14, Paket15, Paket16, Paket17, Paket18, Paket19, Paket20, Paket21, Paket22, Paket23, Paket24, Paket25) VALUES ('"..pname.."','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0' )")
 				if( not result) then
-					outputDebugString("Error executing the query 5: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
-					outputLog ( "[REGISTER]: Error executing the query 5: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+					outputDebugString("Error executing the query 5: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+					outputLog ( "[REGISTER]: Error executing the query 5: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 				else
-					mysql_free_result(result)
+					-- mysql_free_result(result)
+					dbFree(result)
 				end
-				local result = mysql_query(handler, "INSERT INTO bonustable (Name, Lungenvolumen, Muskeln, Kondition, Boxen, KungFu, Streetfighting, CurStyle, PistolenSkill, SilenceSkill, DeagleSkill, ShotgunSkill, AssaultSkill, AKSkill, UziSkill, MP5Skills) VALUES ('"..pname.."', 'none', 'none', 'none', 'none', 'none', 'none', '4', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none' )")
+				-- local result = mysql_query(handler, "INSERT INTO bonustable (Name, Lungenvolumen, Muskeln, Kondition, Boxen, KungFu, Streetfighting, CurStyle, PistolenSkill, SilenceSkill, DeagleSkill, ShotgunSkill, AssaultSkill, AKSkill, UziSkill, MP5Skills) VALUES ('"..pname.."', 'none', 'none', 'none', 'none', 'none', 'none', '4', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none' )")
+				local result = dbQuery(handler, "INSERT INTO bonustable (Name, Lungenvolumen, Muskeln, Kondition, Boxen, KungFu, Streetfighting, CurStyle, PistolenSkill, SilenceSkill, DeagleSkill, ShotgunSkill, AssaultSkill, AKSkill, UziSkill, MP5Skills) VALUES ('"..pname.."', 'none', 'none', 'none', 'none', 'none', 'none', '4', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none' )")
 				if( not result) then
-					outputDebugString("Error executing the query 6: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
-					outputLog ( "[REGISTER]: Error executing the query 6: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+					outputDebugString("Error executing the query 6: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+					outputLog ( "[REGISTER]: Error executing the query 6: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 				else
-					mysql_free_result(result)
+					-- mysql_free_result(result)
+					dbFree(result)
 				end
 				mysql_la_query ( "INSERT INTO skills ( id, Name ) VALUES ( '"..getIDByName ( pname ).."', '"..pname.."' )" )
 				
@@ -520,12 +532,14 @@ function register_func ( player, passwort, bday, bmon, byear, geschlecht, werber
 				jobload ( player )
 				skillDataLoad ( player )
 
-				local result = mysql_query(handler, "INSERT INTO userdata ( Name,Skinid,Telefonnr) VALUES('"..pname.."', '"..laGetElementData ( player, "skinid" ).."', '"..Telefonnr.."')")
+				-- local result = mysql_query(handler, "INSERT INTO userdata ( Name,Skinid,Telefonnr) VALUES('"..pname.."', '"..laGetElementData ( player, "skinid" ).."', '"..Telefonnr.."')")
+				local result = dbQuery(handler, "INSERT INTO userdata ( Name,Skinid,Telefonnr,werber,Sprache) VALUES('"..pname.."', '"..laGetElementData ( player, "skinid" ).."', '"..Telefonnr.."', '"..werber.."', 'Deutsch')")
 				if( not result) then
-					outputDebugString("Error executing the query 7: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
-					outputLog ( "[REGISTER]: Error executing the query 7: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+					outputDebugString("Error executing the query 7: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+					outputLog ( "[REGISTER]: Error executing the query 7: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 				else
-					mysql_free_result(result)
+					-- mysql_free_result(result)
+					dbFree(result)
 					outputDebugString ("Daten fuer Spieler "..pname.." wurden angelegt!")
 					outputLog ( "[REGISTER]: Daten fuer Spieler "..pname.." wurden angelegt!" , "save" )
 				end
@@ -592,8 +606,8 @@ function login_func ( player, passwort )
 			local result = MySQL_GetString("players", "Passwort", "Name LIKE '" ..pname.."'")
 			local pwchanged = MySQL_GetString("players", "PWChange", "Name LIKE '" ..pname.."'")
 			if ( not result ) then
-				outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-				outputLog ( "[LOGIN]: Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+				outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+				outputLog ( "[LOGIN]: Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 			else
 				if (result == md5(passwort)) or (result == md5(passwortold)) then
 					if result == md5(passwortold) then
@@ -634,11 +648,16 @@ function login_func ( player, passwort )
 					local lastlogin = tostring(day.."."..month.."."..year..", "..hour..":"..minute)
 					
 					local dsatz
-					local result = mysql_query ( handler, "SELECT * from userdata WHERE Name LIKE '"..pname.."'" )
+					-- local result = mysql_query ( handler, "SELECT * from userdata WHERE Name LIKE '"..pname.."'" )
+					local result = dbQuery ( handler, "SELECT * from userdata WHERE Name LIKE '"..pname.."'" )
 					if result then
-						if ( mysql_num_rows ( result ) > 0 ) then
-							dsatz = mysql_fetch_assoc ( result )
-							mysql_free_result ( result )
+						local re, num_rows = dbPoll(result, -1)
+						-- if ( mysql_num_rows ( result ) > 0 ) then
+						if re and num_rows > 0 then
+							-- dsatz = mysql_fetch_assoc ( result )
+							dsatz = re[1]
+							-- mysql_free_result ( result )
+							dbFree ( result )
 						end
 					end
 					
@@ -822,7 +841,8 @@ function login_func ( player, passwort )
 					else
 						triggerClientEvent ( player, "infobox_start", getRootElement(), "You successfully logged in!\nHave fun on Los Angeles Reallife!", 5000, 0, 255, 0 )
 					end
-					showPlayerHudComponent( player, "all", true)
+					-- setPlayerHudComponentVisible( player, "all", true)
+					setPlayerHudComponentVisible( player, "all", true)
 					outputDebugString ("Spieler "..pname.." wurde eingeloggt, IP: "..getPlayerIP(player))
 					outputLog ( "[LOGIN]: Spieler "..pname.." hat sich eingeloggt, IP: "..getPlayerIP(player)..", Serial: "..getPlayerSerial(player).."", "login" )
 					
@@ -897,7 +917,7 @@ function login_func ( player, passwort )
 					triggerEvent ( "onLAPlayerLogin", player )
 				else
 					triggerClientEvent ( player, "infobox_start", getRootElement(), "Ungültiges Passwort -\nüberprüfe\ndeine Eingabe\noder melde dich\nim Forum.", 5000, 255, 0, 0 )
-					triggerClientEvent ( player, "guiShowLoginAgain", getRootElement() )
+					-- triggerClientEvent ( player, "guiShowLoginAgain", getRootElement() )
 					laSetElementData ( player, "pwfailed", tonumber ( laGetElementData ( player, "pwfailed" )) + 1 )
 					if laGetElementData ( player, "pwfailed" ) >= 3 then
 						outputDebugString ("Spieler "..tostring ( getPlayerName(player) ).." wurde aufgrund eines falschen Passworts gekickt! IP: "..tostring ( getPlayerIP(player) ) )
@@ -1090,12 +1110,14 @@ function elementDataSettings ( player )
 			laSetElementData ( player, "armyperm9", 0 )
 		end
 	end
-	local result = mysql_query(handler, "INSERT INTO loggedin (Name) VALUES ('"..pname.."')")
+	-- local result = mysql_query(handler, "INSERT INTO loggedin (Name) VALUES ('"..pname.."')")
+	local result = dbQuery(handler, "INSERT INTO loggedin (Name) VALUES ('"..pname.."')")
 	if( not result) then
-		outputDebugString("Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
-		outputLog ( "[ELEMENTDATA]: Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+		outputDebugString("Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+		outputLog ( "[ELEMENTDATA]: Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 	else
-		mysql_free_result(result)
+		-- mysql_free_result(result)
+		dbFree(result)
 	end
 	saveArmyPermissions(player)
 end
@@ -1233,11 +1255,16 @@ function achievload ( player )
 
 	local pname = MySQL_Save ( getPlayerName ( player ) )
 	local dsatz
-	local result = mysql_query ( handler, "SELECT * from achievments WHERE Name LIKE '"..pname.."'" )
+	-- local result = mysql_query ( handler, "SELECT * from achievments WHERE Name LIKE '"..pname.."'" )
+	local result = dbQuery ( handler, "SELECT * from achievments WHERE Name LIKE '"..pname.."'" )
 	if result then
-		if ( mysql_num_rows ( result ) > 0 ) then
-			dsatz = mysql_fetch_assoc ( result )
-			mysql_free_result ( result )
+		local re, num_rows = dbPoll(result, -1)
+		-- if ( mysql_num_rows ( result ) > 0 ) then
+        if re and num_rows > 0 then
+			-- dsatz = mysql_fetch_assoc ( result )
+			dsatz = re[1]
+			-- mysql_free_result ( result )
+			dbFree ( result )
 		end
 	end
 	laSetElementData ( player, "schlaflosinsa", dsatz["SchlaflosInSA"] )
@@ -1335,11 +1362,16 @@ function inventoryload ( player )
 	laSetElementData ( player, "playerid", tonumber ( MySQL_GetString("players", "id", "Name LIKE '" ..pname.."'")) )
 	
 	local dsatz
-	local result = mysql_query ( handler, "SELECT * from inventar WHERE Name LIKE '"..pname.."'" )
+	-- local result = mysql_query ( handler, "SELECT * from inventar WHERE Name LIKE '"..pname.."'" )
+	local result = dbQuery ( handler, "SELECT * from inventar WHERE Name LIKE '"..pname.."'" )
 	if result then
-		if ( mysql_num_rows ( result ) > 0 ) then
-			dsatz = mysql_fetch_assoc ( result )
-			mysql_free_result ( result )
+		local re, num_rows = dbPoll(result, -1)
+		-- if ( mysql_num_rows ( result ) > 0 ) then
+        if re and num_rows > 0 then
+			-- dsatz = mysql_fetch_assoc ( result )
+			dsatz = re[1]
+			-- mysql_free_result ( result )
+			dbFree(result)
 		end
 	end
 	
@@ -1398,11 +1430,16 @@ function jobload ( player )
 
 	local pname = MySQL_Save ( getPlayerName ( player ) )
 	local dsatz
-	local result = mysql_query ( handler, "SELECT * from jobdata WHERE Name LIKE '"..pname.."'" )
+	-- local result = mysql_query ( handler, "SELECT * from jobdata WHERE Name LIKE '"..pname.."'" )
+	local result = dbQuery ( handler, "SELECT * from jobdata WHERE Name LIKE '"..pname.."'" )
 	if MySQL_DatasetExist ( "jobdata", "Name LIKE '"..pname.."'" ) then
-		if ( mysql_num_rows ( result ) > 0 ) then
-			dsatz = mysql_fetch_assoc ( result )
-			mysql_free_result ( result )
+		local re, num_rows = dbPoll(result, -1)
+		-- if ( mysql_num_rows ( result ) > 0 ) then
+		if re and num_rows > 0 then
+			-- dsatz = mysql_fetch_assoc ( result )
+			dsatz = re[1]
+			-- mysql_free_result ( result )
+			dbFree ( result )
 			laSetElementData ( player, "buslevel", tonumber(dsatz["Bus"]) )
 			laSetElementData ( player, "drogendealerlevel", tonumber(dsatz["Drogendealer"]) )
 			laSetElementData ( player, "farmerlevel", tonumber(dsatz["Farmer"]) )
@@ -1419,12 +1456,14 @@ function jobload ( player )
 			outputLog ( "[JOBDATA]: Jobs fuer Spieler "..pname.." wurden geladen!" , "save" )		
 		end
 	else
-		local result = mysql_query(handler, "INSERT INTO jobdata (Name, Bus, Drogendealer, Farmer, Fischer, Flughafen, Gabelstapler, Hotdog, Lieferant, Strassenreinigung, Taxi, Trucker) VALUES ('"..pname.."','1','1','1','1','1','1','1','1','1','1','1' )")
+		-- local result = mysql_query(handler, "INSERT INTO jobdata (Name, Bus, Drogendealer, Farmer, Fischer, Flughafen, Gabelstapler, Hotdog, Lieferant, Strassenreinigung, Taxi, Trucker) VALUES ('"..pname.."','1','1','1','1','1','1','1','1','1','1','1' )")
+		local result = dbQuery(handler, "INSERT INTO jobdata (Name, Bus, Drogendealer, Farmer, Fischer, Flughafen, Gabelstapler, Hotdog, Lieferant, Strassenreinigung, Taxi, Trucker) VALUES ('"..pname.."','1','1','1','1','1','1','1','1','1','1','1' )")
 		if( not result) then
-			outputDebugString("Error executing the query Jobload: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler))
-			outputLog ( "[JOBDATA]: Error executing the query: ("		.. mysql_errno(handler) .. ") " .. mysql_error(handler), "mysql" )
+			outputDebugString("Error executing the query Jobload: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
+			outputLog ( "[JOBDATA]: Error executing the query: ("		.. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler), "mysql" )
 		else
-			mysql_free_result(result)
+			-- mysql_free_result(result)
+			dbFree(result)
 			laSetElementData ( player, "buslevel", 1 )
 			laSetElementData ( player, "drogendealerlevel", 1 )
 			laSetElementData ( player, "farmerlevel", 1 )
@@ -1522,6 +1561,5 @@ function casinoMoneySave ( player )
 end
 
 function getIDByName ( pname )
-
 	return tonumber ( MySQL_GetString ( "players", "id", "Name LIKE '"..pname.."'" ) )
 end

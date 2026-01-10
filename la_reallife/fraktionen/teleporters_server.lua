@@ -77,9 +77,9 @@ addEventHandler ( "onMarkerHit", mafiaCasinoInToOut,
 						local veh = getPedOccupiedVehicle ( hit )
 						setElementPosition ( veh, 2323.4599609375, 1733.2225341797, 10.671875 )
 						setElementRotation ( veh, 0, 0, 270 )
-						setVehicleFrozen ( veh, true )
+						setElementFrozen ( veh, true )
 						setElementVelocity ( veh, 0, 0, 0 )
-						setTimer ( setVehicleFrozen, 500, 1, veh, false )
+						setTimer ( setElementFrozen, 500, 1, veh, false )
 					end
 				end
 			--end
@@ -97,9 +97,9 @@ addEventHandler ( "onMarkerHit", mafiaCasinoOutToIn,
 						local veh = getPedOccupiedVehicle ( hit )
 						setElementPosition ( veh, 2303.0354003906, 1733.1401367188, 10.8203125 )
 						setElementRotation ( veh, 0, 0, 90 )
-						setVehicleFrozen ( veh, true )
+						setElementFrozen ( veh, true )
 						setElementVelocity ( veh, 0, 0, 0 )
-						setTimer ( setVehicleFrozen, 500, 1, veh, false )
+						setTimer ( setElementFrozen, 500, 1, veh, false )
 					end
 				end
 			--end

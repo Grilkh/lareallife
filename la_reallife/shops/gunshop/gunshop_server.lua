@@ -100,10 +100,10 @@ local function ammuBuyHit ( player, dim )
 	if dim then
 		if laGetElementData ( player, "gunlicense" ) == 1 then
 			triggerClientEvent ( player, "createAmmunationGunshop", getRootElement() )
-			showPlayerHudComponent ( player, "ammo", true )
-			showPlayerHudComponent ( player, "weapon", true )
-			showPlayerHudComponent ( player, "armour", true )
-			showPlayerHudComponent ( player, "money", true )
+			setPlayerHudComponentVisible ( player, "ammo", true )
+			setPlayerHudComponentVisible ( player, "weapon", true )
+			setPlayerHudComponentVisible ( player, "armour", true )
+			setPlayerHudComponentVisible ( player, "money", true )
 		else
 			triggerClientEvent ( player, "infobox_start", getRootElement(), "\n\nDu hast keinen Waffenschein!", 7500, 125, 0, 0 )
 		end
@@ -123,6 +123,7 @@ local pex, pey, pez = 292.438, -104.485, 1001.516
 local Ped_Ammu = {}
 for i=1, 9, 1 do
 Ped_Ammu[i] = createPed ( skin, pex, pey, pez )
+outputDebugString("gunshop_server: 125 - PED erstellt ped_ammu")
 setElementInterior ( Ped_Ammu[i], 6 )
 setElementDimension ( Ped_Ammu[i], i )
 setPedRotation ( Ped_Ammu[i], 180 )
@@ -205,10 +206,10 @@ function AmmuNationSF_func ( player, dim )
    	if dim == true and getPedOccupiedVehicle ( player ) == false then
 		if laGetElementData ( player, "gunlicense" ) == 1 then
 			triggerClientEvent ( player, "createAmmunationSFGunshop", getRootElement() )
-			showPlayerHudComponent ( player, "ammo", true )
-			showPlayerHudComponent ( player, "weapon", true )
-			showPlayerHudComponent ( player, "armour", true )
-			showPlayerHudComponent ( player, "money", true )
+			setPlayerHudComponentVisible ( player, "ammo", true )
+			setPlayerHudComponentVisible ( player, "weapon", true )
+			setPlayerHudComponentVisible ( player, "armour", true )
+			setPlayerHudComponentVisible ( player, "money", true )
 		else
 			triggerClientEvent ( player, "infobox_start", getRootElement(), "\n\nDu hast keinen Waffenschein!", 7500, 125, 0, 0 )
 		end
@@ -682,8 +683,8 @@ setElementInterior ( waffenscheinmarker, 1)
 function waffenscheinmarker_func (player, dim)
    
 	if dim == true then
-		setPedFrozen ( player, true )
-		setTimer ( setPedFrozen, 100, 1, player, false )
+		setElementFrozen ( player, true )
+		setTimer ( setElementFrozen, 100, 1, player, false )
 		triggerClientEvent ( player, "ShowWaffenscheinMenue", getRootElement() )
 		showCursor ( player, true )
 		setElementData ( player, "ElementClicked", true )

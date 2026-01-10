@@ -54,7 +54,7 @@ function towveh_func ( player, command, towcar )
 			local pname = MySQL_Save ( getPlayerName ( player ) )
 			local carslot = towcar
 			--local Car = _G[getPrivVehString ( pname, carslot )]
-			local Car = MySQL_GetString("vehicles", "Besitzer LIKE '"..pname.."' AND Slot LIKE '"..carslot.."'")
+			local Car = MySQL_GetString("vehicles", "*","Besitzer LIKE '"..pname.."' AND Slot LIKE '"..carslot.."'")
 			--MySQL_GetString("vehicles", "id", "Besitzer LIKE '"..pname.."' AND Slot LIKE '"..carslot.."'")
 			local Totalschaeden = MySQL_GetString("vehicles", "Totalschaden", "Besitzer LIKE '" ..pname.."' AND Slot LIKE '" ..tonumber(carslot).. "' ")
 			--SICHERHEITSHINWEIS--
@@ -201,13 +201,23 @@ function respawnPrivVeh ( carslot, pname )
 
 	if not isElement ( _G[getPrivVehString ( pname, carslot )] ) or ( not getVehicleOccupant ( _G[getPrivVehString ( pname, carslot )] ) and not getVehicleOccupant ( _G[getPrivVehString ( pname, carslot )], 1 ) and not getVehicleOccupant ( _G[getPrivVehString ( pname, carslot )], 2 ) and not getVehicleOccupant ( _G[getPrivVehString ( pname, carslot )], 3 ) ) then
 		if tonumber ( MySQL_GetString("vehicles", "AuktionsID", "Besitzer LIKE '"..pname.."' AND Slot LIKE '"..carslot.."'") ) == 0 then
+			-- local dsatz
+			-- local result = mysql_query ( handler, "SELECT * from vehicles WHERE Besitzer LIKE '"..pname.."' AND Slot LIKE '"..carslot.."'" )
+			-- if result then
+			-- 	if ( mysql_num_rows ( result ) > 0 ) then
+			-- 		dsatz = mysql_fetch_assoc ( result )
+			-- 	end
+			-- 	mysql_free_result ( result )
+			-- end
+
 			local dsatz
-			local result = mysql_query ( handler, "SELECT * from vehicles WHERE Besitzer LIKE '"..pname.."' AND Slot LIKE '"..carslot.."'" )
+			local result = dbQuery( handler, "SELECT * from vehicles WHERE Besitzer LIKE '"..pname.."' AND Slot LIKE '"..carslot.."'" )
 			if result then
-				if ( mysql_num_rows ( result ) > 0 ) then
-					dsatz = mysql_fetch_assoc ( result )
+				local re, num_rows = dbPoll(result, -1)
+				if re and num_rows > 0 then
+					dsatz = re[1]
 				end
-				mysql_free_result ( result )
+				dbFree(result)
 			end
 			
 			destroyMagnet ( _G[getPrivVehString ( pname, carslot )] )

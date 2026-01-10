@@ -55,6 +55,7 @@ local jobsTable = {
 for index , teamData in ipairs ( jobsTable ) do
 	local teamName , charName , charSkin , posX , posY , posZ , interior , dimension , rotation , RGBTable = unpack ( teamData )
 	local ped = createPed ( charSkin , posX , posY , posZ )
+	outputDebugString("utils_server: 57 - PED erstellt ped")
 	setElementRotation ( ped , 0 , 0 , rotation )
 	setElementInterior ( ped , interior )
 	setElementDimension ( ped , dimension )
@@ -371,6 +372,7 @@ local ped
 function createInvulnerableTicketPed ( skin, x, y, z, rot, int, dim )
 
 	ped = createPed ( skin, x, y, z, rot )
+	outputDebugString("utils_server: 374 - PED erstellt ped")
 	setPedRotation ( ped, rot )
 	laSetElementData ( ped, "x", x )
 	laSetElementData ( ped, "y", y )
@@ -413,6 +415,7 @@ function createInvulnerablePed ( skin, x, y, z, rot, int, dim )
 		dim = 0
 	end
 	local ped = createPed ( skin, x, y, z, rot )
+	outputDebugString("utils_server: 417 - PED erstellt ped")
 	setElementInterior ( ped, int )
 	setElementDimension ( ped, dim )
 	triggerClientEvent ( root, "makePedInvulnerable", root, ped )

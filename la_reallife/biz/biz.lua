@@ -376,6 +376,7 @@ addEventHandler ( "onPickupHit", denkmalIcon, denkmal )
 
 
 bizped = createPed(172, 820, 2, 1004.2)
+outputDebugString("biz: 378 - PED erstellt bizped")
 setElementInterior (bizped, 3)
 setElementDimension(bizped, 1)
 setPedRotation(bizped, 270)

@@ -26,10 +26,13 @@ function loadOffers ()
 	GaragesOffers = {}
 	SpecialOffers = {}
 	
-	result = mysql_query ( handler, "SELECT * FROM buyit" )
+	-- result = mysql_query ( handler, "SELECT * FROM buyit" )
+	result = dbQuery ( handler, "SELECT * FROM buyit" )
 	
-	offers = mysql_fetch_assoc ( result )
-	while offers do
+	-- offers = mysql_fetch_assoc ( result )
+	re = dbPoll(result, -1) 
+	-- while offers do
+	for _, offers in ipairs ( re ) do
 		local ID = tonumber ( offers["ID"] )
 		usedAuktionIDs[ID] = true
 		local Typ = offers["Typ"]
@@ -53,9 +56,11 @@ function loadOffers ()
 			_G[Typ.."Offers"][ID]["OptischesDatum"] = OptischesDatum
 			_G[Typ.."Offers"][ID]["Anzahl"] = Anzahl
 		
-		offers = mysql_fetch_assoc(result)
+		-- offers = mysql_fetch_assoc(result)
+		offers = dbPoll(result, -1)
 	end
-	mysql_free_result(result)
+	-- mysql_free_result(result)
+	dbFree(result)
 	globalBuyItCheck ()
 end
 setTimer ( loadOffers, 500, 1 )
@@ -268,11 +273,13 @@ function makeOffer_func ( typ, startGebot, description, timeToRun, count )
 			
 			timeToRunOptical = calcTimeToRunOptical ( minute + timeToRun, hour, yearday, year )
 			timeToRun = formatDateToInteger ( minute + timeToRun, hour, yearday, year )
-			local result = mysql_query(handler, "INSERT INTO buyit (ID, typ, Anbieter, Hoechstbietender, Hoechstgebot, LaeuftBis, Beschreibung, OptischesDatum, Anzahl) VALUES ('"..auktionID.."', '"..typ.."', '"..pname.."', '-', '"..startGebot.."', '"..timeToRun.."', '"..description.."', '"..timeToRunOptical.."', '"..count.."')")
+			-- local result = mysql_query(handler, "INSERT INTO buyit (ID, typ, Anbieter, Hoechstbietender, Hoechstgebot, LaeuftBis, Beschreibung, OptischesDatum, Anzahl) VALUES ('"..auktionID.."', '"..typ.."', '"..pname.."', '-', '"..startGebot.."', '"..timeToRun.."', '"..description.."', '"..timeToRunOptical.."', '"..count.."')")
+			local result = dbQuery(handler, "INSERT INTO buyit (ID, typ, Anbieter, Hoechstbietender, Hoechstgebot, LaeuftBis, Beschreibung, OptischesDatum, Anzahl) VALUES ('"..auktionID.."', '"..typ.."', '"..pname.."', '-', '"..startGebot.."', '"..timeToRun.."', '"..description.."', '"..timeToRunOptical.."', '"..count.."')")
 			if( not result) then
-				outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
+				outputDebugString("Error executing the query: (" .. dbErrorCode(handler) .. ") " .. dbErrorMessage(handler))
 			else
-				mysql_free_result(result)
+				-- mysql_free_result(result)
+				dbFree(result)
 			end
 			_G[typ.."Offers"][ID]["LaeuftBis"] = timeToRun
 			_G[typ.."Offers"][ID]["OptischesDatum"] = timeToRunOptical

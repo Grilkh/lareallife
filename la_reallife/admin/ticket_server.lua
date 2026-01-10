@@ -1,4 +1,4 @@
-db = dbConnect("mysql", "dbname=DBNAME;host=IP/HOST", "DBNAME", "DBPASSWORD")
+db = dbConnect("mysql", "dbname=lareallife;host=127.0.0.1", "USERNAME_HERE", "PASSWORD_HERE")
 
 
 function updateTicketsForClientFunc()
